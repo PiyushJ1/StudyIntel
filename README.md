@@ -1,1 +1,2 @@
-A smart time-tracking app that helps you analyse where your time really goes — so you can make every minute count.
+**TimeLyze | Spend and Analyze your Time Wisely**
+*Project development has just begun. README will be updated as progress is made.*
