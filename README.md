@@ -1,2 +1,2 @@
-# TimeLyze | Spend and Analyze your Time Wisely**
-*Project development has just begun. README will be updated as progress is made.*
+# TimeLyze | Spend and Analyze your Time Wisely
+*Project development has just begun. README.md will be updated as progress is made.*
