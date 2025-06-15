@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function HomePage() {
-  const words = ['Visualize study patterns.', 'Find your flow state.', 'Personalized AI study insights.'];
+  const words = ['Visualize your study patterns.', 'Reach academic flow state.', 'Get AI-powered study insights.'];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
