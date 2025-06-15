@@ -52,7 +52,7 @@ export default function HomePage() {
             <span className={styles.cursor}></span>
           </div>
         </h1>
-        <h2 className={styles.subtitle}>The first productivity tool built specifically for student life.</h2>
+        <h2 className={styles.subtitle}>The first productivity tool built specifically for students.</h2>
         
         <div className={styles.descriptionSection}>
           <p className={styles.descriptionText}>
