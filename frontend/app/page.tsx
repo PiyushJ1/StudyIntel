@@ -56,7 +56,7 @@ export default function HomePage() {
         
         <div className={styles.descriptionSection}>
           <p className={styles.descriptionText}>
-            TimeLyze captures every aspect of your student life automatically. Our AI transforms your daily activities into powerful visual insights and personalized recommendations, revealing hidden patterns in how you spend your time so you can make smarter decisions and achieve more with less stress.
+            Stop guessing why some study sessions feel effortless while others drain you completely. TimeLyze automatically tracks when and how you study, then applies AI analysis to decode your unique productivity patterns. Discover your peak focus hours, identify what kills your momentum, and learn the timing strategies that help you retain more in less time. Finally, study insights that actually work for how students learn.
           </p>
         </div>
       </div>
