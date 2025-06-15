@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function HomePage() {
-  const words = ['Track your daily habits', 'Visualize your patterns', 'Get AI-powered insights'];
+  const words = ['Visualize study patterns.', 'Find your flow state.', 'Personalized AI study insights.'];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -52,11 +52,14 @@ export default function HomePage() {
             <span className={styles.cursor}></span>
           </div>
         </h1>
-        <h2 className={styles.subtitle}>The first productivity tool built specifically for students.</h2>
-        
+        <h2 className={styles.subtitle}>The first AI-powered study optimization tool built for students, by students.</h2>
         <div className={styles.descriptionSection}>
           <p className={styles.descriptionText}>
-            Stop guessing why some study sessions feel effortless while others drain you completely. TimeLyze automatically tracks when and how you study, then applies AI analysis to decode your unique productivity patterns. Discover your peak focus hours, identify what kills your momentum, and learn the timing strategies that help you retain more in less time. Finally, study insights that actually work for how students learn.
+            Stop guessing why some study sessions feel effortless while others drain you completely. <br></br>
+			TimeLyze automatically tracks when and how you study, then applies 
+			AI analysis and data visualization to decode your unique productivity patterns.<br></br> Discover 
+			your peak focus hours, identify momentum killers, and learn timing 
+			strategies that help you retain more in less time.
           </p>
         </div>
       </div>
