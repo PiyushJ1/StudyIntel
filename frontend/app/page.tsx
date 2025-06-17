@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
-import Head from 'next/head';
 
 export default function HomePage() {
 	const words = ['Get AI-powered study insights.', 'Visualize progress and patterns.', 'Unlock your academic potential.'];
