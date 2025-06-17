@@ -59,12 +59,18 @@ export default function HomePage() {
             <h2 className={styles.subtitle}>The first AI-powered study optimization tool. Built for students, by students.</h2>
             <div className={styles.descriptionSection}>
             <p className={styles.descriptionText}>
-              TimeLyze transforms your study sessions into personalized strategies backed by your own data. Log your time, tag your subjects, and 
+              TimeLyze transforms your study sessions into personalized academic strategies backed by your own data. Log your time, tag your subjects, and reflect on
               your focus levels. <br></br><br></br>Our AI analyzes this data and creates beautiful, interactive visualizations that reveal where your hard work
               truly goes—helping you optimize your study habits and unlock your academic potential.
             </p>
             </div>
           </div>
+
+          <a href='https://google.com' target='_blank'>
+            <button className={styles.interestButton}>
+              Register Interest  
+            </button>
+          </a>
         </main>
       </>
   	);
