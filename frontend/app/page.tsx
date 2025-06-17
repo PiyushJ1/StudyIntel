@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
+import Head from 'next/head';
 
 export default function HomePage() {
 	const words = ['Get AI-powered study insights.', 'Visualize progress and patterns.', 'Unlock your academic potential.'];
@@ -39,27 +40,33 @@ export default function HomePage() {
   	}, [currentText, isDeleting, isPaused, currentWordIndex, words]);
 
   	return (
-      <main className={styles.heroContainer}>
-        <div className={styles.constructionBanner}>
-          Currently under construction, check back later.
-        </div>
-        
-        <div className={styles.contentContainer}>
-          <h1 className={styles.mainTitle}>
-          <div className={styles.typingContainer}>
-            <span className={styles.typingText}>{currentText}</span>
-            <span className={styles.cursor}></span>
+      <>
+        <header className="navbar">
+          
+        </header>
+
+        <main className={styles.heroContainer}>
+          <div className={styles.constructionBanner}>
+            Currently under construction, check back later.
           </div>
-          </h1>
-          <h2 className={styles.subtitle}>The first AI-powered study optimization tool. Built for students, by students.</h2>
-          <div className={styles.descriptionSection}>
-          <p className={styles.descriptionText}>
-            TimeLyze transforms your study sessions into personalized strategies backed by your own data. Log your time, tag your subjects, and 
-            your focus levels. <br></br><br></br>Our AI analyzes this data and creates beautiful, interactive visualizations that reveal where your hard work
-            truly goes—helping you optimize your study habits and unlock your acadamic potential.
-          </p>
+          
+          <div className={styles.contentContainer}>
+            <h1 className={styles.mainTitle}>
+            <div className={styles.typingContainer}>
+              <span className={styles.typingText}>{currentText}</span>
+              <span className={styles.cursor}></span>
+            </div>
+            </h1>
+            <h2 className={styles.subtitle}>The first AI-powered study optimization tool. Built for students, by students.</h2>
+            <div className={styles.descriptionSection}>
+            <p className={styles.descriptionText}>
+              TimeLyze transforms your study sessions into personalized strategies backed by your own data. Log your time, tag your subjects, and 
+              your focus levels. <br></br><br></br>Our AI analyzes this data and creates beautiful, interactive visualizations that reveal where your hard work
+              truly goes—helping you optimize your study habits and unlock your academic potential.
+            </p>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </>
   	);
 }

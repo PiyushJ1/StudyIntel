@@ -10,6 +10,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
 	title: "TimeLyze | AI-powered study optimization",
+	icons: {
+		icon: "/assets/timelyze.png"
+	}
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
