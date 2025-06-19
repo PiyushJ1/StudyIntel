@@ -104,7 +104,7 @@ export default function LoginPage() {
 
         <div className={styles.footer}>
           <p className={styles.footerText}>
-            Don&apost have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="/register" className={styles.registerLink}>
               Sign up
             </Link>
