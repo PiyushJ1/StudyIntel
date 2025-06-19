@@ -2,15 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
+import Link from 'next/link';
 
 export default function HomePage() {
-	const words = ['Get AI-powered study insights.', 'Visualize progress and patterns.', 'Unlock your academic potential.'];
-	const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
 	const [currentText, setCurrentText] = useState('');
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [isPaused, setIsPaused] = useState(false);
-
+  
 	useEffect(() => {
+    const words = ['Get AI-powered study insights.', 'Visualize progress and patterns.', 'Unlock your academic potential.'];
 		const currentWord = words[currentWordIndex];
       const timeout = setTimeout(() => {
         if (isPaused) {
@@ -36,7 +37,7 @@ export default function HomePage() {
       }, isPaused ? 1500 : isDeleting ? 50 : 100);
 
 		  return () => clearTimeout(timeout);
-  	}, [currentText, isDeleting, isPaused, currentWordIndex, words]);
+  	}, [currentText, isDeleting, isPaused, currentWordIndex]);
 
   	return (
       <>
@@ -66,11 +67,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          <a href='https://google.com' target='_blank'>
-            <button className={styles.interestButton}>
-              Register Interest  
-            </button>
-          </a>
+          <Link href="/login" className={styles.interestButton}>
+            Register Interest
+          </Link>
         </main>
       </>
   	);

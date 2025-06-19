@@ -7,7 +7,7 @@
   --foreground-rgb: 23, 23, 23;
 }
 
-@theme inline {
+inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
