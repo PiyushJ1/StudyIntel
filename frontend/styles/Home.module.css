@@ -31,6 +31,109 @@
   color: #6b7280; /* even lighter for subtlety */
 }
 
+/* Navbar Styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(var(--background-rgb), 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(var(--foreground-rgb), 0.08);
+  padding: 1rem 0;
+}
+
+.navContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #3b82f6, #9333ea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-decoration: none;
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.navCenter {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLink {
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.navLink:hover {
+  opacity: 1;
+  color: #3b82f6;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loginButton {
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.loginButton:hover {
+  opacity: 1;
+  background: rgba(var(--foreground-rgb), 0.05);
+}
+
+.signupButton {
+  background: linear-gradient(to right, #3b82f6, #9333ea);
+  color: white;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.signupButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
 .heroContainer {
   min-height: 100vh;
   display: flex;
@@ -44,26 +147,7 @@
     radial-gradient(ellipse 60% 50% at 80% 60%, rgba(147, 51, 234, 0.06), transparent),
     radial-gradient(ellipse 100% 80% at 40% 20%, rgba(16, 185, 129, 0.04), transparent),
     linear-gradient(to bottom, var(--background), var(--background));
-}
-
-.constructionBanner {
-  position: absolute;
-  top: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--foreground);
-  opacity: 0.8;
-  padding: 0.75rem 2rem;
-  border-radius: 9999px;
-  background: rgba(var(--foreground-rgb), 0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(var(--foreground-rgb), 0.15);
-  z-index: 10;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 0 20px rgba(var(--foreground-rgb), 0.1);
-  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  letter-spacing: -0.02em;
+  padding-top: 5rem;
 }
 
 .contentContainer {
@@ -128,33 +212,42 @@
   letter-spacing: -0.015em;
 }
 
-/* registering interest button */
-.interestButton {
-  position:static;
-  cursor: pointer;
-  top: 1.2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--foreground);
-  opacity: 0.9;
-  padding: 0.75rem 2rem;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.828);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  letter-spacing: -0.02em;
+/* CTA Section */
+.ctaSection {
+  margin-top: 3rem;
+  animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.waitlistButton {
+  display: inline-block;
   background: linear-gradient(to right, #3b82f6, #9333ea);
-  animation: fadeIn 0.8s ease-out 0.4s both;
+  color: white;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.01em;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 30px rgba(59, 130, 246, 0.2);
+  margin-bottom: 1rem;
 }
 
-.interestButton:hover {
-  box-shadow: 5 12px 40px rgba(0, 0, 0, 0.2);
+.waitlistButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2), 0 0 40px rgba(59, 130, 246, 0.3);
 }
 
+.waitlistText {
+  font-size: 0.875rem;
+  color: var(--foreground);
+  opacity: 0.7;
+  font-weight: 500;
+  margin: 0;
+  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.01em;
+}
 
 .typingContainer {
   display: inline-flex;
@@ -203,5 +296,33 @@
   }
   51%, 100% {
     opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navContainer {
+    padding: 0 1rem;
+  }
+  
+  .navCenter {
+    display: none;
+  }
+  
+  .navRight {
+    gap: 0.5rem;
+  }
+  
+  .loginButton, .signupButton {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .heroContainer {
+    padding-top: 4rem;
+  }
+  
+  .contentContainer {
+    padding: 2rem 1rem;
   }
 }

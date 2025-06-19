@@ -9,9 +9,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-	title: "TimeLyze | AI-powered study optimization",
+	title: "StudyIntel | AI-powered study intelligence platform",
+	description: "Get the intel you need to dominate your academics. AI-driven insights, performance analytics, and strategic study optimization.",
 	icons: {
-		icon: "/assets/timelyze.png"
+		icon: "/assets/StudyIntel.png"
 	}
 };
 
