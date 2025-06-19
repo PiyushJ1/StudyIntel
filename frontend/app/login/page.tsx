@@ -1,14 +1,114 @@
-import styles from './login.module.css'
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import styles from './login.module.css';
 
 export default function LoginPage() {
-    return (
-        <>
-        <form>
-            <div className={styles.login}>
-                <input type='text' name='username' placeholder='Enter your username' required></input>
-                <input type='text' name='username' placeholder='Enter your username' required></input>
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle login logic here
+    console.log('Login submitted:', formData);
+  };
+
+  return (
+    <div className={styles.loginContainer}>
+      <div className={styles.loginCard}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>Welcome Back</h1>
+          <p className={styles.subtitle}>Sign in to continue your learning journey</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="email" className={styles.label}>Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              className={styles.input}
+              required
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="password" className={styles.label}>Password</label>
+            <div className={styles.passwordContainer}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                className={styles.input}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className={styles.passwordToggle}
+              >
+                {showPassword ? '👁️' : '👁️‍🗨️'}
+              </button>
             </div>
+          </div>
+
+          <div className={styles.formOptions}>
+            <label className={styles.checkboxContainer}>
+              <input type="checkbox" className={styles.checkbox} />
+              <span className={styles.checkboxLabel}>Remember me</span>
+            </label>
+            <Link href="/forgot-password" className={styles.forgotLink}>
+              Forgot password?
+            </Link>
+          </div>
+
+          <button type="submit" className={styles.loginButton}>
+            Sign In
+          </button>
+
+          <div className={styles.divider}>
+            <span className={styles.dividerText}>or</span>
+          </div>
+
+          <button type="button" className={styles.googleButton}>
+            <span className={styles.googleIcon}>
+							<img src='/assets/google-logo.png' alt='google-icon'/>
+						</span>
+            Continue with Google
+          </button>
         </form>
-        </>
-    );
-}
+
+        <div className={styles.footer}>
+          <p className={styles.footerText}>
+            Don't have an account?{' '}
+            <Link href="/register" className={styles.registerLink}>
+              Sign up
+            </Link>
+          </p>
+        </div>
+      </div>
+
+      <Link href="/" className={styles.backButton}>
+        ← Back to Home
+      </Link>
+    </div>
+  );
+} 
