@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from './login.module.css';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -90,7 +91,12 @@ export default function LoginPage() {
 
           <button type="button" className={styles.googleButton}>
             <span className={styles.googleIcon}>
-							<img src='/assets/google-logo.png' alt='google-icon'/>
+							<Image 
+								src='/assets/google-logo.png'
+								alt='google-icon'
+								width={24}
+								height={24}
+								/>
 						</span>
             Continue with Google
           </button>
@@ -98,7 +104,7 @@ export default function LoginPage() {
 
         <div className={styles.footer}>
           <p className={styles.footerText}>
-            Don't have an account?{' '}
+            Don&apost have an account?{' '}
             <Link href="/register" className={styles.registerLink}>
               Sign up
             </Link>
