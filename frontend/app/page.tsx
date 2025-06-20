@@ -3,12 +3,14 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
+import WaitlistPopup from '../components/WaitlistPopup';
 
 export default function HomePage() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 	const [currentText, setCurrentText] = useState('');
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [isPaused, setIsPaused] = useState(false);
+  const [isWaitlistPopupOpen, setIsWaitlistPopupOpen] = useState(false);
   
 	useEffect(() => {
     const words = ['Visualize your study intelligence.', 'Transform data into insights.', 'See patterns, dominate academics.'];
@@ -39,6 +41,11 @@ export default function HomePage() {
 		  return () => clearTimeout(timeout);
   	}, [currentText, isDeleting, isPaused, currentWordIndex]);
 
+  const handleWaitlistClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsWaitlistPopupOpen(true);
+  };
+
   	return (
       <>
         <header className={styles.navbar}>
@@ -57,12 +64,12 @@ export default function HomePage() {
             </nav>
             
             <div className={styles.navRight}>
-              <Link href="/login" className={styles.loginButton}>
+              <span className={`${styles.loginButton} ${styles.disabled}`}>
                 Sign In
-              </Link>
-              <Link href="/register" className={styles.signupButton}>
+              </span>
+              <span className={`${styles.signupButton} ${styles.disabled}`}>
                 Sign Up
-              </Link>
+              </span>
             </div>
           </div>
         </header>
@@ -83,9 +90,12 @@ export default function HomePage() {
             </div>
             
             <div className={styles.ctaSection}>
-              <Link href="/waitlist" className={styles.waitlistButton}>
+              <button 
+                onClick={handleWaitlistClick}
+                className={styles.waitlistButton}
+              >
                 Join Waitlist
-              </Link>
+              </button>
               
               <p className={styles.waitlistText}>
                 Claim your spot in the future of academic excellence.
@@ -93,6 +103,11 @@ export default function HomePage() {
             </div>
           </div>
         </main>
+
+        <WaitlistPopup 
+          isOpen={isWaitlistPopupOpen}
+          onClose={() => setIsWaitlistPopupOpen(false)}
+        />
       </>
   	);
 }
