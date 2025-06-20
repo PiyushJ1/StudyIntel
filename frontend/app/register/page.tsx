@@ -38,7 +38,7 @@ export default function RegisterPage() {
 
   return (
     <div className={styles.registerContainer}>
-      <div className={styles.registerCard}>
+        <div className={styles.registerCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Create Account</h1>
           <p className={styles.subtitle}>Join now and transform your learning experience</p>
@@ -154,30 +154,30 @@ export default function RegisterPage() {
             <span className={styles.dividerText}>or</span>
           </div>
 
-          <button type="button" className={styles.googleButton}>
+                    <button type="button" className={styles.googleButton}>
             <span className={styles.googleIcon}>
-							<Image 
-								src='/assets/google-logo.png'
-								alt='google-icon'
-								width={24}
-								height={24}
-								/>
-						</span>
+              <Image 
+                src='/assets/google-logo.png'
+                alt='google-icon'
+                width={24}
+                height={24}
+              />
+            </span>
             Continue with Google
           </button>
         </form>
 
-        <button type="button" className={styles.microsoftButton}>
-            <span className={styles.microsoftIcon}>
-							<Image 
-								src='/assets/microsoft-logo.png'
-								alt='microsoft-icon'
-								width={19}
-								height={19}
-								/>
-						</span>
-            Continue with Microsoft
-          </button>
+                <button type="button" className={styles.microsoftButton}>
+          <span className={styles.microsoftIcon}>
+            <Image 
+              src='/assets/microsoft-logo.png'
+              alt='microsoft-icon'
+              width={19}
+              height={19}
+            />
+          </span>
+          Continue with Microsoft
+        </button>
 
         <div className={styles.footer}>
           <p className={styles.footerText}>
