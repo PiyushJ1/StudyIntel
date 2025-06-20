@@ -102,6 +102,18 @@ export default function LoginPage() {
           </button>
         </form>
 
+        <button type="button" className={styles.microsoftButton}>
+            <span className={styles.microsoftIcon}>
+							<Image 
+								src='/assets/microsoft-logo.png'
+								alt='microsoft-icon'
+								width={19}
+								height={19}
+								/>
+						</span>
+            Continue with Microsoft
+          </button>
+
         <div className={styles.footer}>
           <p className={styles.footerText}>
             Don&apos;t have an account?{' '}

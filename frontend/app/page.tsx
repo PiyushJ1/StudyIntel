@@ -84,10 +84,11 @@ export default function HomePage() {
             
             <div className={styles.ctaSection}>
               <Link href="/waitlist" className={styles.waitlistButton}>
-                Get Early Access
+                Join Waitlist
               </Link>
+              
               <p className={styles.waitlistText}>
-                Join elite students getting visual intel on their academic performance
+                Claim your spot in the future of academic excellence.
               </p>
             </div>
           </div>
