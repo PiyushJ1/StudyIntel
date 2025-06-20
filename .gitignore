@@ -1,1 +1,8 @@
+# vscode config
 .vscode
+
+# npm modules
+/backend/node_modules/
+
+# data storage
+/backend/data
