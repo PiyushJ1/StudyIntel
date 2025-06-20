@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import styles from './WaitlistPopup.module.css';
-import Link from 'next/link';
 
 interface WaitlistPopupProps {
   isOpen: boolean;
@@ -79,7 +78,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
               </div>
 
               <div className={styles.benefits}>
-                <h3 className={styles.benefitsTitle}>What you'll get:</h3>
+                <h3 className={styles.benefitsTitle}>What you&apos;ll get:</h3>
                 <ul className={styles.benefitsList}>
                   <li>🚀 Priority early access</li>
                   <li>📊 Exclusive preview of AI insights</li>
@@ -119,7 +118,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
             <div className={styles.successIcon}>✨</div>
             <h2 className={styles.successTitle}>Welcome to the future!</h2>
             <p className={styles.successText}>
-              You're now on the StudyIntel waitlist. We'll email you as soon as 
+              You&apos;re now on the StudyIntel waitlist. We&apos;ll email you as soon as 
               early access is available. Get ready to revolutionize your studies!
             </p>
             <button 
