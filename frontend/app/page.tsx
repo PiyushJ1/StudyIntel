@@ -98,7 +98,7 @@ export default function HomePage() {
               </button>
               
               <p className={styles.waitlistText}>
-                Claim your spot in the future of academic excellence.
+                Claim your spot in the future of academic excellence
               </p>
             </div>
           </div>
