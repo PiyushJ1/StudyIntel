@@ -105,9 +105,23 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
               <div className={styles.privacy}>
                 <p className={styles.privacyText}>
                   🔒 By joining, you agree to our{' '}
-                  <a href="/privacy" className={styles.privacyLink}>Privacy Policy</a>
+                  <a 
+                    href="/privacy"
+                    className={styles.privacyLink}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Privacy Policy
+                  </a>
                   {' '}and{' '}
-                  <a href="/terms" className={styles.privacyLink}>Terms of Service</a>.
+                  <a 
+                  href="/terms"
+                  className={styles.privacyLink}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  >
+                    Terms of Service
+                  </a>.
                   We respect your privacy and will never spam you.
                 </p>
               </div>
