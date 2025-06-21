@@ -28,14 +28,14 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
     setIsSubmitting(true);
     
     // call backend 
-    try {
-      const response = await fetch()
-    }
+    // try {
+    //   const response = await fetch()
+    // }
 
     
-    console.log('Waitlist submission:', formData);
-    setIsSubmitted(true);
-    setIsSubmitting(false);
+    // console.log('Waitlist submission:', formData);
+    // setIsSubmitted(true);
+    // setIsSubmitting(false);
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
