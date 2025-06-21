@@ -28,15 +28,27 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
     setIsSubmitting(true);
     
     // call backend 
-    // try {
-    //   const response = await fetch()
-    // }
+    try {
+      const response = await fetch('https://studyintel-production.up.railway.app/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
 
-    
-    // console.log('Waitlist submission:', formData);
-    // setIsSubmitted(true);
-    // setIsSubmitting(false);
-  };
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(`Submission failed: ${errorData.message || response.statusText}`);
+        setIsSubmitting(false);
+        return;
+      }
+
+      setIsSubmitted(true);
+    } catch {
+      alert('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+};
 
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {

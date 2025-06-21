@@ -8,7 +8,6 @@ export function saveEmailToWaitlist(email: string): void {
 
     if (fs.existsSync(filePath)) {
         const fileData = fs.readFileSync(filePath, 'utf-8');
-
         try {
             emails = JSON.parse(fileData);
         } catch {
