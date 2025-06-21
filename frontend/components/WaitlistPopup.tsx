@@ -27,8 +27,11 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // call backend 
+    try {
+      const response = await fetch()
+    }
+
     
     console.log('Waitlist submission:', formData);
     setIsSubmitted(true);
