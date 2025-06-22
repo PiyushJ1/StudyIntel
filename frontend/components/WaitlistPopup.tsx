@@ -30,7 +30,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
     // call backend waitlist endpoint
     try {
       const response = await fetch(
-        'http://https://studyintel-production.up.railway.app/api/waitlist', 
+        'http://studyintel-production.up.railway.app/api/waitlist', 
         // 'http://localhost:4000/api/waitlist',
         
         {
