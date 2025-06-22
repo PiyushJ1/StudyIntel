@@ -27,9 +27,13 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // call backend 
+    // call backend waitlist endpoint
     try {
-      const response = await fetch('https://studyintel-production.up.railway.app/api/waitlist', {
+      const response = await fetch(
+        'http://https://studyintel-production.up.railway.app/api/waitlist', 
+        // 'http://localhost:4000/api/waitlist',
+        
+        {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -145,7 +149,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
         ) : (
           <div className={styles.successMessage}>
             <div className={styles.successIcon}>✨</div>
-            <h2 className={styles.successTitle}>Welcome to the future!</h2>
+            <h2 className={styles.successTitle}>Welcome to the future of studying!</h2>
             <p className={styles.successText}>
               You&apos;re now on the StudyIntel waitlist. We&apos;ll email you as soon as 
               early access is available. Get ready to revolutionize your studies!
