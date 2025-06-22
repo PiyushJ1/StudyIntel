@@ -12,7 +12,8 @@ router.post('/', (req: Request, res: Response) => {
     }
 
     try {
-        saveEmailToWaitlist(email);
+        // saveEmailToWaitlist(email);
+        console.log('this try works');
         return res.status(201).json({ message: 'Waitlist joined succesffully' });
     } catch (err) {
         console.log('Could not save to waitlist', err);
