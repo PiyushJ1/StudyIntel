@@ -141,7 +141,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
                   >
                     Terms of Service
                   </a>.
-                  We respect your privacy and will never spam you.
+                  We respect your privacy and never share your information with third parties.
                 </p>
               </div>
             </form>
