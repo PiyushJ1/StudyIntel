@@ -55,9 +55,10 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
+    // if (e.target === e.currentTarget) {
+    //   onClose();
+    // }
+    // cant close popup by clicking outside
   };
 
   if (!isOpen) return null;
