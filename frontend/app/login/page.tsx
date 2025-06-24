@@ -91,28 +91,28 @@ export default function LoginPage() {
 
           <button type="button" className={styles.googleButton}>
             <span className={styles.googleIcon}>
-							<Image 
-								src='/assets/google-logo.png'
-								alt='google-icon'
-								width={24}
-								height={24}
-								/>
-						</span>
+              <Image 
+                src='/assets/google-logo.png'
+                alt='google-icon'
+                width={24}
+                height={24}
+              />
+            </span>
             Continue with Google
           </button>
         </form>
 
         <button type="button" className={styles.microsoftButton}>
-            <span className={styles.microsoftIcon}>
-							<Image 
-								src='/assets/microsoft-logo.png'
-								alt='microsoft-icon'
-								width={19}
-								height={19}
-								/>
-						</span>
+          <span className={styles.microsoftIcon}>
+            <Image 
+              src='/assets/microsoft-logo.png'
+              alt='microsoft-icon'
+              width={19}
+              height={19}
+            />
+          </span>
             Continue with Microsoft
-          </button>
+        </button>
 
         <div className={styles.footer}>
           <p className={styles.footerText}>

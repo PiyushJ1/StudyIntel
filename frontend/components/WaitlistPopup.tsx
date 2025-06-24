@@ -34,10 +34,10 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
         // 'http://localhost:4000/api/waitlist',
         
         {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -52,7 +52,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
     } finally {
       setIsSubmitting(false);
     }
-};
+  };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -134,10 +134,10 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
                   </a>
                   {' '}and{' '}
                   <a 
-                  href="/terms"
-                  className={styles.privacyLink}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                    href="/terms"
+                    className={styles.privacyLink}
+                    target='_blank'
+                    rel='noopener noreferrer'
                   >
                     Terms of Service
                   </a>.

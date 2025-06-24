@@ -38,7 +38,7 @@ export default function RegisterPage() {
 
   return (
     <div className={styles.registerContainer}>
-        <div className={styles.registerCard}>
+      <div className={styles.registerCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Create Account</h1>
           <p className={styles.subtitle}>Join now and transform your learning experience</p>
@@ -154,7 +154,7 @@ export default function RegisterPage() {
             <span className={styles.dividerText}>or</span>
           </div>
 
-                    <button type="button" className={styles.googleButton}>
+          <button type="button" className={styles.googleButton}>
             <span className={styles.googleIcon}>
               <Image 
                 src='/assets/google-logo.png'
@@ -167,7 +167,7 @@ export default function RegisterPage() {
           </button>
         </form>
 
-                <button type="button" className={styles.microsoftButton}>
+        <button type="button" className={styles.microsoftButton}>
           <span className={styles.microsoftIcon}>
             <Image 
               src='/assets/microsoft-logo.png'
