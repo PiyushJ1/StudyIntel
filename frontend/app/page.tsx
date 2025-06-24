@@ -13,7 +13,7 @@ export default function HomePage() {
   const [isWaitlistPopupOpen, setIsWaitlistPopupOpen] = useState(false);
   
   useEffect(() => {
-    const words = ['Visualize your study intelligence.', 'Transform data into insights.', 'See patterns, dominate academics.'];
+    const words = ['Receive personalized study insights.', 'Visualize your academic progress.', 'Unlock your academic potential.'];
     const currentWord = words[currentWordIndex];
     const timeout = setTimeout(() => {
       if (isPaused) {
