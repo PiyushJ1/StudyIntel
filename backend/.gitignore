@@ -22,3 +22,6 @@ npm-debug.log*
 
 # Temporary files
 .tmp/ 
+
+# Temp JSON db storage
+data/
