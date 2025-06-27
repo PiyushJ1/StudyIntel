@@ -4,12 +4,7 @@ import { User } from "../models/interfaces";
 
 const filePath = path.join(__dirname, "..", "..", "data", "users.json");
 
-export function createUserAccount(
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-): void {
+export function saveNewUserAccount(user: User): void {
   let users: User[] = [];
 
   if (fs.existsSync(filePath)) {
@@ -21,11 +16,6 @@ export function createUserAccount(
     }
   }
 
-  users.push({
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    password: password,
-  });
+  users.push(user);
   fs.writeFileSync(filePath, JSON.stringify(users, null, 2), "utf-8");
 }
