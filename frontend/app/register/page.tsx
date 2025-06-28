@@ -1,11 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styles from './register.module.css';
 import Image from 'next/image';
 
 export default function RegisterPage() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -49,6 +52,8 @@ export default function RegisterPage() {
         alert(`Submission failed: ${errorData.message || response.statusText}`);
         return;
       }
+
+      router.push('/dashboard');
     } catch (err) {
       console.log('Signing up register caused an error', err);
       alert('Could not sign up');
