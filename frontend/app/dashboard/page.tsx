@@ -1,3 +1,9 @@
 export default function DashboardPage() {
-  return <div>Coming soon</div>;
+  return (
+    <>
+      <div>
+        <center>Welcome to the StudyIntel dashboard!</center>
+      </div>
+    </>
+  );
 }
