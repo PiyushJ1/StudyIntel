@@ -23,7 +23,7 @@ export default function RegisterPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic password validation
@@ -32,8 +32,27 @@ export default function RegisterPage() {
       return;
     }
     
-    // Handle register logic here
+    // handle user sign up logic 
     console.log('Register submitted:', formData);
+    try {
+      // deconstruct form data to exclude confirmPassword (only used for frontend validation)
+      const { confirmPassword: _, ...dataToSend} = formData;
+
+      const response = await fetch('http://localhost:4000/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSend)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(`Submission failed: ${errorData.message || response.statusText}`);
+        return;
+      }
+    } catch (err) {
+      console.log('Signing up register caused an error', err);
+      alert('Could not sign up');
+    }
   };
 
   return (
