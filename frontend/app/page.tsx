@@ -64,12 +64,12 @@ export default function HomePage() {
           </nav>
             
           <div className={styles.navRight}>
-            <span className={`${styles.loginButton} ${styles.disabled}`}>
+            <Link href="/login" className={styles.loginButton}>
                 Sign In
-            </span>
-            <span className={`${styles.signupButton} ${styles.disabled}`}>
+            </Link>
+            <Link href="/register" className={styles.signupButton}>
                 Sign Up
-            </span>
+            </Link>
           </div>
         </div>
       </header>
