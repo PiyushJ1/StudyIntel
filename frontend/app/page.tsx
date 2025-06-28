@@ -13,7 +13,7 @@ export default function HomePage() {
   const [isWaitlistPopupOpen, setIsWaitlistPopupOpen] = useState(false);
   
   useEffect(() => {
-    const words = ['Receive personalized study insights.', 'Visualize your academic progress.', 'Unlock your academic potential.'];
+    const words = ['Get personalized study insights.', 'Visualize your learning progress.', 'Reach your academic potential.'];
     const currentWord = words[currentWordIndex];
     const timeout = setTimeout(() => {
       if (isPaused) {
@@ -36,7 +36,7 @@ export default function HomePage() {
           setIsPaused(true);
         }
       }
-    }, isPaused ? 1500 : isDeleting ? 50 : 100);
+    }, isPaused ? 1500 : isDeleting ? 40 : 70);
 
 		  return () => clearTimeout(timeout);
   	}, [currentText, isDeleting, isPaused, currentWordIndex]);
