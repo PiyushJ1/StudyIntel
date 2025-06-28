@@ -14,4 +14,4 @@ export default function RegisterLayout({ children }: { children: React.ReactNode
       {children}
     </section>
   );
-}
+};

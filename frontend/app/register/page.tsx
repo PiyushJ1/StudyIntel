@@ -38,6 +38,11 @@ export default function RegisterPage() {
     // handle user sign up logic 
     console.log('Register submitted:', formData);
     try {
+      if (formData.password !== formData.confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+
       // deconstruct form data to exclude confirmPassword (only used for frontend validation)
       const { confirmPassword: _, ...dataToSend} = formData;
 
@@ -163,9 +168,9 @@ export default function RegisterPage() {
               <input type="checkbox" className={styles.checkbox} required />
               <span className={styles.checkboxLabel}>
                 I agree to the{' '}
-                <Link href="/terms" className={styles.termsLink}>Terms of Service</Link>
+                <Link href="/terms" target='_blank' className={styles.termsLink}>Terms of Service</Link>
                 {' '}and{' '}
-                <Link href="/privacy" className={styles.privacyLink}>Privacy Policy</Link>
+                <Link href="/privacy" target='_blank' className={styles.privacyLink}>Privacy Policy</Link>
               </span>
             </label>
           </div>
