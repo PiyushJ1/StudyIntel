@@ -1,13 +1,13 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "StudyIntel | Sign In",
+  title: "StudyIntel | Dashboard",
   icons: {
     icon: "/assets/StudyIntel.png"
   }
 };
 
-export default function RegisterLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <section>
       {/* Optional shared layout UI here */}
