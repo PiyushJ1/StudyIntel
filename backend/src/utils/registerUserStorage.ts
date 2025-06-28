@@ -1,10 +1,17 @@
 import fs from "fs";
 import path from "path";
 import { User } from "../models/interfaces";
+import { v4 as uuidv4 } from "uuid";
 
 const filePath = path.join(__dirname, "..", "..", "data", "users.json");
 
-export function saveNewUserAccount(newUser: User): void {
+export function saveNewUserAccount(newUser: Omit<User, "id">): void {
+  // create a unique user id for each new user (temp solution change later)
+  const user: User = {
+    id: uuidv4(),
+    ...newUser,
+  };
+
   let users: User[] = [];
 
   // check if file path already exists
@@ -17,7 +24,8 @@ export function saveNewUserAccount(newUser: User): void {
     }
   }
 
-  // add the user to the list of existing users
-  users.push(newUser);
+
+  // add the new user to the list of existing users
+  users.push(user);
   fs.writeFileSync(filePath, JSON.stringify(users, null, 2), "utf-8");
 }
