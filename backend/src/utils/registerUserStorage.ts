@@ -1,12 +1,14 @@
 import fs from "fs";
 import path from "path";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 import { User } from "../models/interfaces";
 import { v4 as uuidv4 } from "uuid";
 
 const filePath = path.join(__dirname, "..", "..", "data", "users.json");
 
-export async function saveNewUserAccount(newUser: Omit<User, "id">): Promise<void> {
+export async function saveNewUserAccount(
+  newUser: Omit<User, "id">,
+): Promise<void> {
   let users: User[] = [];
 
   // check if file path already exists
@@ -20,7 +22,7 @@ export async function saveNewUserAccount(newUser: Omit<User, "id">): Promise<voi
   }
 
   // error checking: given email already has an account registered with it
-  if (users.find(u => u.email === newUser.email)) {
+  if (users.find((u) => u.email === newUser.email)) {
     throw new Error("An account with this email already exists");
   }
 

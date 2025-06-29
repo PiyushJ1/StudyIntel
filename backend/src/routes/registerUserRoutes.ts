@@ -13,9 +13,11 @@ router.post("/", async (req: Request, res: Response) => {
     return res.status(400).json({ error: "Email provided was not valid" });
   }
 
-  // validate password to fulfil basic criteria 
+  // validate password to fulfil basic criteria
   if (!validatePassword(newUser.password)) {
-    return res.status(400).json({ error: "Given password does not fulfil the criteria" });    
+    return res
+      .status(400)
+      .json({ error: "Given password does not fulfil the criteria" });
   }
 
   try {

@@ -14,7 +14,8 @@ export function validatePassword(password: string): boolean {
 
   // regex to ensure password contains at least 9 chars, at least 1 uppercase,
   // 1 lowercase, 1 digit, and 1 special character
-  const passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\-\\/]).{9,}$/;
+  const passwordRegEx =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\-\\/]).{9,}$/;
   if (!passwordRegEx.test(password)) return false;
 
   return true;
