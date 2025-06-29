@@ -4,13 +4,13 @@ import { User } from "../models/interfaces";
 
 const router = Router();
 
-router.post("/", (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   const newUser = req.body as User;
 
   // add potential info validation here?
 
   try {
-    saveNewUserAccount(newUser);
+    await saveNewUserAccount(newUser);
     return res
       .status(201)
       .json({ message: "New user info saved successfully" });
