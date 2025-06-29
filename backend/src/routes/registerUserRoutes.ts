@@ -1,13 +1,17 @@
 import { Router, Request, Response } from "express";
 import { saveNewUserAccount } from "../utils/registerUserStorage";
 import { User } from "../models/interfaces";
+import { validateEmail } from "../utils/validation";
 
 const router = Router();
 
 router.post("/", async (req: Request, res: Response) => {
   const newUser = req.body as User;
 
-  // add potential info validation here?
+  // email regex validation
+  if (!validateEmail(newUser.email)) {
+    return res.status(400).json({ error: "Email provided was not valid" });
+  }
 
   try {
     await saveNewUserAccount(newUser);
