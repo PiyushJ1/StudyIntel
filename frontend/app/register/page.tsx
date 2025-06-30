@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styles from './register.module.css';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
   const router = useRouter();
