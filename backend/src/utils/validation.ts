@@ -47,5 +47,6 @@ export async function authenticateUser(email: string, password: string): Promise
     return { result: false, message: "Incorrect password" };
   }
 
-  return { result: true, message: "Log in succesful" };
+  // user log in auth successul
+  return { result: true, message: "Log in successful" };
 }
