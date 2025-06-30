@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import styles from './login.module.css';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -19,10 +22,28 @@ export default function LoginPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
+
+    // handle user login
     console.log('Login submitted:', formData);
+    try {
+      const response = await fetch('http://localhost:4000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(`Submission failed: ${errorData.message || response.statusText}`);
+        return;
+      }
+
+      router.push('/dashboard');
+    } catch (err) {
+      alert('Could not log in');
+    }
   };
 
   return (
