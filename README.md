@@ -70,8 +70,6 @@ Build a **basic, usable product** that enables students to log study sessions an
 | **Phase 4: Profile Management (Optional)** | Implement profile update UI and backend                              | 1–2 weeks           |
 | **Phase 5: Deployment & Polish**          | Deploy full app (Vercel/Heroku), add responsive styling and bug fixes | 1–2 weeks           |
 
-> **Total estimated duration:** ~13–15 weeks at ~6–10 hours/week alongside university commitments
-
 ---
 
 ## 5. Stretch Goals (Post-MVP / Future)
@@ -83,15 +81,3 @@ Build a **basic, usable product** that enables students to log study sessions an
 - Mobile support or Progressive Web App (PWA)
 
 ---
-
-## 6. Tips for Staying Realistic
-
-- Keep focus on completing each phase fully before moving on  
-- Leverage existing libraries and services for auth and charts to save time  
-- Maintain clean, minimal UI early; polish after core functionality is solid  
-- Balance development with university workload to avoid burnout
-
----
-
-*Update this plan regularly as you make progress!*
-
