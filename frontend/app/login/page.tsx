@@ -51,7 +51,7 @@ export default function LoginPage() {
       <div className={styles.loginCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Welcome Back</h1>
-          <p className={styles.subtitle}>Sign in to continue your learning journey</p>
+          <p className={styles.subtitle}>Sign in to keep leveling up your studies 🚀</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
