@@ -259,6 +259,7 @@
   margin-left: 1rem;
   min-width: 180px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 0px;
 }
 
 .secondaryButton:hover {
