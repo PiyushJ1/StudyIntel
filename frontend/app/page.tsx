@@ -350,13 +350,13 @@ export default function HomePage() {
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialStars}>★★★★★</div>
               <p className={styles.testimonialText}>
-                "StudyIntel completely transformed how I approach studying. The AI insights helped me identify my peak focus hours and improve my GPA by 0.8 points in just one semester!"
+                "StudyIntel completely transformed how I approach studying. The AI insights helped me identify my peak focus hours and improve my grades by over 30% in one semester!"
               </p>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.testimonialAvatar}>SJ</div>
                 <div>
                   <div className={styles.testimonialName}>Sarah Johnson</div>
-                  <div className={styles.testimonialTitle}>Computer Science, MIT</div>
+                  <div className={styles.testimonialTitle}>B. Computer Science, UNSW</div>
                 </div>
               </div>
             </div>
@@ -370,7 +370,7 @@ export default function HomePage() {
                 <div className={styles.testimonialAvatar}>MC</div>
                 <div>
                   <div className={styles.testimonialName}>Michael Chen</div>
-                  <div className={styles.testimonialTitle}>Pre-Med, Stanford</div>
+                  <div className={styles.testimonialTitle}>B. Medical Science, USYD</div>
                 </div>
               </div>
             </div>
@@ -384,7 +384,7 @@ export default function HomePage() {
                 <div className={styles.testimonialAvatar}>ER</div>
                 <div>
                   <div className={styles.testimonialName}>Emily Rodriguez</div>
-                  <div className={styles.testimonialTitle}>Psychology, Harvard</div>
+                  <div className={styles.testimonialTitle}>B. Psychology, UTS</div>
                 </div>
               </div>
             </div>
@@ -458,7 +458,7 @@ export default function HomePage() {
           
           <div className={styles.footerBottom}>
             <p className={styles.footerCopyright}>
-              © 2024 StudyIntel. Made by a solo developer with big dreams.
+              © 2025 StudyIntel. A study intelligence platform.
             </p>
             <div className={styles.footerBottomLinks}>
               <a href="#" className={styles.footerBottomLink}>Security</a>
