@@ -26,7 +26,10 @@ export function validatePassword(password: string): boolean {
   return true;
 }
 
-export async function authenticateUser(email: string, password: string): Promise<UserAuthResult> {
+export async function authenticateUser(
+  email: string,
+  password: string,
+): Promise<UserAuthResult> {
   // find user details from local JSON file
   const filePath = path.join(__dirname, "..", "..", "data", "users.json");
   const fileData = fs.readFileSync(filePath, "utf-8");
