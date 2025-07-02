@@ -119,7 +119,7 @@ export default function HomePage() {
               <span className={styles.cursor}></span>
             </div>
           </h1>
-          <h2 className={styles.subtitle}>AI-powered study intelligence with beautiful data visualization. See your study patterns, get personalized insights.</h2>
+          <h2 className={styles.subtitle}>AI-powered study intelligence with beautiful data visualization. <br></br>See your study patterns, receive actionable insights.</h2>
             
           <div className={styles.ctaSection}>
             <button onClick={handleWaitlistClick} className={styles.waitlistButton}>
