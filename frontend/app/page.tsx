@@ -421,8 +421,8 @@ export default function HomePage() {
               </p>
               <div className={styles.socialLinks}>
                 <a href="#" className={styles.socialLink}>Twitter</a>
-                <a href="#" className={styles.socialLink}>LinkedIn</a>
-                <a href="#" className={styles.socialLink}>GitHub</a>
+                <a href="https://www.linkedin.com/in/piyush-jha1/" target="_blank" className={styles.socialLink}>LinkedIn</a>
+                <a href="https://github.com/PiyushJ1/StudyIntel" target="_blank" className={styles.socialLink}>GitHub</a>
               </div>
             </div>
             
@@ -449,9 +449,9 @@ export default function HomePage() {
             <div className={styles.footerSection}>
               <h4 className={styles.footerSectionTitle}>Legal</h4>
               <ul className={styles.footerLinks}>
-                <li><a href="#" className={styles.footerLink}>Privacy Policy</a></li>
-                <li><a href="#" className={styles.footerLink}>Terms of Service</a></li>
-                <li><a href="#" className={styles.footerLink}>Cookie Policy</a></li>
+                <li><a href="/privacy" className={styles.footerLink}>Privacy Policy</a></li>
+                <li><a href="/terms" className={styles.footerLink}>Terms of Service</a></li>
+                <li><a href="/cookies" className={styles.footerLink}>Cookie Policy</a></li>
               </ul>
             </div>
           </div>
