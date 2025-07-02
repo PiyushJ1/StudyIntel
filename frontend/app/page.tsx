@@ -228,7 +228,7 @@ export default function HomePage() {
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>Simple, Transparent Pricing</h2>
           <p className={styles.sectionSubtitle}>
-            Start free, upgrade when you're ready to unlock your full potential
+            Start free, upgrade when you&apos;re ready to unlock your full potential
           </p>
           
           <div className={styles.pricingGrid}>
@@ -246,7 +246,7 @@ export default function HomePage() {
               <ul className={styles.pricingFeatures}>
                 <li className={styles.pricingFeature}>
                   <span className={styles.checkIcon}>✓</span>
-                  Track up to 5 study sessions per day
+                  Track up to 3 study sessions per day
                 </li>
                 <li className={styles.pricingFeature}>
                   <span className={styles.checkIcon}>✓</span>
@@ -258,7 +258,7 @@ export default function HomePage() {
                 </li>
                 <li className={styles.pricingFeature}>
                   <span className={styles.checkIcon}>✓</span>
-                  Mobile app for iOS and Android
+                  General performance insights
                 </li>
                 <li className={styles.pricingFeature}>
                   <span className={styles.checkIcon}>✓</span>
@@ -345,18 +345,18 @@ export default function HomePage() {
       {/* Testimonials Section */}
       <section id="testimonials" className={styles.testimonialsSection}>
         <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Loved by Students Worldwide</h2>
+          <h2 className={styles.sectionTitle}>Loved by Students Everywhere</h2>
           <div className={styles.testimonialsGrid}>
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialStars}>★★★★★</div>
               <p className={styles.testimonialText}>
-                "StudyIntel completely transformed how I approach studying. The AI insights helped me identify my peak focus hours and improve my grades by over 30% in one semester!"
+                &quot;StudyIntel completely transformed how I approach studying. The AI insights helped me identify my peak focus hours and improve my grades by over 30% in one semester!&quot;
               </p>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.testimonialAvatar}>SJ</div>
                 <div>
                   <div className={styles.testimonialName}>Sarah Johnson</div>
-                  <div className={styles.testimonialTitle}>B. Computer Science, UNSW</div>
+                  <div className={styles.testimonialTitle}>Computer Science/Commerce, UNSW</div>
                 </div>
               </div>
             </div>
@@ -364,13 +364,13 @@ export default function HomePage() {
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialStars}>★★★★★</div>
               <p className={styles.testimonialText}>
-                "The visual analytics are incredible! I can finally see which subjects I need to focus on and track my progress over time. It's like having a personal study coach."
+                &quot;The visual analytics are incredible! I can finally see which subjects I need to focus on and track my progress over time. It&apos;s like having a personal study coach.&quot;
               </p>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.testimonialAvatar}>MC</div>
                 <div>
                   <div className={styles.testimonialName}>Michael Chen</div>
-                  <div className={styles.testimonialTitle}>B. Medical Science, USYD</div>
+                  <div className={styles.testimonialTitle}>Medical Science, USYD</div>
                 </div>
               </div>
             </div>
@@ -378,13 +378,13 @@ export default function HomePage() {
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialStars}>★★★★★</div>
               <p className={styles.testimonialText}>
-                "I was struggling with time management until I found StudyIntel. The smart recommendations and progress tracking helped me develop better study habits and reduce stress."
+                &quot;I was struggling with time management until I found StudyIntel. The smart recommendations and progress tracking helped me develop better study habits and reduce stress.&quot;
               </p>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.testimonialAvatar}>ER</div>
                 <div>
                   <div className={styles.testimonialName}>Emily Rodriguez</div>
-                  <div className={styles.testimonialTitle}>B. Psychology, UTS</div>
+                  <div className={styles.testimonialTitle}>Media/Communications, UTS</div>
                 </div>
               </div>
             </div>
