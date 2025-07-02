@@ -53,7 +53,7 @@ export default function TermsOfService() {
           }}>
             Terms of Service
           </h1>
-          <p style={{ color: 'var(--text-secondary)' }}>Last updated: [Date]</p>
+          <p style={{ color: 'var(--text-secondary)' }}>Last updated: [3rd July 2025]</p>
         </div>
 
         <div className="prose prose-lg max-w-none space-y-8">
@@ -218,9 +218,8 @@ export default function TermsOfService() {
                 background: 'rgba(139, 92, 246, 0.1)',
                 border: '1px solid var(--card-border)'
               }}>
-                <p>Email: [support@studyintel.com]</p>
-                <p>Address: [Company Address]</p>
-                <p>Phone: [Phone Number]</p>
+                <p>Email: [support@studyintel.app]</p>
+                <p>Phone: [+61 4XX XXX XXX]</p>
               </div>
             </div>
           </section>
@@ -228,7 +227,7 @@ export default function TermsOfService() {
 
         <div className="mt-12 pt-8 text-center" style={{ borderTop: '1px solid var(--card-border)' }}>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-            © {new Date().getFullYear()} StudyIntel. All rights reserved.
+            © 2025 StudyIntel. All rights reserved.
           </p>
         </div>
       </div>
