@@ -65,7 +65,7 @@ export default function TermsOfService() {
               1. Agreement to Terms
             </h2>
             <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              By accessing and using StudyIntel ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+              By accessing and using StudyIntel (&quot;the Service&quot;), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
             </p>
           </section>
 
@@ -153,7 +153,7 @@ export default function TermsOfService() {
               7. Academic Integrity
             </h2>
             <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              StudyIntel is designed to support legitimate academic activities. Users are responsible for ensuring their use of the platform complies with their institution's academic integrity policies. We do not condone or support academic dishonesty in any form.
+              StudyIntel is designed to support legitimate academic activities. Users are responsible for ensuring their use of the platform complies with their institution&apos;s academic integrity policies. We do not condone or support academic dishonesty in any form.
             </p>
           </section>
 
@@ -165,7 +165,7 @@ export default function TermsOfService() {
               8. Service Availability
             </h2>
             <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              We strive to maintain StudyIntel's availability but cannot guarantee uninterrupted access. The service may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control. We reserve the right to modify, suspend, or discontinue the service at any time.
+              We strive to maintain StudyIntel&apos;s availability but cannot guarantee uninterrupted access. The service may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control. We reserve the right to modify, suspend, or discontinue the service at any time.
             </p>
           </section>
 
@@ -177,7 +177,7 @@ export default function TermsOfService() {
               9. Limitation of Liability
             </h2>
             <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              StudyIntel is provided "as is" without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, or other intangible losses resulting from your use of the service.
+              StudyIntel is provided &quot;as is&quot; without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, or other intangible losses resulting from your use of the service.
             </p>
           </section>
 
@@ -201,7 +201,7 @@ export default function TermsOfService() {
               11. Changes to Terms
             </h2>
             <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              We reserve the right to modify these terms at any time. We will notify users of any material changes by posting the new Terms of Service on this page and updating the "Last updated" date. Your continued use of the service after any such changes constitutes your acceptance of the new Terms of Service.
+              We reserve the right to modify these terms at any time. We will notify users of any material changes by posting the new Terms of Service on this page and updating the &quot;Last updated&quot; date. Your continued use of the service after any such changes constitutes your acceptance of the new Terms of Service.
             </p>
           </section>
 
