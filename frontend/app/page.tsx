@@ -130,7 +130,7 @@ export default function HomePage() {
             </button>
               
             <p className={styles.waitlistText}>
-              Join 2,500+ students already on the waitlist
+              Claim your spot in the future of academic excellence
             </p>
           </div>
         </div>
@@ -397,7 +397,7 @@ export default function HomePage() {
         <div className={styles.sectionContainer}>
           <h2 className={styles.ctaTitle}>Ready to Transform Your Study Game?</h2>
           <p className={styles.ctaSubtitle}>
-            Join thousands of students who are already studying smarter with StudyIntel
+            Join hundreds of students who already on the StudyIntel waitlist
           </p>
           <div className={styles.ctaButtons}>
             <button onClick={handleWaitlistClick} className={styles.ctaPrimaryButton}>
