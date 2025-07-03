@@ -246,7 +246,7 @@ export default function HomePage() {
               <ul className={styles.pricingFeatures}>
                 <li className={styles.pricingFeature}>
                   <span className={styles.checkIcon}>✓</span>
-                  Track up to 3 study sessions per day
+                  Track up to 5 study sessions per week
                 </li>
                 <li className={styles.pricingFeature}>
                   <span className={styles.checkIcon}>✓</span>
@@ -404,7 +404,7 @@ export default function HomePage() {
               Join Waitlist Now
             </button>
             <button onClick={handleWaitlistClick} className={styles.ctaSecondaryButton}>
-              Watch Demo
+              Start free trial
             </button>
           </div>
         </div>
