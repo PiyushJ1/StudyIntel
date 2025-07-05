@@ -1,41 +1,26 @@
-import fs from "fs";
-import path from "path";
 import bcrypt from "bcrypt";
 import { User } from "../models/interfaces";
 import { v4 as uuidv4 } from "uuid";
-
-const filePath = path.join(__dirname, "..", "..", "data", "users.json");
+import db from "../db";
 
 export async function saveNewUserAccount(
   newUser: Omit<User, "id">,
 ): Promise<void> {
-  let users: User[] = [];
+  // select user with given email
+  const existingUser = await db.query("SELECT 1 FROM users WHERE email = $1", [
+    newUser.email,
+  ]);
 
-  // check if file path already exists
-  if (fs.existsSync(filePath)) {
-    const fileData = fs.readFileSync(filePath, "utf-8");
-    try {
-      users = JSON.parse(fileData);
-    } catch {
-      throw new Error("Could not parse users.json");
-    }
+  // check if the email already has an account registered with it
+  if (existingUser.rowCount && existingUser.rowCount > 0) {
+    throw new Error("An account with this email has already been registered.");
   }
 
-  // error checking: given email already has an account registered with it
-  if (users.find((u) => u.email === newUser.email)) {
-    throw new Error("An account with this email already exists");
-  }
+  const hashedPassword = await bcrypt.hash(newUser.password, 10);
+  const id = uuidv4();
 
-  // create a unique user id for each new user (temp solution change later)
-  const modifiedNewUser: User = {
-    id: uuidv4(),
-    ...newUser,
-  };
-
-  // hash the user's password
-  modifiedNewUser.password = await bcrypt.hash(newUser.password, 10);
-
-  // add the new user to the list of existing users
-  users.push(modifiedNewUser);
-  fs.writeFileSync(filePath, JSON.stringify(users, null, 2), "utf-8");
+  await db.query(
+    "INSERT INTO users (id, firstName, lastName, email, password) VALUES ($1, $2, $3, $4, $5)",
+    [id, newUser.firstName, newUser.lastName, newUser.email, hashedPassword],
+  );
 }
