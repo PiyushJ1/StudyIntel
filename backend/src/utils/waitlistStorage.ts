@@ -8,6 +8,6 @@ export async function saveEmailToWaitlist(email: string): Promise<void> {
   );
 
   if (existingEmail.rowCount === 0) {
-    await db.query("INSERT INTO waitlistEmails (email) VALUES ($1)", [email]);
+    await db.query("INSERT INTO waitlistemails (email) VALUES ($1)", [email]);
   }
 }
