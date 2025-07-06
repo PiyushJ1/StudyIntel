@@ -30,7 +30,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
     // call backend waitlist endpoint
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/waitlist`, 
+        `${process.env.NEXT_PUBLIC_API_URL}/api/waitlist`, 
         // 'http://localhost:4000/api/waitlist',
         
         {
