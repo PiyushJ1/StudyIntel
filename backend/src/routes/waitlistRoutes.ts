@@ -4,14 +4,14 @@ import { saveEmailToWaitlist } from "../utils/waitlistStorage";
 
 const router = Router();
 
-router.post("/", (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   const { email } = req.body;
   if (!validateEmail(email)) {
     return res.status(400).json({ error: "Email provided was invalid" });
   }
 
   try {
-    saveEmailToWaitlist(email);
+    await saveEmailToWaitlist(email);
     return res.status(201).json({ message: "Waitlist joined succesffully" });
   } catch (err) {
     console.log("Could not save to waitlist", err);
