@@ -31,10 +31,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
     try {
       const url = `${process.env.NEXT_PUBLIC_API_URL}/api/waitlist`;
       console.log("Calling url: ", url);
-      const response = await fetch(
-        url, 
-        // 'http://localhost:4000/api/waitlist',
-        
+      const response = await fetch(url,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
