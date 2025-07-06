@@ -136,6 +136,16 @@ export default function HomePage() {
         </div>
       </main>
 
+      {/* About Section */}
+      <section className={styles.aboutSection}>
+        <div className={styles.sectionContainer}>
+          <h2 className={styles.sectionTitle}>Why StudyIntel?</h2>
+          <p className={styles.aboutText}>
+            StudyIntel transforms your study sessions into stunning visual analytics and actionable intelligence. Our AI analyzes your learning patterns and creates beautiful, interactive dashboards that reveal hidden insights about your study habits, helping you study smarter, not harder.
+          </p>
+        </div>
+      </section>
+
       {/* Video Demo Section */}
       <section className={styles.videoSection}>
         <div className={styles.sectionContainer}>
@@ -154,16 +164,6 @@ export default function HomePage() {
               <p className={styles.videoSubtext}>Replace this placeholder with your Loom video URL</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className={styles.aboutSection}>
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Why StudyIntel?</h2>
-          <p className={styles.aboutText}>
-            StudyIntel transforms your study sessions into stunning visual analytics and actionable intelligence. Our AI analyzes your learning patterns and creates beautiful, interactive dashboards that reveal hidden insights about your study habits, helping you study smarter, not harder.
-          </p>
         </div>
       </section>
 
