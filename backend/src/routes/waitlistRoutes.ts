@@ -5,6 +5,9 @@ import { saveEmailToWaitlist } from "../utils/waitlistStorage";
 const router = Router();
 
 router.post("/", async (req: Request, res: Response) => {
+  console.log("📥 /api/waitlist POST route hit");
+  console.log("Request body:", req.body);
+
   const { email } = req.body;
   if (!validateEmail(email)) {
     return res.status(400).json({ error: "Email provided was invalid" });
@@ -12,11 +15,12 @@ router.post("/", async (req: Request, res: Response) => {
 
   try {
     await saveEmailToWaitlist(email);
-    return res.status(201).json({ message: "Waitlist joined succesffully" });
+    return res.status(201).json({ message: "Waitlist joined successfully" });
   } catch (err) {
-    console.log("Could not save to waitlist", err);
+    console.error("❌ Error in POST /api/waitlist:", err); 
     return res.status(500).json({ message: "Failed to join waitlist" });
   }
 });
+
 
 export default router;
