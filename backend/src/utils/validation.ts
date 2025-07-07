@@ -17,10 +17,10 @@ export function validatePassword(password: string): boolean {
   if (/\s/.test(password)) return false;
 
   // regex to ensure password contains at least:
-  // 9 chars, 
+  // 9 chars,
   // 1 uppercase,
-  // 1 lowercase, 
-  // 1 digit, and 
+  // 1 lowercase,
+  // 1 digit, and
   // 1 special character
   const passwordRegEx =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\-\\/]).{9,}$/;
@@ -33,12 +33,16 @@ export async function authenticateUser(
   email: string,
   password: string,
 ): Promise<UserAuthResult> {
-  const result = await db.query("SELECT id, firstName, lastName, email, password FROM users WHERE email = $1", [
-    email,
-  ]);
+  const result = await db.query(
+    "SELECT id, firstName, lastName, email, password FROM users WHERE email = $1",
+    [email],
+  );
 
   if (result.rowCount === 0) {
-    return { result: false, message: "This email does not have an account registered" };
+    return {
+      result: false,
+      message: "This email does not have an account registered",
+    };
   }
 
   const user = result.rows[0];
