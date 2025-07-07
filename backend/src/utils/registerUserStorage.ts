@@ -12,7 +12,7 @@ export async function saveNewUserAccount(
   ]);
 
   // check if the email already has an account registered with it
-  if (existingUser.rowCount && existingUser.rowCount > 0) {
+  if (existingUser.rowCount ?? 0 > 0) {
     throw new Error("An account with this email has already been registered.");
   }
 
