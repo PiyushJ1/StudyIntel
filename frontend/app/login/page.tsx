@@ -26,9 +26,8 @@ export default function LoginPage() {
     e.preventDefault();
 
     // handle user login
-    console.log('Login submitted:', formData);
     try {
-      const response = await fetch('http://localhost:4000/api/login', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
