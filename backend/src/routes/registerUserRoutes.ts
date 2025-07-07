@@ -26,8 +26,18 @@ router.post("/", async (req: Request, res: Response) => {
       .status(201)
       .json({ message: "New user info saved successfully" });
   } catch (err) {
-    console.log("Couldnt save new user info", err);
-    return res.status(500).json({ message: "Failed to save new user info" });
+    if (
+      err instanceof Error &&
+      err.message === "An account with this email has already been registered."
+    ) {
+      return res
+        .status(409)
+        .json({
+          message: "An account with this email has already been registered.",
+        });
+    }
+
+    return res.status(500).json({ message: "Failed to sign up" });
   }
 });
 
