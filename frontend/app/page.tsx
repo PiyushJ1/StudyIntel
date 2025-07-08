@@ -141,7 +141,10 @@ export default function HomePage() {
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>Why StudyIntel?</h2>
           <p className={styles.aboutText}>
-            StudyIntel transforms your study sessions into stunning visual analytics and actionable intelligence. Our AI analyzes your learning patterns and creates beautiful, interactive dashboards that reveal hidden insights about your study habits, helping you study smarter, not harder.
+            Turn your study sessions into actionable insights with AI-powered analytics. 
+            Our AI analyzes your learning patterns and creates beautiful, interactive dashboards that reveal hidden 
+            insights about your study habits. <br></br><br></br>No more guesswork. StudyIntel helps you reveal when and how you
+            study best, so you can focus on what matters most.
           </p>
         </div>
       </section>
@@ -160,8 +163,10 @@ export default function HomePage() {
                   <path d="M8 5v14l11-7z" fill="currentColor"/>
                 </svg>
               </div>
-              <p className={styles.videoText}>Insert your Loom video embed here</p>
-              <p className={styles.videoSubtext}>Replace this placeholder with your Loom video URL</p>
+              {/* <p className={styles.videoText}>Insert your Loom video embed here</p>
+              <p className={styles.videoSubtext}>Replace this placeholder with your Loom video URL</p> */}
+              <p className={styles.videoText}>Coming Soon</p>
+              <p className={styles.videoSubtext}>Check back here later.</p>
             </div>
           </div>
         </div>
@@ -176,7 +181,8 @@ export default function HomePage() {
               <div className={styles.featureIcon}>📊</div>
               <h3 className={styles.featureTitle}>AI-Powered Analytics</h3>
               <p className={styles.featureDescription}>
-                Get personalized insights about your study patterns, focus levels, and learning efficiency with advanced AI analysis.
+                Unlock tailored insights into your study patterns, focus, and learning efficiency powered
+                by advanced AI analysis.
               </p>
             </div>
             
@@ -184,7 +190,9 @@ export default function HomePage() {
               <div className={styles.featureIcon}>📈</div>
               <h3 className={styles.featureTitle}>Visual Progress Tracking</h3>
               <p className={styles.featureDescription}>
-                Beautiful dashboards and charts that make it easy to understand your academic progress at a glance.
+                {/* Beautiful dashboards and charts that make it easy to understand your academic progress at a glance. */}
+                Interactive dashboards and visualizations turn your study data into clear, actionable feedback. Understand
+                your academic progress at a glance.
               </p>
             </div>
             
@@ -192,7 +200,7 @@ export default function HomePage() {
               <div className={styles.featureIcon}>🎯</div>
               <h3 className={styles.featureTitle}>Smart Recommendations</h3>
               <p className={styles.featureDescription}>
-                Receive personalized study recommendations based on your performance data and learning style.
+                Get AI-driven study tips and recommendations customized for your unique learning style and goals.
               </p>
             </div>
             
@@ -350,10 +358,12 @@ export default function HomePage() {
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialStars}>★★★★★</div>
               <p className={styles.testimonialText}>
-                &quot;StudyIntel completely transformed how I approach studying. The AI insights helped me identify my peak focus hours and improve my grades by over 30% in one semester!&quot;
+                &quot;The visual analytics are incredible! I can finally see which subjects I need to focus on and track my progress over time. 
+                It&apos;s like having a personal study coach.&quot;
+                The personalized AI insights showed me exactly when I focus best, and the data visualizations make my progress crystal clear.
               </p>
               <div className={styles.testimonialAuthor}>
-                <div className={styles.testimonialAvatar}>SJ</div>
+                {/* <div className={styles.testimonialAvatar}>SJ</div> */}
                 <div>
                   <div className={styles.testimonialName}>Sarah Johnson</div>
                   <div className={styles.testimonialTitle}>Computer Science/Commerce, UNSW</div>
@@ -364,10 +374,10 @@ export default function HomePage() {
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialStars}>★★★★★</div>
               <p className={styles.testimonialText}>
-                &quot;The visual analytics are incredible! I can finally see which subjects I need to focus on and track my progress over time. It&apos;s like having a personal study coach.&quot;
+                &quot;StudyIntel completely transformed how I approach studying. The AI insights helped me identify my peak focus hours and improve my grades by over 30% in one semester!&quot;
               </p>
               <div className={styles.testimonialAuthor}>
-                <div className={styles.testimonialAvatar}>MC</div>
+                {/* <div className={styles.testimonialAvatar}>MC</div> */}
                 <div>
                   <div className={styles.testimonialName}>Michael Chen</div>
                   <div className={styles.testimonialTitle}>Medical Science, USYD</div>
@@ -381,7 +391,7 @@ export default function HomePage() {
                 &quot;I was struggling with time management until I found StudyIntel. The smart recommendations and progress tracking helped me develop better study habits and reduce stress.&quot;
               </p>
               <div className={styles.testimonialAuthor}>
-                <div className={styles.testimonialAvatar}>ER</div>
+                {/* <div className={styles.testimonialAvatar}>ER</div> */}
                 <div>
                   <div className={styles.testimonialName}>Emily Rodriguez</div>
                   <div className={styles.testimonialTitle}>Media/Communications, UTS</div>
@@ -397,7 +407,7 @@ export default function HomePage() {
         <div className={styles.sectionContainer}>
           <h2 className={styles.ctaTitle}>Ready to Transform Your Study Game?</h2>
           <p className={styles.ctaSubtitle}>
-            Join hundreds of students who already on the StudyIntel waitlist
+            Join hundreds of students already on the StudyIntel waitlist
           </p>
           <div className={styles.ctaButtons}>
             <button onClick={handleWaitlistClick} className={styles.ctaPrimaryButton}>
