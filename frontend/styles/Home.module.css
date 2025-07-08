@@ -303,7 +303,7 @@
   color: var(--text-secondary);
   text-align: center;
   margin-bottom: 3rem;
-  max-width: 600px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -616,6 +616,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 .testimonialAvatar {
@@ -994,7 +995,7 @@
   font-size: clamp(1.5rem, 2vw, 1.125rem);
   color: var(--text-secondary);
   line-height: 1.7;
-  max-width: 825px;
+  max-width: 850px;
   margin: 0 auto;
   text-align: center;
   font-family: 'Inter', sans-serif;
