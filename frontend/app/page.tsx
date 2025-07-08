@@ -191,8 +191,7 @@ export default function HomePage() {
               <h3 className={styles.featureTitle}>Visual Progress Tracking</h3>
               <p className={styles.featureDescription}>
                 {/* Beautiful dashboards and charts that make it easy to understand your academic progress at a glance. */}
-                Interactive dashboards and visualizations turn your study data into clear, actionable feedback. Understand
-                your academic progress at a glance.
+                Interactive dashboards and visualizations transform your study data into clear, actionable insights.
               </p>
             </div>
             
