@@ -54,9 +54,9 @@ export async function saveEmailToWaitlist(email: string): Promise<void> {
 
         <p style="margin-top: 40px; color: rgb(0, 0, 0);">Best regards,</p>
 
-        <p style="font-weight: 600; font-size: 15px; margin-bottom: 0; color: rgb(0, 0, 0);">
+        <a href="https://studyintel.app" target="_blank" style="font-weight: 600; font-size: 15px; margin-bottom: 0; color: rgb(0, 0, 0);">
           <span style="color: #286FD9;">Study</span><span style="color: #8b5cf6;">Intel</span> | A study intelligence platform
-        </p>
+        </a>
       </div>
     </div>
   </body>`;
