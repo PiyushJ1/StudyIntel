@@ -1,83 +1,73 @@
-# StudyIntel
+# 📚 StudyIntel
 
-**StudyIntel** is an AI-powered SaaS that helps students stop wasting time and start studying smarter. With personalized insights and progress visualizations, it reveals what's working, and what's not—so they can focus, improve, and achieve more.
-                        
-## 🎯 Key Features
+**StudyIntel** is an AI-powered SaaS platform I’m building solo as a 2nd-year university student. It helps students stop wasting time and start studying smarter. By tracking study habits and visualizing progress, it reveals what’s working and what’s not, so users can stay focused, improve consistently, and reach their academic goals.
 
-- **AI-powered study analytics:** Track and visualizes study sessions by subject, method, and time to uncover actionable learning patterns.  
-- **Personalized optimization insights:** Provides tailored, data-driven suggestions to improve focus, balance workload, and achieve flow state.  
-- **Beautiful, intuitive dashboards:** View progress and trends instantly with clear graphs and student-focused insights.
-
-## 🛠️ Tech Stack
-
-- **TypeScript** for robust, type-safe development  
-- **Express** for backend API services  
-- **Next.js** (App Router) for frontend and server-side rendering  
-- **PostgreSQL** for reliable data storage and querying  
+🌐 **Live at:** [https://studyintel.app](https://studyintel.app)
 
 ---
 
-*Project development is ongoing. This README will be updated as new features and improvements are added.*
+## ✨ Key Features (In Progress)
 
+- **📊 Smart Study Analytics**  
+  Track sessions by subject, method, and time to uncover useful patterns.
 
-# MVP Plan: StudyIntel
+- **🧠 Personalized Optimization Insights** *(Coming Soon)*  
+  AI-driven suggestions to improve focus, balance workload, and reach flow state.
 
----
-
-## 1. Goal for MVP
-Build a **basic, usable product** that enables students to log study sessions and view visual progress dashboards, **deferring AI-powered insights for later phases**.
-
----
-
-## 2. Core MVP Features
-
-### a. User Authentication
-- Email/password sign up, login, and logout  
-- Use secure auth methods (consider NextAuth.js with credentials provider or similar)
-
-### b. Study Session Tracker
-- UI to start/stop study timers or manually add sessions  
-- Store session data with attributes: date, duration, subject, and study method (e.g., reading, practice)  
-
-### c. Dashboard & Visualizations
-- List of recent study sessions  
-- Interactive charts showing study time by day/week and by subject  
-- Basic progress summaries (total hours, longest sessions, consistency streaks)
-
-### d. Profile Management
-- User can update profile info (name, email)  
-- Optional: preferences like default study method or notification settings
+- **📈 Intuitive Dashboards**  
+  Clean, student-focused visuals for reviewing progress, consistency, and trends.
 
 ---
 
-## 3. Tech Stack
+## ⚙️ Tech Stack
 
-- **Frontend:** Next.js (App Router) with TypeScript  
-- **Backend:** Express.js API with TypeScript  
-- **Database:** PostgreSQL for session and user data  
-- **Authentication:** NextAuth.js or custom JWT-based auth  
-- **Charts:** React-based chart library (e.g., Recharts or Chart.js)
+<p align="left"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" /> <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" /> <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express&logoColor=white" /> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" /> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" /> <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" /> </p>
 
 ---
 
-## 4. MVP Development Phases & Timeframes
+## 🚀 Development Progress
 
-| Phase                               | Description                                                  | Timeframe           |
-|-----------------------------------|--------------------------------------------------------------|---------------------|
-| **Phase 1: Setup & Authentication**     | Setup repo, database schema, implement signup/login/logout       | 3 weeks (part-time)  |
-| **Phase 2: Study Session Tracking**      | Create UI for session input & timer, backend storage & APIs       | 4 weeks             |
-| **Phase 3: Dashboard & Visualizations**  | Fetch session data, build charts & summary stats on dashboard      | 4 weeks             |
-| **Phase 4: Profile Management (Optional)** | Implement profile update UI and backend                              | 1–2 weeks           |
-| **Phase 5: Deployment & Polish**          | Deploy full app (Vercel/Heroku), add responsive styling and bug fixes | 1–2 weeks           |
+> ✅ Core infrastructure and auth are live  
+> 🛠 Currently building study tracking & dashboard features
+
+### ✅ Completed
+- Landing page with waitlist
+- Email/password auth (sign-up, login, logout)
+- Login/register page UI
+
+### 🔄 In Progress
+- Study session tracker UI (manual input + timer)
+- Backend APIs for session storage
+- Basic dashboard with session summaries
+
+### 🔜 Coming Next
+- Charts: study time by day/week/subject
+- Profile settings page
+- MVP polish and responsiveness
 
 ---
 
-## 5. Stretch Goals (Post-MVP / Future)
+## 🗺️ MVP Plan
 
-- AI-powered personalized study optimization insights  
-- Notifications & reminders to improve study habits  
-- Export study data (CSV, PDF)  
-- Social sharing & study group features  
-- Mobile support or Progressive Web App (PWA)
+### 🎯 Goal  
+Deliver a minimal, usable product that lets students log study sessions and see their progress visually.  
+*AI-powered insights and extras come later.*
+
+### 🔑 Core MVP Features
+- Email/password authentication  
+- Study session tracking (with subject & method)  
+- Dashboard with time trends and summaries  
+- Optional: user profile/preferences
 
 ---
+
+## 🌱 Stretch Goals (Post-MVP)
+- AI-generated personalized study recommendations  
+- Streak tracking, goals, and reminders  
+- Exportable reports (CSV/PDF)  
+- Social features or study groups  
+- Mobile-friendly design or PWA
+
+---
+
+> This README will be updated as progress is made on the project.
