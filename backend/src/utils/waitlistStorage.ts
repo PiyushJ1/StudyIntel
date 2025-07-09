@@ -18,53 +18,44 @@ export async function saveEmailToWaitlist(email: string): Promise<void> {
   // save email to db
   await db.query("INSERT INTO waitlistemails (emails) VALUES ($1)", [email]);
 
-  const emailHtmlContent = `<body style="margin:0; padding:0; background-color:#000; font-family: roboto, sans-serif; color:#fff;">
+  const emailHtmlContent = `<body style="margin:0; padding:0; background-color:#ffffff; font-family: Roboto, sans-serif; color:#000000; font-size:16px; line-height:1.6;">
     <div style="max-width: 800px; margin: auto; padding: 20px;">
       <div style="
-        font-family: roboto, sans-serif; 
-        line-height: 1.5; 
-        padding: 20px; 
-        background-color: #000; 
-        border: 1px solid #ddd;
+        font-family: Roboto, sans-serif; 
+        padding: 24px; 
+        background-color: #ffffff; 
+        border: 1px solid #eee;
         border-radius: 8px;
       ">
-        <h2 style="font-weight: 750; color: #fff;">
+
+        <h1 style="font-weight: 700; color: #000000; font-size: 26px; margin-top: 0;">
           Welcome to the 
-          <span style="
-            background: linear-gradient(90deg, #286FD9, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-          ">
-            StudyIntel
+          <span style="display: inline-block;">
+            <span style="color: #286FD9;">Study</span><span style="color: #8b5cf6;">Intel</span>
           </span> 
           waitlist! 🎉
+        </h1>
+
+        <h2 style="font-weight: 500; font-size: 20px; margin-top: 28px;">
+          Thank you so much for joining the waitlist — we're thrilled to have you on board.
         </h2>
-        
-        <div style="color: #fff;">
-          <h4 style="color:#fff;">Thank you so much for joining the waitlist! We're thrilled to have you on board.</h4>
-          <br>
-          <p>
-            As we build the platform, we'll keep you updated with exciting new features and updates designed to help you unlock your academic potential.
-            <br><br>
-            In the meantime, we'd love to hear your ideas or feedback. Your input will help make StudyIntel the best study intelligence tool out there.
-          </p>
-          <br>
-          <p>Thanks again for your support!</p>
-        </div>
-        <br>
-        <p style="color:#fff;">Best Regards,</p>
-        
-        <h5 style="font-weight: 750;">
-          <span style="
-            background: linear-gradient(90deg, #286FD9, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-          ">
-            StudyIntel | A study intelligence platform
-          </span>
-        </h5>
+
+        <p style="margin-top: 20px;">
+          As we build the platform, we'll keep you updated with exciting new features and updates designed to help you unlock your academic potential.
+        </p>
+
+        <p>
+          In the meantime, we'd love to hear your ideas or feedback. Your input will help make 
+          <span style="color: #286FD9;">Study</span><span style="color: #8b5cf6;">Intel</span> the best study intelligence tool out there.
+        </p>
+
+        <p>Thanks again for your support!</p>
+
+        <p style="margin-top: 40px;">Best regards,</p>
+
+        <p style="font-weight: 600; font-size: 15px; margin-bottom: 0;">
+          <span style="color: #286FD9;">Study</span><span style="color: #8b5cf6;">Intel</span> | A study intelligence platform
+        </p>
       </div>
     </div>
   </body>
