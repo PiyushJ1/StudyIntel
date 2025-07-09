@@ -1,12 +1,13 @@
+import validator from "validator";
 import { Router, Request, Response } from "express";
-import { validateEmail } from "../utils/validation";
 import { saveEmailToWaitlist } from "../utils/waitlistStorage";
 
 const router = Router();
 
 router.post("/", async (req: Request, res: Response) => {
   const { email } = req.body;
-  if (!validateEmail(email)) {
+
+  if (!validator.isEmail(email)) {
     return res.status(400).json({ error: "Email provided was invalid" });
   }
 
