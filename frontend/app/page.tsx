@@ -149,29 +149,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Video Demo Section */}
-      <section className={styles.videoSection}>
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>See StudyIntel in Action</h2>
-          <p className={styles.sectionSubtitle}>
-            Watch how StudyIntel transforms your study data into actionable insights
-          </p>
-          <div className={styles.videoContainer}>
-            <div className={styles.videoPlaceholder}>
-              <div className={styles.playButton}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M8 5v14l11-7z" fill="currentColor"/>
-                </svg>
-              </div>
-              {/* <p className={styles.videoText}>Insert your Loom video embed here</p>
-              <p className={styles.videoSubtext}>Replace this placeholder with your Loom video URL</p> */}
-              <p className={styles.videoText}>Coming Soon</p>
-              <p className={styles.videoSubtext}>Check back here later.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Features Section */}
       <section id="features" className={styles.featuresSection}>
         <div className={styles.sectionContainer}>
@@ -225,6 +202,29 @@ export default function HomePage() {
               <p className={styles.featureDescription}>
                 Your study data is encrypted and secure. We never share your information with third parties.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Demo Section */}
+      <section className={styles.videoSection}>
+        <div className={styles.sectionContainer}>
+          <h2 className={styles.sectionTitle}>See StudyIntel in Action</h2>
+          <p className={styles.sectionSubtitle}>
+            See your study data come to life with personalized AI insights and interactive data visualizations.
+          </p>
+          <div className={styles.videoContainer}>
+            <div className={styles.videoPlaceholder}>
+              <div className={styles.playButton}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5v14l11-7z" fill="currentColor"/>
+                </svg>
+              </div>
+              {/* <p className={styles.videoText}>Insert your Loom video embed here</p>
+              <p className={styles.videoSubtext}>Replace this placeholder with your Loom video URL</p> */}
+              <p className={styles.videoText}>Coming Soon</p>
+              <p className={styles.videoSubtext}>Check back here later.</p>
             </div>
           </div>
         </div>
