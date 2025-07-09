@@ -1,15 +1,15 @@
 import { Router, Request, Response } from "express";
 import { saveNewUserAccount } from "../utils/registerUserStorage";
 import { User } from "../models/interfaces";
-import { validateEmail, validatePassword } from "../utils/validation";
+import { validatePassword } from "../utils/validation";
+import validator from "validator";
 
 const router = Router();
 
 router.post("/", async (req: Request, res: Response) => {
   const newUser = req.body as User;
 
-  // email regex validation
-  if (!validateEmail(newUser.email)) {
+  if (!validator.isEmail(newUser.email)) {
     return res.status(400).json({ error: "Email provided was not valid" });
   }
 
@@ -30,11 +30,9 @@ router.post("/", async (req: Request, res: Response) => {
       err instanceof Error &&
       err.message === "An account with this email has already been registered."
     ) {
-      return res
-        .status(409)
-        .json({
-          message: "An account with this email has already been registered.",
-        });
+      return res.status(409).json({
+        message: "An account with this email has already been registered.",
+      });
     }
 
     return res.status(500).json({ message: "Failed to sign up" });
