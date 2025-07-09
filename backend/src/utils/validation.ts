@@ -1,13 +1,6 @@
 import bcrypt from "bcrypt";
 import db from "../db";
-import { User, UserAuthResult } from "../models/interfaces";
-
-export function validateEmail(email: string): boolean {
-  if (!email || typeof email !== "string") return false;
-
-  const emailRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegEx.test(email);
-}
+import { UserAuthResult } from "../models/interfaces";
 
 export function validatePassword(password: string): boolean {
   // password length is less than 9 characters
