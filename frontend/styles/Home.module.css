@@ -101,8 +101,9 @@
   gap: 1rem;
 }
 
-.loginButton, .signupButtonNav {
-  color: var(--text-muted);
+.loginButton {
+  background: var(--dark-bg);
+  border-color: white;
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
@@ -111,7 +112,21 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: 1px solid var(--card-border);
-  cursor: not-allowed;
+  cursor: pointer;
+}
+
+
+.signupButtonNav {
+  background: var(--gradient-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--card-border);
+  cursor: pointer;
 }
 
 .joinWaitlistButton {
@@ -132,16 +147,6 @@
 .joinWaitlistButton:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.3);
-}
-
-/* Disabled button styles */
-.loginButton.disabled,
-.signupButtonNav.disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-muted);
 }
 
 .heroContainer {
