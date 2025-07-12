@@ -13,7 +13,7 @@ export default function HomePage() {
   const [isWaitlistPopupOpen, setIsWaitlistPopupOpen] = useState(false);
   
   useEffect(() => {
-    const words = ['Get personalized study insights.', 'Visualize your learning progress.', 'Reach your academic potential.'];
+    const words = ['Get personalised study insights.', 'Visualise your learning progress.', 'Reach your academic potential.'];
     const currentWord = words[currentWordIndex];
     const timeout = setTimeout(() => {
       if (isPaused) {
@@ -119,7 +119,7 @@ export default function HomePage() {
               <span className={styles.cursor}></span>
             </div>
           </h1>
-          <h2 className={styles.subtitle}>AI-powered study intelligence with beautiful data visualization. <br></br>See your study patterns, receive actionable insights.</h2>
+          <h2 className={styles.subtitle}>AI-powered study intelligence with beautiful data visualisation. <br></br>See your study patterns, receive actionable insights.</h2>
             
           <div className={styles.ctaSection}>
             <button onClick={handleWaitlistClick} className={styles.waitlistButton}>
@@ -158,7 +158,7 @@ export default function HomePage() {
               <div className={styles.featureIcon}>📊</div>
               <h3 className={styles.featureTitle}>AI-Powered Analytics</h3>
               <p className={styles.featureDescription}>
-                Unlock tailored insights into your study patterns, focus, and learning efficiency powered
+                Unlock tailored insights into your study patterns, focus, and learning efficiency, powered
                 by advanced AI analysis.
               </p>
             </div>
@@ -168,7 +168,7 @@ export default function HomePage() {
               <h3 className={styles.featureTitle}>Visual Progress Tracking</h3>
               <p className={styles.featureDescription}>
                 {/* Beautiful dashboards and charts that make it easy to understand your academic progress at a glance. */}
-                Interactive dashboards and visualizations transform your study data into clear, actionable insights.
+                Interactive dashboards and visualisations transform your study data into clear, actionable insights.
               </p>
             </div>
             
@@ -176,7 +176,7 @@ export default function HomePage() {
               <div className={styles.featureIcon}>🎯</div>
               <h3 className={styles.featureTitle}>Smart Recommendations</h3>
               <p className={styles.featureDescription}>
-                Get AI-driven study tips and recommendations customized for your unique learning style and goals.
+                Get AI-driven study tips and recommendations customised for your unique learning style and goals.
               </p>
             </div>
             
@@ -192,7 +192,7 @@ export default function HomePage() {
               <div className={styles.featureIcon}>📱</div>
               <h3 className={styles.featureTitle}>Multi-Platform Sync</h3>
               <p className={styles.featureDescription}>
-                Access your study data seamlessly across all your devices with real-time synchronization.
+                Access your study data seamlessly across all your devices with real-time synchronisation.
               </p>
             </div>
             
@@ -212,7 +212,7 @@ export default function HomePage() {
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>See StudyIntel in Action</h2>
           <p className={styles.sectionSubtitle}>
-            See your study data come to life with personalized AI insights and interactive data visualizations.
+            See your study data come to life with personalised AI insights and interactive data visualisations.
           </p>
           <div className={styles.videoContainer}>
             <div className={styles.videoPlaceholder}>
@@ -321,7 +321,7 @@ export default function HomePage() {
                 </li>
                 <li className={styles.pricingFeature}>
                   <span className={styles.checkIcon}>✓</span>
-                  Personalized study recommendations
+                  Personalised study recommendations
                 </li>
                 <li className={styles.pricingFeature}>
                   <span className={styles.checkIcon}>✓</span>
@@ -359,7 +359,7 @@ export default function HomePage() {
               <p className={styles.testimonialText}>
                 &quot;The visual analytics are incredible! I can finally see which subjects I need to focus on and track my progress over time. 
                 It&apos;s like having a personal study coach.&quot;
-                The personalized AI insights showed me exactly when I focus best, and the data visualizations make my progress crystal clear.
+                The personalised AI insights showed me exactly when I focus best, and the data visualisations make my progress crystal clear.
               </p>
               <div className={styles.testimonialAuthor}>
                 {/* <div className={styles.testimonialAvatar}>SJ</div> */}
@@ -426,7 +426,7 @@ export default function HomePage() {
             <div className={styles.footerSection}>
               <div className={styles.footerLogo}>StudyIntel</div>
               <p className={styles.footerDescription}>
-                Built with ❤️ by a student, for students. AI-powered study intelligence to help you reach your academic potential through beautiful data visualization and personalized insights.
+                Built with ❤️ by a student, for students. AI-powered study intelligence to help you reach your academic potential through beautiful data visualisation and personalised insights.
               </p>
               <div className={styles.socialLinks}>
                 <a href="#" className={styles.socialLink}>Twitter</a>
