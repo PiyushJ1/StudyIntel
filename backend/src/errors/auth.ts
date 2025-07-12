@@ -11,3 +11,10 @@ export class InvalidPasswordError extends Error {
     this.name = "InvalidPasswordError";
   }
 }
+
+export class EmailAlreadyInWaitlistError extends Error {
+  constructor(message = "This email is already in the waitlist") {
+    super(message);
+    this.name = "EmailAlreadyInWaitlistError";
+  }
+}
