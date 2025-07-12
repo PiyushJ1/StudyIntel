@@ -7,7 +7,12 @@ import loginRoute from "./routes/loginRoute";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors({ origin: ["https://studyintel.app", "http://localhost:3000"] }));
+app.use(
+  cors({
+    origin: ["https://studyintel.app", "http://localhost:3000"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
