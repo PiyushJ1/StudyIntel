@@ -1,0 +1,13 @@
+export class UserNotFoundError extends Error {
+  constructor(message = "This email does not have an acccount registered") {
+    super(message);
+    this.name = "UserNotFoundError";
+  }
+}
+
+export class InvalidPasswordError extends Error {
+  constructor(message = "Incorrect password") {
+    super(message);
+    this.name = "InvalidPasswordError";
+  }
+}
