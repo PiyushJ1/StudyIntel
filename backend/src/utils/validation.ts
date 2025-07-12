@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import db from "../db";
-import { UserAuthResult } from "../models/interfaces";
+import { InvalidPasswordError, UserNotFoundError } from "../errors/auth";
 
 export function validatePassword(password: string): boolean {
   // password length is less than 9 characters
@@ -25,25 +25,20 @@ export function validatePassword(password: string): boolean {
 export async function authenticateUser(
   email: string,
   password: string,
-): Promise<UserAuthResult> {
+): Promise<void> {
   const result = await db.query(
     "SELECT id, firstName, lastName, email, password FROM users WHERE email = $1",
     [email],
   );
 
   if (result.rowCount === 0) {
-    return {
-      result: false,
-      message: "This email does not have an account registered",
-    };
+    throw new UserNotFoundError();
   }
 
   const user = result.rows[0];
 
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
-    return { result: false, message: "Incorrect password" };
+    throw new InvalidPasswordError();
   }
-
-  return { result: true, message: "Login successful" };
 }
