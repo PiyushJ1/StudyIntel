@@ -3,6 +3,8 @@ import type { NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
 
 export function middleware(req: NextRequest) {
+  return NextResponse.next();
+
   // retrieve cookie sent by the browser
   const token = req.cookies.get("token")?.value;
 
@@ -10,14 +12,14 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  try {
-    jwt.verify(token, process.env.JWT_SECRET!);
-    return NextResponse.next();
-  } catch (error) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+  // try {
+  //   jwt.verify(token, process.env.JWT_SECRET!);
+  //   return NextResponse.next();
+  // } catch (error) {
+  //   return NextResponse.redirect(new URL("/login", req.url));
+  // }
 }
 
 export const config = {
-  matcher: ["/dashboard/:path", "/dashboard"],
+  matcher: ["/dashboard", "/dashboard/:path"],
 }
