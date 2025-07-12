@@ -1,5 +1,6 @@
 import db from "../db";
 import { Resend } from "resend";
+import { EmailAlreadyInWaitlistError } from "../errors/auth";
 
 // send a confirmation email to the user
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -11,8 +12,8 @@ export async function saveEmailToWaitlist(email: string): Promise<void> {
     [email],
   );
 
-  if (existingEmail.rowCount ?? 0 > 0) {
-    throw new Error("This email is already in the waitlist.");
+  if ((existingEmail.rowCount ?? 0) > 0) {
+    throw new EmailAlreadyInWaitlistError();
   }
 
   // save email to db
