@@ -1,9 +1,18 @@
+'use client'
+
+import Navbar from "@/components/Navbar";
+
 export default function SessionPage() {
+  const handleNewSession = () => {
+    // placeholder
+  }
+
   return (
     <>
-      <center>
-        This is the sessions page
-      </center>
+      <Navbar onNewSessionClick={handleNewSession}/>
+        <main>
+          
+        </main>
     </>
   );
-}
+};
