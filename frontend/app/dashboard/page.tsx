@@ -1,9 +1,17 @@
 'use client';
 
+import React, { useState } from "react";
 import styles from "./dashboard.module.css";
 import Link from "next/link";
 
 export default function DashboardPage() {
+  const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
+
+  const handleNewSession = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsNewSessionPopupOpen(true)
+  };
+
   return (
     <>
       <header className={styles.navbar}>
@@ -15,26 +23,14 @@ export default function DashboardPage() {
           </div>
             
           <nav className={styles.navCenter}>
-            <Link href="/dashboard/profile" className={styles.navLink}>📊 Dashboard</Link>
+            <Link href="/dashboard" className={styles.navLink}>📊 Dashboard</Link>
             <Link href="/dashboard/sessions" className={styles.navLink}>⏱️ Sessions</Link>
             <Link href="/dashboard/insights" className={styles.navLink}>💡 Insights</Link>
           </nav>
 
           <div className={styles.navRight}>
             <Link href="/dashboard/profile" className={styles.loginButton}>👤 Profile</Link>
-            <Link href="/dashboard/profile" className={styles.signupButtonNav}>+ Add Session</Link>
-
-
-
-            {/* <Link href="/login" className={`${styles.loginButton}`}>
-              Sign In
-            </Link>
-            <Link href="/register" className={`${styles.signupButtonNav} ${styles.disabled}`}>
-              Sign Up
-            </Link>
-            {/* <button onClick={handleSmoothScroll} className={styles.joinWaitlistButton}>
-              Join Waitlist
-            </button> */}
+            <button onClick={handleNewSession} className={styles.signupButtonNav}>+ New Session</button>
           </div>
         </div>
       </header>
