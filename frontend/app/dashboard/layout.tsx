@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "StudyIntel | Dashboard",
+  title: "Dashboard | StudyIntel",
   icons: {
     icon: "/assets/StudyIntel.png"
   }
