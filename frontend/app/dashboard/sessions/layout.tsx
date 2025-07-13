@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function SessionsLayout({ children }: { children: React.ReactNode }) {
   return (
     <section>
       {/* Optional shared layout UI here */}
