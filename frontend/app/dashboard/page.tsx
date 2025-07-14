@@ -10,7 +10,7 @@ export default function DashboardPage() {
   return (
     <>
       <Navbar onNewSessionClick={handleNewSession}/>
-        <main>{/* actual page content here */}</main>
+      <main>{/* actual page content here */}</main>
     </>
   );
 };
