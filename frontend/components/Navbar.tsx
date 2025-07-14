@@ -40,8 +40,8 @@ export default function Navbar({ onNewSessionClick }: NavbarProps) {
           </nav>
 
           <div className={styles.navRight}>
-            <Link href="/dashboard/profile" className={styles.profileButton}>👤 Profile</Link>
             <button onClick={onNewSessionClick} className={styles.newSessionButton} aria-label="Add New Session">+ New Session</button>
+            <Link href="/dashboard/profile" className={styles.profileButton}>👤 Profile</Link>
           </div>
         </div>
       </header>
