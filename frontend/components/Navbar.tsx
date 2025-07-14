@@ -1,15 +1,22 @@
 'use client';
 
-import React, { useState } from "react";
-import styles from "./Navbar.module.css";
+import React from "react";
+// import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import styles from "./Navbar.module.css";
 
 interface NavbarProps {
   onNewSessionClick?: (e: React.MouseEvent) => void;
 }
 
+
 export default function Navbar({ onNewSessionClick }: NavbarProps) {
   // const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
+  // isNewSessionPopupOpen;
+  // setIsNewSessionPopupOpen;
+  
+  const pathName = usePathname();
 
   // const handleNewSession = (e: React.MouseEvent) => {
   //   e.preventDefault();
@@ -27,14 +34,14 @@ export default function Navbar({ onNewSessionClick }: NavbarProps) {
           </div>
             
           <nav className={styles.navCenter}>
-            <Link href="/dashboard" className={styles.navLink}>📊 Dashboard</Link>
-            <Link href="/dashboard/sessions" className={styles.navLink}>⏱️ Sessions</Link>
-            <Link href="/dashboard/insights" className={styles.navLink}>💡 Insights</Link>
+            <Link href="/dashboard" className={`${styles.navLink} ${pathName === '/dashboard' ? styles.active : ''}`}>📊 Dashboard</Link>
+            <Link href="/dashboard/sessions" className={`${styles.navLink} ${pathName === '/dashboard/sessions' ? styles.active : ''}`}>⏱️ Sessions</Link>
+            <Link href="/dashboard/insights" className={`${styles.navLink} ${pathName === '/dashboard/insights' ? styles.active : ''}`}>💡 Insights</Link>
           </nav>
 
           <div className={styles.navRight}>
-            <Link href="/dashboard/profile" className={styles.loginButton}>👤 Profile</Link>
-            <button onClick={onNewSessionClick} className={styles.signupButtonNav} aria-label="Add New Session">+ New Session</button>
+            <Link href="/dashboard/profile" className={styles.profileButton}>👤 Profile</Link>
+            <button onClick={onNewSessionClick} className={styles.newSessionButton} aria-label="Add New Session">+ New Session</button>
           </div>
         </div>
       </header>
