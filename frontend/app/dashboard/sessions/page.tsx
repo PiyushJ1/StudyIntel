@@ -10,9 +10,9 @@ export default function SessionPage() {
   return (
     <>
       <Navbar onNewSessionClick={handleNewSession}/>
-        <main>
+      <main>
           
-        </main>
+      </main>
     </>
   );
 };
