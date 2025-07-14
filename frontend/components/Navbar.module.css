@@ -37,6 +37,7 @@
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
   margin-right: 5rem;
+  margin-bottom: -0.2rem;
 }
 
 .navCenter {
@@ -47,17 +48,16 @@
 }
 
 .navLink {
-  /* margin-top: 0.3rem; */
+  margin-top: 0.3rem;
+  position: relative;
   color: var(--gradient-primary);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
-  transition: all 0.3s ease;
   font-family: 'Inter', sans-serif;
   letter-spacing: -0.01em;
   cursor: pointer;
-  position: relative;
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.2rem; /* To give space for the underline */
 }
 
 .navLink.active::after {
@@ -69,30 +69,31 @@
   width: 0;
   background: var(--gradient-primary);
   border-radius: 1px;
-  transition: width 0.3s ease;
-  animation: underlineGrow 0.4s forwards;
+  animation: underlineGrow 0.3s ease forwards;
 }
 
-.navLink:hover {
+@keyframes underlineGrow {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.navLink:not(.active):hover {
   color: var(--primary-blue);
 }
 
-.navLink:hover::after {
+.navLink:not(.active):hover::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: 0;
   height: 2px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.1); /* or subtle gradient */
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 1px;
-}
-
-
-@keyframes underlineGrow {
-  to { 
-    width: 100%;
-  }
 }
 
 .navRight {
