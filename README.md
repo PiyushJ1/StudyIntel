@@ -34,6 +34,7 @@
 - Landing page with waitlist
 - Email/password auth (sign-up, login, logout)
 - Login/register page UI
+- Dashboard navigation bar sections
 
 ### 🔄 In Progress
 - Study session tracker UI (manual input + timer)
