@@ -1,9 +1,25 @@
 .dashboardContainer {
-  min-height: calc(100vh - 80px); /* Account for fixed navbar */
-  padding-top: 80px; /* Space for fixed navbar */
+  min-height: calc(100vh - 80px);
+  padding-top: 80px;
   background: var(--dark-bg);
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
+  margin-bottom: -5rem;
+
+  animation: fadeIn 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(17px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .dashboardContent {
@@ -14,7 +30,7 @@
 
 .welcomeSection {
   margin-top: -2rem;
-  margin-bottom: 0.45rem;
+  margin-bottom: -0.5rem;
 }
 
 .welcomeMessage {
@@ -39,7 +55,16 @@
   color: transparent;
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
-  letter-spacing: 0.01rem;
+}
+
+.subtitleSection {
+  margin-bottom: 1.5rem;
+}
+
+.subtitleText {
+  color: var(--text-secondary);
+  font-style: italic;
+  letter-spacing: 0.01rem
 }
 
 .contentWrapper {
@@ -52,7 +77,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-bottom: -1rem;
+  margin-bottom: -2rem;
 }
 
 .mainCard {
@@ -61,8 +86,8 @@
   border-radius: 1rem;
   padding: 3rem;
   flex: 1;
-  min-height: 500px;
-  max-height: 550px;
+  /* min-height: 400px; */
+  max-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,6 +129,7 @@
   border-radius: 1rem;
   padding: 1.5rem;
   transition: all 0.3s ease;
+  min-height: 238px;
 }
 
 .sidebarSection:hover {
@@ -129,11 +155,28 @@
   font-family: 'Inter', sans-serif;
 }
 
-.sidebarContent p {
+.sidebarContent li {
   margin: 0;
   font-style: italic;
   color: var(--text-muted);
 }
+
+.sidebarViewAll {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+  display: block;
+  margin: 1rem auto 0;
+  margin-bottom: -0.5rem;
+}
+
+.sidebarViewAll:hover {
+  color: var(--primary-blue);
+}
+
 
 /* Responsive design */
 @media (max-width: 1024px) {

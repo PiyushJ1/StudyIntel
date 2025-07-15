@@ -18,6 +18,12 @@ export default function DashboardPage() {
               Welcome back, <span className={styles.highlightUser}>Piyush!</span>
             </h1>
           </div>
+
+          <div className={styles.subtitleSection}>
+            <h2 className={styles.subtitleText}>
+              Ready to keep levelling up your study journey?
+            </h2>
+          </div>
           
           <div className={styles.contentWrapper}>
             <div className={styles.mainContent}>
@@ -27,22 +33,38 @@ export default function DashboardPage() {
             </div>
             
             <div className={styles.sidebar}>
+              {/* const tasks = [];
+              const goals = [];
+              <ul className={styles.sidebarContent}>
+                {tasks.length === 0
+                  ? <li>No tasks set</li>
+                  : tasks.map((task, i) => <li key={i}>{task.title}</li>)}
+              </ul> */}
+
               <div className={styles.sidebarSection}>
-                <h3 className={styles.sidebarTitle}>Upcoming Tasks</h3>
-                <div className={styles.sidebarContent}>
-                  {/* Placeholder for upcoming tasks */}
-                  <p>No upcoming tasks</p>
-                </div>
+                <h3 className={styles.sidebarTitle}>Upcoming Tasks ✅</h3>
+                <ul className={styles.sidebarContent}>
+                  <li>No tasks set</li>
+                  <li>No tasks set</li>
+                  <li>No tasks set</li>
+                  <li>No tasks set</li>
+                </ul>
+                <button className={styles.sidebarViewAll}>View All</button>
               </div>
-              
+
+              {/* Academic Goals Section */}
               <div className={styles.sidebarSection}>
-                <h3 className={styles.sidebarTitle}>Academic Goals</h3>
-                <div className={styles.sidebarContent}>
-                  {/* Placeholder for academic goals */}
-                  <p>No goals set</p>
-                </div>
+                <h3 className={styles.sidebarTitle}>Academic Goals 🎯</h3>
+                <ul className={styles.sidebarContent}>
+                  <li>No goals set</li>
+                  <li>No goals set</li>
+                  <li>No goals set</li>
+                  <li>No goals set</li>
+                </ul>
+                <button className={styles.sidebarViewAll}>View All</button>
               </div>
             </div>
+
           </div>
         </div>
       </main>
