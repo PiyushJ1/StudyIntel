@@ -1,0 +1,175 @@
+.dashboardContainer {
+  min-height: calc(100vh - 80px); /* Account for fixed navbar */
+  padding-top: 80px; /* Space for fixed navbar */
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+.dashboardContent {
+  max-width: 1400px; /* Match navbar max-width */
+  margin: 0 auto;
+  padding: 2rem; /* Match navbar padding */
+}
+
+.welcomeSection {
+  margin-top: -2rem;
+  margin-bottom: 0.45rem;
+}
+
+.welcomeMessage {
+  font-size: 2.5rem;
+  font-style: italic;
+  font-weight: 550;
+  color: white;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.highlightUser {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-style: normal;
+  background: var(--gradient-primary);
+  border-color: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.01rem;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 2rem;
+  min-height: calc(100vh - 200px); /* Adjust for navbar and welcome section */
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -1rem;
+}
+
+.mainCard {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 3rem;
+  flex: 1;
+  min-height: 500px;
+  max-height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: var(--card-border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mainCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0.02;
+  pointer-events: none;
+}
+
+.mainCard:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+.sidebar {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebarSection {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.sidebarSection:hover {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+}
+
+.sidebarTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.sidebarContent {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+}
+
+.sidebarContent p {
+  margin: 0;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .dashboardContent {
+    padding: 1.5rem;
+  }
+  
+  .contentWrapper {
+    gap: 1.5rem;
+  }
+  
+  .sidebar {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContent {
+    padding: 1rem;
+  }
+  
+  .contentWrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .sidebar {
+    width: 100%;
+  }
+  
+  .mainCard {
+    min-height: 300px;
+    padding: 2rem;
+  }
+  
+  .welcomeMessage {
+    font-size: 2rem;
+  }
+}
