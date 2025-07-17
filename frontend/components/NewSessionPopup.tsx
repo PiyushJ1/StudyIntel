@@ -79,7 +79,6 @@ export default function NewSessionPopup({ isOpen, onClose }: NewSessionPopupProp
               <h2 className={styles.title}>Start New Study Session</h2>
               <p className={styles.subtitle}>
                 Set up your study session with AI-powered insights and tracking. 
-                Let's make this session productive!
               </p>
             </div>
 
@@ -153,7 +152,7 @@ export default function NewSessionPopup({ isOpen, onClose }: NewSessionPopupProp
               </div>
 
               <div className={styles.features}>
-                <h3 className={styles.featuresTitle}>What you'll get:</h3>
+                <h3 className={styles.featuresTitle}>What you&apos;ll get:</h3>
                 <ul className={styles.featuresList}>
                   <li>⏱️ Smart time tracking with breaks</li>
                   <li>🎯 Goal-based progress monitoring</li>
@@ -173,7 +172,7 @@ export default function NewSessionPopup({ isOpen, onClose }: NewSessionPopupProp
                     Starting Session...
                   </span>
                 ) : (
-                  'Start Study Session'
+                  "Start Study Session"
                 )}
               </button>
             </form>

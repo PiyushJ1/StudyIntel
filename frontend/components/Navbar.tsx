@@ -6,11 +6,7 @@ import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 import NewSessionPopup from "./NewSessionPopup";
 
-interface NavbarProps {
-  // Remove the onNewSessionClick prop since we're handling it internally now
-}
-
-export default function Navbar({ }: NavbarProps) {
+export default function Navbar({ }) {
   const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
   
   const pathName = usePathname();

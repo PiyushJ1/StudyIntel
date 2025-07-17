@@ -139,6 +139,13 @@
 
 .select {
   cursor: pointer;
+  background-color: black !important;
+  color: white !important;
+}
+
+.select option {
+  background-color: var(--foreground-rgb);
+  color: white;
 }
 
 .features {
