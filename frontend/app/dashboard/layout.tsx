@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import DashboardWrapper from "@/components/DashboardWrapper";
 
 export const metadata: Metadata = {
   title: "Dashboard | StudyIntel",
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <section>
-      {/* Optional shared layout UI here */}
-      {children}
+      <DashboardWrapper>
+        {children}
+      </DashboardWrapper>
     </section>
   );
 };
