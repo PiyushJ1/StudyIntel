@@ -8,7 +8,7 @@ interface NewSessionPopupProps {
   onClose: () => void;
 }
 
-export default function NewSessionPopup({ /*isOpen,*/ onClose }: NewSessionPopupProps) {
+export default function NewSessionPopup({ isOpen, onClose }: NewSessionPopupProps) {
   // const [formData, setFormData] = useState({
   //   sessionName: '',
   //   subject: '',
@@ -41,12 +41,6 @@ export default function NewSessionPopup({ /*isOpen,*/ onClose }: NewSessionPopup
     }
   };
 
-  const handleClose = () => {
-    // resetForm();
-    onClose();
-  };
-
-  // stopwatch simulation
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
 
@@ -68,11 +62,13 @@ export default function NewSessionPopup({ /*isOpen,*/ onClose }: NewSessionPopup
     return `${hours}:${mins}:${secs}`;
   }
 
+  if (!isOpen) return null;
+
   return (
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.popup}>
         <>
-          <button className={styles.closeButton} onClick={handleClose}>
+          <button className={styles.closeButton} onClick={onClose}>
               ×
           </button>
             
@@ -90,7 +86,7 @@ export default function NewSessionPopup({ /*isOpen,*/ onClose }: NewSessionPopup
           <div className={styles.buttonContainer}>
             <button className={styles.startButton} onClick={() => setRunning(true)}>Start</button>
             <button className={styles.pauseButton} onClick={() => setRunning(false)}>Pause</button>
-            <button className={styles.resetButton} onClick={() => setSeconds(0)}>Reset</button>
+            <button className={styles.resetButton} onClick={() => (setSeconds(0), setRunning(false))}>Reset</button>
           </div>
         </>
       </div>
