@@ -72,3 +72,68 @@ Deliver a minimal, usable product that lets students log study sessions and see 
 ---
 
 > This README will be updated as progress is made on the project.
+
+🧱 MVP Feature List (Priority-Ordered)
+✅ 1. Session Tracker (Core Input)
+Subject / Task
+
+Study method (Pomodoro, reading, problem-solving)
+
+Focus level (1–5 or emoji scale)
+
+Duration
+
+Notes (optional)
+
+🔧 Simple form UI, then save to DB with timestamp
+
+✅ 2. Progress Dashboard (Core Output)
+Visuals that give a sense of momentum:
+
+Weekly study hours bar chart
+
+Focus score line graph over time
+
+Calendar heatmap (GitHub-style streak)
+
+Total sessions, hours, avg focus
+
+🔧 Use Chart.js or Recharts — fast and good-looking
+
+✅ 3. Basic Insights (Hardcoded or Light AI)
+These don’t need to be AI right away. Start with static rules:
+
+“Your best focus days: Tue, Thu”
+
+“You study Math 2× more than Physics — consider rebalancing?”
+
+“Longest streak: 4 days. Try beating it!”
+
+🔧 Add to dashboard sidebar or a weekly digest email
+
+✅ 4. Streak System (Gamified Motivation)
+Daily streak counter
+
+Streak milestones (e.g. “5-day streak!” badge)
+
+Warning if streak breaks soon
+
+🔧 Show this on dashboard and make it visual (emoji fire 🔥 or colored rings)
+
+✅ 5. Profile & Settings
+Let users:
+
+Edit name, subjects, preferred methods
+
+Toggle light/dark mode (if you want polish)
+
+View their saved data
+
+✅ 6. Email Weekly Digest (Simple Cron Job or Notion-style)
+Summary of hours studied, focus average
+
+Your best study day
+
+Short tip (pre-written, no need for AI now)
+
+🔧 Use something like SendGrid or Resend to schedule digests
