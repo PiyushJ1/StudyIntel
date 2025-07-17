@@ -101,7 +101,7 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
                   <li>🚀 Priority early access</li>
                   <li>📊 Exclusive preview of AI insights</li>
                   <li>💡 Provide direct input on new features</li>
-                  <li>👀 Get insider updates and information</li>
+                  <li>👀 Insider updates and information</li>
                 </ul>
               </div>
 
