@@ -1,35 +1,23 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 import NewSessionPopup from "./NewSessionPopup";
 
-export default function Navbar({ }) {
+interface NavbarProps {
+  seconds: number;
+  running: boolean;
+  setSeconds: React.Dispatch<React.SetStateAction<number>>;
+  setRunning: React.Dispatch<React.SetStateAction<boolean>>;
+  formatTime: (s: number) => string;
+}
+
+export default function Navbar({ seconds, running, setSeconds, setRunning, formatTime }: NavbarProps) {
   const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
-  const [seconds, setSeconds] = useState(0);
-  const [running, setRunning] = useState(false);
   
   const pathName = usePathname();
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (running) {
-      interval = setInterval(() => {
-        setSeconds((prev) => prev + 1);
-      }, 1000);
-    }
-
-    return () => clearInterval(interval);
-  }, [running]);
-
-  const formatTime = (s: number) => {
-    const hours = String(Math.floor(s / 3600)).padStart(2, '0');
-    const mins = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-    const secs = String(s % 60).padStart(2, '0');
-    return `${hours}:${mins}:${secs}`;
-  };
 
   const handleNewSession = (e: React.MouseEvent) => {
     e.preventDefault();
