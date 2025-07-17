@@ -1,27 +1,28 @@
 'use client';
 
-import React from "react";
-// import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
+import NewSessionPopup from "./NewSessionPopup";
 
 interface NavbarProps {
-  onNewSessionClick?: (e: React.MouseEvent) => void;
+  // Remove the onNewSessionClick prop since we're handling it internally now
 }
 
-
-export default function Navbar({ onNewSessionClick }: NavbarProps) {
-  // const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
-  // isNewSessionPopupOpen;
-  // setIsNewSessionPopupOpen;
+export default function Navbar({ }: NavbarProps) {
+  const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
   
   const pathName = usePathname();
 
-  // const handleNewSession = (e: React.MouseEvent) => {
-  //   e.preventDefault();
-  //   setIsNewSessionPopupOpen(true)
-  // };
+  const handleNewSession = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsNewSessionPopupOpen(true);
+  };
+
+  const handleCloseNewSessionPopup = () => {
+    setIsNewSessionPopupOpen(false);
+  };
 
   return (
     <>
@@ -40,11 +41,16 @@ export default function Navbar({ onNewSessionClick }: NavbarProps) {
           </nav>
 
           <div className={styles.navRight}>
-            <button onClick={onNewSessionClick} className={styles.newSessionButton} aria-label="Add New Session">+ New Session</button>
+            <button onClick={handleNewSession} className={styles.newSessionButton} aria-label="Add New Session">+ New Session</button>
             <Link href="/dashboard/profile" className={styles.profileButton}>👤 Profile</Link>
           </div>
         </div>
       </header>
+
+      <NewSessionPopup 
+        isOpen={isNewSessionPopupOpen} 
+        onClose={handleCloseNewSessionPopup} 
+      />
     </>
   );
 };

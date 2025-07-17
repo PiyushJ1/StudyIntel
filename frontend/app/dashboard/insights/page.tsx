@@ -3,13 +3,9 @@
 import Navbar from "@/components/Navbar";
 
 export default function InsightsPage() {
-  const handleNewSession = () => {
-    // placeholder
-  }
-
   return (
     <>
-      <Navbar onNewSessionClick={handleNewSession}/>
+      <Navbar />
       <main>{/* actual page content here */}</main>
     </>
   );

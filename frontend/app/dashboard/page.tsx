@@ -4,13 +4,9 @@ import Navbar from "@/components/Navbar";
 import styles from "./dashboard.module.css"
 
 export default function DashboardPage() {
-  const handleNewSession = () => {
-    // placeholder
-  }
-
   return (
     <>
-      <Navbar onNewSessionClick={handleNewSession}/>
+      <Navbar />
       <main className={styles.dashboardContainer}>
         <div className={styles.dashboardContent}>
           <div className={styles.welcomeSection}>

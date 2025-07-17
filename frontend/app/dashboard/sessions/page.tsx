@@ -3,13 +3,9 @@
 import Navbar from "@/components/Navbar";
 
 export default function SessionPage() {
-  const handleNewSession = () => {
-    // placeholder
-  }
-
   return (
     <>
-      <Navbar onNewSessionClick={handleNewSession}/>
+      <Navbar />
       <main>
           
       </main>

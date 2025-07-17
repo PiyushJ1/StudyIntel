@@ -24,9 +24,9 @@
   box-shadow: 
     0 25px 50px -12px rgba(0, 0, 0, 0.25),
     0 0 60px rgba(var(--foreground-rgb), 0.1);
-  /* max-width: 500px; */
-  width: 40rem;
+  width: 70rem;
   max-height: 90vh;
+  height: 45rem;
   overflow-y: auto;
   position: relative;
   animation: slideInUp 0.4s ease-out;
@@ -104,7 +104,7 @@
   margin-left: 0.3rem;
 }
 
-.input {
+.input, .textarea, .select {
   width: 100%;
   padding: 0.875rem 1rem;
   background: rgba(var(--foreground-rgb), 0.04);
@@ -117,7 +117,7 @@
   box-sizing: border-box;
 }
 
-.input:focus {
+.input:focus, .textarea:focus, .select:focus {
   outline: none;
   border-color: #3b82f6;
   background: rgba(var(--foreground-rgb), 0.06);
@@ -127,27 +127,21 @@
   transform: translateY(-1px);
 }
 
-.input::placeholder {
+.input::placeholder, .textarea::placeholder {
   color: var(--foreground);
   opacity: 0.5;
 }
 
-.textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  background: rgba(var(--foreground-rgb), 0.06);
-  box-shadow: 
-    0 0 0 3px rgba(59, 130, 246, 0.1),
-    0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  transform: translateY(-1px);
+.textarea {
+  resize: none;
+  min-height: 80px;
 }
 
-.textarea::placeholder {
-  color: var(--foreground);
-  opacity: 0.5;
+.select {
+  cursor: pointer;
 }
 
-.benefits {
+.features {
   background: rgba(var(--foreground-rgb), 0.02);
   border: 1px solid rgba(var(--foreground-rgb), 0.08);
   border-radius: 1rem;
@@ -155,7 +149,7 @@
   margin-bottom: 2rem;
 }
 
-.benefitsTitle {
+.featuresTitle {
   font-size: 1rem;
   font-weight: 600;
   color: var(--foreground);
@@ -163,7 +157,7 @@
   font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.benefitsList {
+.featuresList {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -171,7 +165,7 @@
   gap: 0.75rem;
 }
 
-.benefitsList li {
+.featuresList li {
   font-size: 0.875rem;
   color: var(--foreground);
   opacity: 0.8;
@@ -228,31 +222,6 @@
   animation: spin 1s linear infinite;
 }
 
-.privacy {
-  text-align: center;
-}
-
-.privacyText {
-  font-size: 0.75rem;
-  color: var(--foreground);
-  opacity: 0.6;
-  line-height: 1.5;
-  margin: 0;
-  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.privacyLink {
-  color: #3b82f6;
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.3s ease;
-}
-
-.privacyLink:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
 .successMessage {
   padding: 3rem 2.5rem;
   text-align: center;
@@ -284,12 +253,32 @@
   font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.successStats {
+.sessionInfo {
+  background: rgba(var(--foreground-rgb), 0.04);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.returnHomeButton {
+.sessionDetail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  opacity: 0.8;
+}
+
+.sessionLabel {
+  font-weight: 600;
+  color: var(--foreground);
+  opacity: 1;
+}
+
+.returnButton {
   background: linear-gradient(to right, #3b82f6, #9333ea);
   color: white;
   border: none;
@@ -302,10 +291,9 @@
   font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   letter-spacing: -0.01em;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 30px rgba(59, 130, 246, 0.2);
-  margin-top: 1.5rem;
 }
 
-.returnHomeButton:hover {
+.returnButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2), 0 0 40px rgba(59, 130, 246, 0.3);
 }
@@ -379,11 +367,16 @@
     font-size: 1.25rem;
   }
   
-  .benefits {
+  .features {
     padding: 1rem;
   }
   
   .successMessage {
     padding: 2rem 1.5rem;
+  }
+  
+  .sessionInfo {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

@@ -10,122 +10,195 @@ interface NewSessionPopupProps {
 
 export default function NewSessionPopup({ isOpen, onClose }: NewSessionPopupProps) {
   const [formData, setFormData] = useState({
-    clock: '00:00:00',
+    sessionName: '',
+    subject: '',
+    studyGoals: '',
+    duration: '30',
   });
 
   const [isStarting, setIsStarting] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleStart = (e: React.FormEvent) => {
+  const handleStart = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsStarting(true);
 
-    // start clock stopwatch
-  }
+    // Simulate session creation
+    try {
+      // Here you would typically send the data to your backend
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setIsStarted(true);
+    } catch (error) {
+      console.error('Error starting session:', error);
+    } finally {
+      setIsStarting(false);
+    }
+  };
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      sessionName: '',
+      subject: '',
+      studyGoals: '',
+      duration: '30',
+    });
+    setIsStarting(false);
+    setIsStarted(false);
+  };
+
+  const handleClose = () => {
+    resetForm();
+    onClose();
+  };
+
+  if (!isOpen) return null;
 
   return (
-    <div className={styles.overlay} onClick={handleStart}>
+    <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.popup}>
-        {!isStarting ? (
+        {!isStarted ? (
           <>
-            <button className={styles.closeButton} onClick={onClose}>
+            <button className={styles.closeButton} onClick={handleClose}>
               ×
             </button>
             
             <div className={styles.header}>
-              <h2 className={styles.title}>Join the StudyIntel Waitlist</h2>
+              <h2 className={styles.title}>Start New Study Session</h2>
               <p className={styles.subtitle}>
-                Be among the first to experience AI-powered study intelligence. 
-                Get early access and exclusive updates.
+                Set up your study session with AI-powered insights and tracking. 
+                Let's make this session productive!
               </p>
             </div>
 
             <form onSubmit={handleStart} className={styles.form}>
               <div className={styles.inputGroup}>
-                <label htmlFor="email" className={styles.label}>
-                  Email Address *
+                <label htmlFor="sessionName" className={styles.label}>
+                  Session Name *
                 </label>
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  // value={formData.email}
+                  type="text"
+                  id="sessionName"
+                  name="sessionName"
+                  value={formData.sessionName}
                   onChange={handleChange}
-                  placeholder="Enter your email address"
+                  placeholder="e.g., Math Calculus Review"
                   className={styles.input}
                   required
                 />
               </div>
 
-              <div className={styles.benefits}>
-                <h3 className={styles.benefitsTitle}>What you&apos;ll get:</h3>
-                <ul className={styles.benefitsList}>
-                  <li>🚀 Priority early access</li>
-                  <li>📊 Exclusive preview of AI insights</li>
-                  <li>💡 Free premium features for 3 months</li>
-                  <li>🎯 Personalized onboarding session</li>
+              <div className={styles.inputGroup}>
+                <label htmlFor="subject" className={styles.label}>
+                  Subject *
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="e.g., Mathematics, Chemistry, History"
+                  className={styles.input}
+                  required
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="studyGoals" className={styles.label}>
+                  Study Goals
+                </label>
+                <textarea
+                  id="studyGoals"
+                  name="studyGoals"
+                  value={formData.studyGoals}
+                  onChange={handleChange}
+                  placeholder="What do you want to accomplish in this session?"
+                  className={styles.textarea}
+                  rows={3}
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="duration" className={styles.label}>
+                  Planned Duration (minutes)
+                </label>
+                <select
+                  id="duration"
+                  name="duration"
+                  value={formData.duration}
+                  onChange={handleChange}
+                  className={styles.select}
+                >
+                  <option value="15">15 minutes</option>
+                  <option value="30">30 minutes</option>
+                  <option value="45">45 minutes</option>
+                  <option value="60">1 hour</option>
+                  <option value="90">1.5 hours</option>
+                  <option value="120">2 hours</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </div>
+
+              <div className={styles.features}>
+                <h3 className={styles.featuresTitle}>What you'll get:</h3>
+                <ul className={styles.featuresList}>
+                  <li>⏱️ Smart time tracking with breaks</li>
+                  <li>🎯 Goal-based progress monitoring</li>
+                  <li>📊 Real-time productivity insights</li>
+                  <li>🧠 AI-powered study recommendations</li>
                 </ul>
               </div>
 
               <button 
                 type="submit" 
                 className={styles.submitButton}
-                // disabled={isSubmitting || !formData.email}
+                disabled={isStarting || !formData.sessionName || !formData.subject}
               >
-                {/* {isSubmitting ? (
+                {isStarting ? (
                   <span className={styles.loading}>
                     <span className={styles.spinner}></span>
-                    Joining...
+                    Starting Session...
                   </span>
                 ) : (
-                  'Join Waitlist'
-                )} */}
+                  'Start Study Session'
+                )}
               </button>
-
-              <div className={styles.privacy}>
-                <p className={styles.privacyText}>
-                  🔒 By joining, you agree to our{' '}
-                  <a 
-                    href="/privacy"
-                    className={styles.privacyLink}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    Privacy Policy
-                  </a>
-                  {' '}and{' '}
-                  <a 
-                    href="/terms"
-                    className={styles.privacyLink}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    Terms of Service
-                  </a>.
-                  We respect your privacy and never share your information with third parties.
-                </p>
-              </div>
             </form>
           </>
         ) : (
           <div className={styles.successMessage}>
-            <div className={styles.successIcon}>✨</div>
-            <h2 className={styles.successTitle}>Welcome to the future of studying!</h2>
+            <div className={styles.successIcon}>🚀</div>
+            <h2 className={styles.successTitle}>Session Started Successfully!</h2>
             <p className={styles.successText}>
-              You&apos;re now on the StudyIntel waitlist. We&apos;ll email you as soon as 
-              early access is available. Get ready to revolutionize your studies!
+              Your study session &quot;{formData.sessionName}&quot; is now active. 
+              Time to focus and achieve your goals!
             </p>
+            <div className={styles.sessionInfo}>
+              <div className={styles.sessionDetail}>
+                <span className={styles.sessionLabel}>Subject:</span> {formData.subject}
+              </div>
+              <div className={styles.sessionDetail}>
+                <span className={styles.sessionLabel}>Duration:</span> {formData.duration} minutes
+              </div>
+            </div>
             <button 
-              onClick={onClose}
-              className={styles.returnHomeButton}
+              onClick={handleClose}
+              className={styles.returnButton}
             >
-              Return Home
+              Go to Session Dashboard
             </button>
           </div>
         )}
