@@ -100,8 +100,8 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
                 <ul className={styles.benefitsList}>
                   <li>🚀 Priority early access</li>
                   <li>📊 Exclusive preview of AI insights</li>
-                  <li>💡 Free premium features for 3 months</li>
-                  <li>🎯 Personalized onboarding session</li>
+                  <li>💡 Provide direct input on new features</li>
+                  <li>👀 Get insider updates and information</li>
                 </ul>
               </div>
 
