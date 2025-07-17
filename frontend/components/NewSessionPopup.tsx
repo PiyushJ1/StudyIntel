@@ -1,59 +1,23 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./NewSessionPopup.module.css";
 
 interface NewSessionPopupProps {
   isOpen: boolean;
   onClose: () => void;
+  seconds: number;
+  _running: boolean;
+  setSeconds: React.Dispatch<React.SetStateAction<number>>;
+  setRunning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function NewSessionPopup({ isOpen, onClose }: NewSessionPopupProps) {
-  // const [formData, setFormData] = useState({
-  //   sessionName: '',
-  //   subject: '',
-  //   studyGoals: '',
-  //   duration: '30',
-  // });
-
-  // const [isStarting, setIsStarting] = useState(false);
-  // const [isStarted, setIsStarted] = useState(false);
-
-  // const handleStart = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsStarting(true);
-
-  //   // Simulate session creation
-  //   try {
-  //     // Here you would typically send the data to your backend
-  //     await new Promise(resolve => setTimeout(resolve, 1000));
-  //     setIsStarted(true);
-  //   } catch (error) {
-  //     console.error('Error starting session:', error);
-  //   } finally {
-  //     setIsStarting(false);
-  //   }
-  // };
-
+export default function NewSessionPopup({ isOpen, onClose, seconds, _running, setSeconds, setRunning }: NewSessionPopupProps) {
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
-
-  const [seconds, setSeconds] = useState(0);
-  const [running, setRunning] = useState(false);
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (running) {
-      interval = setInterval(() => {
-        setSeconds((prev) => prev + 1);
-      }, 1000);
-    }
-
-    return () => clearInterval(interval);
-  }, [running]);
 
   const formatTime = (s: number) => {
     const hours = String(Math.floor(s / 3600)).padStart(2, '0');
