@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
@@ -8,8 +8,28 @@ import NewSessionPopup from "./NewSessionPopup";
 
 export default function Navbar({ }) {
   const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
+  const [seconds, setSeconds] = useState(0);
+  const [running, setRunning] = useState(false);
   
   const pathName = usePathname();
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (running) {
+      interval = setInterval(() => {
+        setSeconds((prev) => prev + 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [running]);
+
+  const formatTime = (s: number) => {
+    const hours = String(Math.floor(s / 3600)).padStart(2, '0');
+    const mins = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+    const secs = String(s % 60).padStart(2, '0');
+    return `${hours}:${mins}:${secs}`;
+  };
 
   const handleNewSession = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -19,6 +39,13 @@ export default function Navbar({ }) {
   const handleCloseNewSessionPopup = () => {
     setIsNewSessionPopupOpen(false);
   };
+
+  let sessionButtonLabel = "+ New Session";
+  if (seconds > 0 && running) {
+    sessionButtonLabel = `⏱️ ${formatTime(seconds)}`;
+  } else if (seconds > 0 && !running) {
+    sessionButtonLabel = `⏸️ ${formatTime(seconds)}`
+  }
 
   return (
     <>
@@ -37,7 +64,14 @@ export default function Navbar({ }) {
           </nav>
 
           <div className={styles.navRight}>
-            <button onClick={handleNewSession} className={styles.newSessionButton} aria-label="Add New Session">+ New Session</button>
+            <button onClick={handleNewSession} 
+              className={
+                seconds > 0 
+                  ? `${styles.newSessionButton} ${styles.sessionActive}` 
+                  : styles.newSessionButton
+              }
+            >{sessionButtonLabel}
+            </button>
             <Link href="/dashboard/profile" className={styles.profileButton}>👤 Profile</Link>
           </div>
         </div>
@@ -45,7 +79,11 @@ export default function Navbar({ }) {
 
       <NewSessionPopup 
         isOpen={isNewSessionPopupOpen} 
-        onClose={handleCloseNewSessionPopup} 
+        onClose={handleCloseNewSessionPopup}
+        seconds={seconds}
+        _running={running}
+        setSeconds={setSeconds}
+        setRunning={setRunning}
       />
     </>
   );
