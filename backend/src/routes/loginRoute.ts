@@ -16,6 +16,8 @@ router.post("/", async (req: Request, res: Response) => {
       expiresIn: "5h",
     });
 
+    console.log("Setting cookie with token:", token.substring(0, 20) + "...");
+
     // create cookie to send through browser
     res.cookie("token", token, {
       httpOnly: true,
@@ -23,9 +25,19 @@ router.post("/", async (req: Request, res: Response) => {
       sameSite: "none", // Required for cross-domain cookies
       maxAge: 5 * 60 * 60 * 1000, // 5 hours in milliseconds
       path: "/",
+      domain: undefined, // Let browser handle domain automatically
     });
 
-    return res.status(200).json({ message: "Login was successful" });
+    // Also set CORS headers explicitly for cookie handling
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Origin', 'https://studyintel.app');
+
+    console.log("Cookie should be set in response headers");
+    
+    return res.status(200).json({ 
+      message: "Login was successful",
+      token: token // Fallback if cookies don't work
+    });
   } catch (error) {
     if (
       error instanceof UserNotFoundError ||

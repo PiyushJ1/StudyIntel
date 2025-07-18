@@ -38,6 +38,15 @@ export default function LoginPage() {
       console.log("Response status:", response.status);
       console.log("Response headers:", Object.fromEntries(response.headers.entries()));
       
+      // Check for set-cookie header specifically
+      const setCookieHeader = response.headers.get('set-cookie');
+      console.log("Set-Cookie header:", setCookieHeader);
+      
+      // Log all headers individually
+      for (const [key, value] of response.headers.entries()) {
+        console.log(`Header ${key}:`, value);
+      }
+      
       if (!response.ok) {
         const errorData = await response.json();
         alert(`Submission failed: ${errorData.message || response.statusText}`);
@@ -52,6 +61,12 @@ export default function LoginPage() {
       
       // Check if cookie was set
       console.log("Document cookies:", document.cookie);
+      
+      // Fallback: If no cookie was set, check if we got a token in response
+      if (!document.cookie.includes('token=') && responseData.token) {
+        console.log("Cookie not set, using token from response");
+        localStorage.setItem('authToken', responseData.token);
+      }
       
       console.log("Attempting to redirect to dashboard");
       router.push('/dashboard');
