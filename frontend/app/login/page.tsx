@@ -25,25 +25,27 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // handle user login
+    // handle user login 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
         method: 'POST',
-        // credentials: "include",
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      console.log("hit");
       
       if (!response.ok) {
         const errorData = await response.json();
         alert(`Submission failed: ${errorData.message || response.statusText}`);
         return;
       }
-
-      router.push('/dashboard');
-    } catch {
+      
+      if (response.ok) {
+        router.push('/dashboard');
+      }
+    } catch (err) {
       alert('Could not log in');
+      console.log("error:", err);
     }
   };
 
