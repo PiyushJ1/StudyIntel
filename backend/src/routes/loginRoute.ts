@@ -13,14 +13,14 @@ router.post("/", async (req: Request, res: Response) => {
 
     // generate jwt token if user was authenticated
     const token = jwt.sign({ email }, process.env.JWT_SECRET!, {
-      expiresIn: "1h",
+      expiresIn: "5h",
     });
 
     // create cookie to send through browser
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      sameSite: "none",
       maxAge: 3600 * 5000, // cookie age is 5 hours
       path: "/"
     });
