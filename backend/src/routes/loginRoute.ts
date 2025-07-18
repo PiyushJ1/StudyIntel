@@ -19,9 +19,9 @@ router.post("/", async (req: Request, res: Response) => {
     // create cookie to send through browser
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
-      maxAge: 3600 * 5000, // cookie age is 5 hours
+      secure: true, // Always use secure in production for cross-domain
+      sameSite: "none", // Required for cross-domain cookies
+      maxAge: 5 * 60 * 60 * 1000, // 5 hours in milliseconds
       path: "/",
     });
 

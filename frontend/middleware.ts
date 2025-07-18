@@ -2,23 +2,31 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+  console.error("JWT_SECRET is not set in environment variables");
+}
+const secret = new TextEncoder().encode(jwtSecret!);
 
 export async function middleware(req: NextRequest) {
-  console.log("hit");
+  console.log("Middleware hit for URL:", req.url);
+  console.log("All cookies:", req.cookies.getAll());
+  console.log("JWT_SECRET available:", !!jwtSecret);
+  
   const token = req.cookies.get("token")?.value;
   if (!token) {
-      console.log("no token");
+    console.log("No token found in cookies");
     return NextResponse.redirect(new URL("/login", req.url));
   }
-    console.log("valid token");
+  
+  console.log("Token found:", token.substring(0, 20) + "...");
 
   try {
-    await jwtVerify(token, secret);
-      console.log("success");
+    const payload = await jwtVerify(token, secret);
+    console.log("JWT verification successful:", payload);
     return NextResponse.next();
   } catch (error) {
-      console.log("err:", error);
+    console.log("JWT verification failed:", error);
     return NextResponse.redirect(new URL("/login", req.url));
   }
 }

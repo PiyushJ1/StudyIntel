@@ -27,6 +27,7 @@ export default function LoginPage() {
 
     // handle user login 
     try {
+      console.log("Attempting login to:", `${process.env.NEXT_PUBLIC_API_URL}/api/login`);
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
         method: 'POST',
         credentials: "include",
@@ -34,21 +35,29 @@ export default function LoginPage() {
         body: JSON.stringify(formData)
       });
       
+      console.log("Response status:", response.status);
+      console.log("Response headers:", Object.fromEntries(response.headers.entries()));
+      
       if (!response.ok) {
         const errorData = await response.json();
         alert(`Submission failed: ${errorData.message || response.statusText}`);
         return;
       }
       
-      console.log("response ok");
+      const responseData = await response.json();
+      console.log("Login response:", responseData);
       
-      if (response.ok) {
-        console.log("push to dash");
-        router.push('/dashboard');
-      }
+      // Small delay to ensure cookie is set before redirect
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      // Check if cookie was set
+      console.log("Document cookies:", document.cookie);
+      
+      console.log("Attempting to redirect to dashboard");
+      router.push('/dashboard');
     } catch (err) {
       alert('Could not log in');
-      console.log("error:", err);
+      console.log("Login error:", err);
     }
   };
 
