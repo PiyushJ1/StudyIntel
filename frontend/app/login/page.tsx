@@ -27,7 +27,7 @@ export default function LoginPage() {
 
     // handle user login 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
+      const response = await fetch("/api/login", {
         method: 'POST',
         credentials: "include",
         headers: { 'Content-Type': 'application/json' },
