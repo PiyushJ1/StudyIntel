@@ -1,7 +1,4 @@
-// API configuration and client setup
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// Enhanced fetch function that automatically includes auth token
+// API client with automatic authentication handling
 export const apiClient = {
   async fetch(url: string, options: RequestInit = {}) {
     const token = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
@@ -39,8 +36,8 @@ export const apiClient = {
 
   // Helper methods for common HTTP verbs
   get: (url: string, options?: RequestInit) => apiClient.fetch(url, { ...options, method: 'GET' }),
-  post: (url: string, data?: any, options?: RequestInit) => apiClient.fetch(url, { ...options, method: 'POST', body: JSON.stringify(data) }),
-  put: (url: string, data?: any, options?: RequestInit) => apiClient.fetch(url, { ...options, method: 'PUT', body: JSON.stringify(data) }),
+  post: (url: string, data?: unknown, options?: RequestInit) => apiClient.fetch(url, { ...options, method: 'POST', body: JSON.stringify(data) }),
+  put: (url: string, data?: unknown, options?: RequestInit) => apiClient.fetch(url, { ...options, method: 'PUT', body: JSON.stringify(data) }),
   delete: (url: string, options?: RequestInit) => apiClient.fetch(url, { ...options, method: 'DELETE' }),
 };
 
