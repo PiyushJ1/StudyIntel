@@ -40,7 +40,10 @@ export default function LoginPage() {
         return;
       }
       
+      console.log("response ok");
+      
       if (response.ok) {
+        console.log("push to dash");
         router.push('/dashboard');
       }
     } catch (err) {
