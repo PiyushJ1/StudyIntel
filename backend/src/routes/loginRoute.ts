@@ -21,7 +21,7 @@ router.post("/", async (req: Request, res: Response) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "none",
-      maxAge: 3600 * 5000, // cookie age is 5 hours
+      maxAge: 3600 * 5000, // cookie valid for 5 hours
       path: "/",
     });
 
