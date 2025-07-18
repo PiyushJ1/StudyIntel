@@ -39,14 +39,8 @@ export default function LoginPage() {
         alert(`Submission failed: ${errorData.message || response.statusText}`);
         return;
       }
-      
-      console.log("response ok");
-      
-      // Check if cookie was set
-      console.log("Document cookies after login:", document.cookie);
-      
+            
       if (response.ok) {
-        console.log("push to dash");
         router.push('/dashboard');
       }
     } catch (err) {
