@@ -22,7 +22,7 @@ router.post("/", async (req: Request, res: Response) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: "none",
       maxAge: 3600 * 5000, // cookie age is 5 hours
-      path: "/"
+      path: "/",
     });
 
     return res.status(200).json({ message: "Login was successful" });
