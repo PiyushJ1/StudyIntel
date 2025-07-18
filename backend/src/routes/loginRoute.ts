@@ -11,18 +11,19 @@ router.post("/", async (req: Request, res: Response) => {
   try {
     await authenticateUser(email, password);
 
-    // generate jwt token to if user was authenticated
-    // const token = jwt.sign({ email }, process.env.JWT_SECRET!, {
-    //   expiresIn: "1h",
-    // });
+    // generate jwt token if user was authenticated
+    const token = jwt.sign({ email }, process.env.JWT_SECRET!, {
+      expiresIn: "1h",
+    });
 
-    // // create cookie to send through browser
-    // res.cookie("token", token, {
-    //   httpOnly: true,
-    //   secure: process.env.NODE_ENV === "production",
-    //   sameSite: "lax",
-    //   maxAge: 3600 * 1000, // 1 hour (increase later, since study sessions can easily be over an hour)
-    // });
+    // create cookie to send through browser
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 3600 * 5000, // cookie age is 5 hours
+      path: "/"
+    });
 
     return res.status(200).json({ message: "Login was successful" });
   } catch (error) {
