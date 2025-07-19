@@ -8,12 +8,12 @@ export default function DashboardPage() {
 
   useEffect(() => {
     fetch ("/api/me")
-    .then(res => res.json())
-    .then(data => {
-      if (data.firstName) {
-        setFirstName(data.firstName);
-      }
-    });
+      .then(res => res.json())
+      .then(data => {
+        if (data.firstName) {
+          setFirstName(data.firstName);
+        }
+      });
   }, []);
 
   return (
@@ -22,9 +22,9 @@ export default function DashboardPage() {
         <div className={styles.welcomeSection}>
           <h1 className={styles.welcomeMessage}>
               Welcome back{" "}, 
-              <span className={styles.highlightUser}>
-                {firstName ? `${firstName}` : "User"}!
-              </span>
+            <span className={styles.highlightUser}>
+              {firstName ? `${firstName}` : "User"}!
+            </span>
           </h1>
         </div>
 
