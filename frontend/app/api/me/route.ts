@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 import { jwtVerify } from "jose";
+import { cookies } from "next/headers";
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
 
 export async function GET(req: Request) {
-  const token = req.headers.get("cookie")?.split("token=")[1]?.split(";")[0];
+  // retrieve cookie token from html
+  const cookieStore = cookies();
+  const token = (await cookieStore).get("token")?.value;
+
   if (!token) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
