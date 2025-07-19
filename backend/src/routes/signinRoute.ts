@@ -21,13 +21,14 @@ router.post("/", async (req: Request, res: Response) => {
     );
 
     // create cookie to send through browser
+    const isProd = process.env.NODE_ENV === "production";
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
-      maxAge: 3600 * 1000 * 5, // cookie valid for 5 hours
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
+      maxAge: 1000 * 60 * 60 * 5, // 5 hour cookie duration
       path: "/",
-      domain: ".studyintel.app",
+      ...(isProd && { domain: ".studyintel.app" }), // only set in production
     });
 
     return res.status(200).json({ message: "Sign in was successful" });
