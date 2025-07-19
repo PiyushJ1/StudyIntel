@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
 
-export async function GET(req: Request) {
+export async function GET(_req: Request) {
   // retrieve cookie token from html
   const cookieStore = cookies();
   const token = (await cookieStore).get("token")?.value;
