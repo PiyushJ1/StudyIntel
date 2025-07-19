@@ -9,19 +9,23 @@ router.post("/", async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
-    await authenticateUser(email, password);
+    const user = await authenticateUser(email, password);
 
     // generate jwt token after user is authenticated
-    const token = jwt.sign({ email }, process.env.JWT_SECRET!, {
-      expiresIn: "5h",
-    });
+    const token = jwt.sign(
+      { email: user.email, firstName: user.firstName },
+      process.env.JWT_SECRET!,
+      {
+        expiresIn: "5h",
+      },
+    );
 
     // create cookie to send through browser
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "none",
-      maxAge: 3600 * 5000, // cookie valid for 5 hours
+      maxAge: 3600 * 1000 * 5, // cookie valid for 5 hours
       path: "/",
       domain: ".studyintel.app",
     });
