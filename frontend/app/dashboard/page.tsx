@@ -30,14 +30,25 @@ export default function DashboardPage() {
       <div className={styles.dashboardContent}>
         <div className={styles.welcomeSection}>
           <h1 className={styles.welcomeMessage}>
-             Welcome back, {" "}
+            <DecryptedText
+              text={"Welcome back,"}
+              speed={60}
+              maxIterations={18}
+              characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!?1234567890"
+              className={styles.welcomeMessage}
+              parentClassName=""
+              encryptedClassName=""
+              animateOn="view"
+            />
+            {" "}
+              
             {loading ? (
               <span className={styles.highlightUser}></span>
             ) : (
               <DecryptedText
                 text={firstName ? `${firstName}!` : "Guest!"}
                 speed={60}
-                maxIterations={20}
+                maxIterations={18}
                 characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!?1234567890"
                 className={styles.highlightUser}
                 parentClassName=""
