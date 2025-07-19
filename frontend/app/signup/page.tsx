@@ -36,7 +36,7 @@ export default function SignupPage() {
     }
     
     // handle user sign up logic 
-            console.log('Signup submitted:', formData);
+    console.log('Signup submitted:', formData);
     try {
       if (formData.password !== formData.confirmPassword) {
         alert("Passwords do not match");
@@ -60,14 +60,14 @@ export default function SignupPage() {
 
       router.push('/dashboard');
     } catch (err) {
-              console.log('Signing up caused an error', err);
+      console.log('Signing up caused an error', err);
       alert('Could not sign up');
     }
   };
 
   return (
-          <div className={styles.signupContainer}>
-        <div className={styles.signupCard}>
+    <div className={styles.signupContainer}>
+      <div className={styles.signupCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Create Account</h1>
           <p className={styles.subtitle}>Join now and transform your learning experience</p>
@@ -175,7 +175,7 @@ export default function SignupPage() {
             </label>
           </div>
 
-                      <button type="submit" className={styles.signupButton}>
+          <button type="submit" className={styles.signupButton}>
             Create Account
           </button>
 
@@ -211,7 +211,7 @@ export default function SignupPage() {
         <div className={styles.footer}>
           <p className={styles.footerText}>
             Already have an account?{' '}
-                          <Link href="/signin" className={styles.signinLink}>
+            <Link href="/signin" className={styles.signinLink}>
               Sign in
             </Link>
           </p>

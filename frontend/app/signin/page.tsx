@@ -50,8 +50,8 @@ export default function SigninPage() {
   };
 
   return (
-          <div className={styles.signinContainer}>
-        <div className={styles.signinCard}>
+    <div className={styles.signinContainer}>
+      <div className={styles.signinCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Welcome Back</h1>
           <p className={styles.subtitle}>Sign in to keep leveling up your studies 🚀</p>
@@ -105,7 +105,7 @@ export default function SigninPage() {
             </Link>
           </div>
 
-                      <button type="submit" className={styles.signinButton}>
+          <button type="submit" className={styles.signinButton}>
             Sign In
           </button>
 
@@ -141,7 +141,7 @@ export default function SigninPage() {
         <div className={styles.footer}>
           <p className={styles.footerText}>
             Don&apos;t have an account?{' '}
-                          <Link href="/signup" className={styles.signupLink}>
+            <Link href="/signup" className={styles.signupLink}>
               Sign up
             </Link>
           </p>
