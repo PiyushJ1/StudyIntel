@@ -27,7 +27,7 @@ export async function authenticateUser(
   password: string,
 ): Promise<{ id: string; firstName: string; lastName: string; email: string }> {
   const result = await db.query(
-    "SELECT id, firstName, lastName, email, password FROM users WHERE email = $1",
+    "SELECT id, firstname, lastname, email, password FROM users WHERE email = $1",
     [email],
   );
 
@@ -44,8 +44,8 @@ export async function authenticateUser(
 
   return {
     id: user.id,
-    firstName: user.firstName,
-    lastName: user.lastName,
+    firstName: user.firstname,
+    lastName: user.lastname,
     email: user.email,
   };
 }
