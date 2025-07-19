@@ -1,10 +1,12 @@
 'use client'
 
-import styles from "./dashboard.module.css"
+import styles from "./dashboard.module.css";
+import DecryptedText from "../../components/DecryptedText";
 import { useState, useEffect } from "react";
 
 export default function DashboardPage() {
   const [firstName, setFirstName] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/me", {
@@ -15,9 +17,11 @@ export default function DashboardPage() {
         if (data.firstName) {
           setFirstName(data.firstName);
         }
+        setLoading(false);
       })
       .catch(err => {
         console.error("Failed to fetch user data:", err);
+        setLoading(false);
       });
   }, []);
 
@@ -26,10 +30,21 @@ export default function DashboardPage() {
       <div className={styles.dashboardContent}>
         <div className={styles.welcomeSection}>
           <h1 className={styles.welcomeMessage}>
-            Welcome back, {" "}
-            <span className={styles.highlightUser}>
-              {firstName ? `${firstName}` : "User"}!
-            </span>
+             Welcome back, {" "}
+            {loading ? (
+              <span className={styles.highlightUser}></span>
+            ) : (
+              <DecryptedText
+                text={firstName ? `${firstName}!` : "Guest!"}
+                speed={60}
+                maxIterations={20}
+                characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!?1234567890"
+                className={styles.highlightUser}
+                parentClassName=""
+                encryptedClassName=""
+                animateOn="view"
+              />
+            )}
           </h1>
         </div>
 
