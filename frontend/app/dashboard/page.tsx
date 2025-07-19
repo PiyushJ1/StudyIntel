@@ -7,7 +7,7 @@ export default function DashboardPage() {
   const [firstName, setFirstName] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch ("/api/me", {
+    fetch("/api/me", {
       credentials: "include",
     })
       .then(res => res.json())
@@ -15,6 +15,9 @@ export default function DashboardPage() {
         if (data.firstName) {
           setFirstName(data.firstName);
         }
+      })
+      .catch(err => {
+        console.error("Failed to fetch user data:", err);
       });
   }, []);
 
@@ -23,7 +26,7 @@ export default function DashboardPage() {
       <div className={styles.dashboardContent}>
         <div className={styles.welcomeSection}>
           <h1 className={styles.welcomeMessage}>
-              Welcome back, {" "}
+            Welcome back, {" "}
             <span className={styles.highlightUser}>
               {firstName ? `${firstName}` : "User"}!
             </span>
@@ -32,7 +35,7 @@ export default function DashboardPage() {
 
         <div className={styles.subtitleSection}>
           <h2 className={styles.subtitleText}>
-              Ready to keep levelling up your study journey?
+            Ready to keep levelling up your study journey?
           </h2>
         </div>
           
