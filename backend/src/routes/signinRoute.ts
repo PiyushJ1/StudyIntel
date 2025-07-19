@@ -23,10 +23,10 @@ router.post("/", async (req: Request, res: Response) => {
       sameSite: "none",
       maxAge: 3600 * 5000, // cookie valid for 5 hours
       path: "/",
-      domain: ".studyintel.app", // This makes it work for both studyintel.app and api.studyintel.app
+      domain: ".studyintel.app",
     });
 
-          return res.status(200).json({ message: "Signin was successful" });
+    return res.status(200).json({ message: "Signin was successful" });
   } catch (error) {
     if (
       error instanceof UserNotFoundError ||
