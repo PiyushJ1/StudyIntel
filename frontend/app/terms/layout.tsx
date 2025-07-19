@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RegisterLayout({ children }: { children: React.ReactNode }) {
+export default function TermsLayout({ children }: { children: React.ReactNode }) {
   return (
     <section>
       {/* Optional shared layout UI here */}

@@ -11,9 +11,9 @@ export async function saveNewUserAccount(
     newUser.email,
   ]);
 
-  // check if the email already has an account registered with it
+  // check if the email already has an account signed up with it
   if (existingUser.rowCount ?? 0 > 0) {
-    throw new Error("An account with this email has already been registered.");
+    throw new Error("An account with this email has already been signed up.");
   }
 
   const hashedPassword = await bcrypt.hash(newUser.password, 10);

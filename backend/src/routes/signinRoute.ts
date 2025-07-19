@@ -26,7 +26,7 @@ router.post("/", async (req: Request, res: Response) => {
       domain: ".studyintel.app", // This makes it work for both studyintel.app and api.studyintel.app
     });
 
-    return res.status(200).json({ message: "Login was successful" });
+          return res.status(200).json({ message: "Signin was successful" });
   } catch (error) {
     if (
       error instanceof UserNotFoundError ||
@@ -38,7 +38,7 @@ router.post("/", async (req: Request, res: Response) => {
     } else {
       return res
         .status(500)
-        .json({ message: "Login was unsuccessful. Please try again" });
+        .json({ message: "Signin was unsuccessful. Please try again" });
     }
   }
 });

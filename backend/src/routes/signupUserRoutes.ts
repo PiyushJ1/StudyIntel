@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { saveNewUserAccount } from "../utils/registerUserStorage";
+import { saveNewUserAccount } from "../utils/signupUserStorage";
 import { User } from "../models/interfaces";
 import { validatePassword } from "../utils/validation";
 import validator from "validator";
@@ -28,10 +28,10 @@ router.post("/", async (req: Request, res: Response) => {
   } catch (err) {
     if (
       err instanceof Error &&
-      err.message === "An account with this email has already been registered."
+      err.message === "An account with this email has already been signed up."
     ) {
       return res.status(409).json({
-        message: "An account with this email has already been registered.",
+        message: "An account with this email has already been signed up.",
       });
     }
 

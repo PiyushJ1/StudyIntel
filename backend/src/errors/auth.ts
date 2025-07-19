@@ -1,5 +1,5 @@
 export class UserNotFoundError extends Error {
-  constructor(message = "This email does not have an acccount registered") {
+  constructor(message = "This email does not have an acccount signed up") {
     super(message);
     this.name = "UserNotFoundError";
   }

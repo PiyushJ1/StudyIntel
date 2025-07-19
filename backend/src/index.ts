@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import waitlistRoutes from "./routes/waitlistRoutes";
-import registerUserRoutes from "./routes/registerUserRoutes";
-import loginRoute from "./routes/loginRoute";
+import signupUserRoutes from "./routes/signupUserRoutes";
+import signinRoute from "./routes/signinRoute";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -22,11 +22,11 @@ app.get("/", (req: Request, res: Response) => {
 // save email to waitlist
 app.use("/api/waitlist", waitlistRoutes);
 
-// register new user and save their info
-app.use("/api/register", registerUserRoutes);
+// signup new user and save their info
+app.use("/api/signup", signupUserRoutes);
 
 // authentice user log in
-app.use("/api/login", loginRoute);
+app.use("/api/signin", signinRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -101,7 +101,7 @@
   gap: 1rem;
 }
 
-.loginButton {
+.signinButton {
   background: var(--dark-bg);
   border-color: white;
   text-decoration: none;
@@ -893,7 +893,7 @@
     gap: 0.5rem;
   }
 
-  .loginButton, .signupButtonNav, .joinWaitlistButton {
+  .signinButton, .signupButtonNav, .joinWaitlistButton {
     font-size: 0.75rem;
     padding: 0.375rem 0.75rem;
   }

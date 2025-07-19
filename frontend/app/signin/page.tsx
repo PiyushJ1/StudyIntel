@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import styles from './login.module.css';
+import styles from './signin.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
+export default function SigninPage() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -25,9 +25,9 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // handle user login 
+    // handle user signin 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signin`, {
         method: 'POST',
         credentials: "include",
         headers: { 'Content-Type': 'application/json' },
@@ -50,8 +50,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <div className={styles.loginCard}>
+          <div className={styles.signinContainer}>
+        <div className={styles.signinCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Welcome Back</h1>
           <p className={styles.subtitle}>Sign in to keep leveling up your studies 🚀</p>
@@ -105,7 +105,7 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <button type="submit" className={styles.loginButton}>
+                      <button type="submit" className={styles.signinButton}>
             Sign In
           </button>
 
@@ -141,7 +141,7 @@ export default function LoginPage() {
         <div className={styles.footer}>
           <p className={styles.footerText}>
             Don&apos;t have an account?{' '}
-            <Link href="/register" className={styles.registerLink}>
+                          <Link href="/signup" className={styles.signupLink}>
               Sign up
             </Link>
           </p>

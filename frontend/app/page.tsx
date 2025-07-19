@@ -89,10 +89,10 @@ export default function HomePage() {
           </nav>
             
           <div className={styles.navRight}>
-            <Link href="/login" className={`${styles.loginButton} ${styles.disabled}`}>
+            <Link href="/signin" className={`${styles.signinButton} ${styles.disabled}`}>
               Sign In
             </Link>
-            <Link href="/register" className={`${styles.signupButtonNav} ${styles.disabled}`}>
+            <Link href="/signup" className={`${styles.signupButtonNav} ${styles.disabled}`}>
               Sign Up
             </Link>
             <button onClick={handleWaitlistClick} className={styles.joinWaitlistButton}>

@@ -89,7 +89,7 @@ export default function TermsOfService() {
               3. User Accounts
             </h2>
             <div className="leading-relaxed space-y-3" style={{ color: 'var(--text-secondary)' }}>
-              <p>To access certain features of StudyIntel, you must register for an account. When creating your account, you agree to:</p>
+              <p>To access certain features of StudyIntel, you must sign up for an account. When creating your account, you agree to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Provide accurate, current, and complete information</li>
                 <li>Maintain and promptly update your account information</li>

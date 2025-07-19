@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import styles from './register.module.css';
+import styles from './signup.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function RegisterPage() {
+export default function SignupPage() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ export default function RegisterPage() {
     }
     
     // handle user sign up logic 
-    console.log('Register submitted:', formData);
+            console.log('Signup submitted:', formData);
     try {
       if (formData.password !== formData.confirmPassword) {
         alert("Passwords do not match");
@@ -46,7 +46,7 @@ export default function RegisterPage() {
       // deconstruct form data to exclude confirmPassword (only used for frontend validation)
       const { confirmPassword: _, ...dataToSend} = formData;
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dataToSend)
@@ -60,14 +60,14 @@ export default function RegisterPage() {
 
       router.push('/dashboard');
     } catch (err) {
-      console.log('Signing up register caused an error', err);
+              console.log('Signing up caused an error', err);
       alert('Could not sign up');
     }
   };
 
   return (
-    <div className={styles.registerContainer}>
-      <div className={styles.registerCard}>
+          <div className={styles.signupContainer}>
+        <div className={styles.signupCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Create Account</h1>
           <p className={styles.subtitle}>Join now and transform your learning experience</p>
@@ -175,7 +175,7 @@ export default function RegisterPage() {
             </label>
           </div>
 
-          <button type="submit" className={styles.registerButton}>
+                      <button type="submit" className={styles.signupButton}>
             Create Account
           </button>
 
@@ -211,7 +211,7 @@ export default function RegisterPage() {
         <div className={styles.footer}>
           <p className={styles.footerText}>
             Already have an account?{' '}
-            <Link href="/login" className={styles.loginLink}>
+                          <Link href="/signin" className={styles.signinLink}>
               Sign in
             </Link>
           </p>
