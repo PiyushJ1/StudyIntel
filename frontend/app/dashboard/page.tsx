@@ -1,14 +1,30 @@
 'use client'
 
 import styles from "./dashboard.module.css"
+import { useState, useEffect } from "react";
 
 export default function DashboardPage() {
+  const [firstName, setFirstName] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch ("/api/me")
+    .then(res => res.json())
+    .then(data => {
+      if (data.firstName) {
+        setFirstName(data.firstName);
+      }
+    });
+  }, []);
+
   return (
     <main className={styles.dashboardContainer}>
       <div className={styles.dashboardContent}>
         <div className={styles.welcomeSection}>
           <h1 className={styles.welcomeMessage}>
-              Welcome back, <span className={styles.highlightUser}>Piyush!</span>
+              Welcome back{" "}, 
+              <span className={styles.highlightUser}>
+                {firstName ? `${firstName}` : "User"}!
+              </span>
           </h1>
         </div>
 
