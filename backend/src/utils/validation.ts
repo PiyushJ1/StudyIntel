@@ -25,7 +25,7 @@ export function validatePassword(password: string): boolean {
 export async function authenticateUser(
   email: string,
   password: string,
-): Promise<void> {
+): Promise<{ id: string; firstName: string; lastName: string; email: string }> {
   const result = await db.query(
     "SELECT id, firstName, lastName, email, password FROM users WHERE email = $1",
     [email],
@@ -41,4 +41,11 @@ export async function authenticateUser(
   if (!passwordMatch) {
     throw new InvalidPasswordError();
   }
+
+  return {
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+  };
 }
