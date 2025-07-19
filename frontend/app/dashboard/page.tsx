@@ -7,7 +7,9 @@ export default function DashboardPage() {
   const [firstName, setFirstName] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch ("/api/me")
+    fetch ("/api/me", {
+      credentials: "include",
+    })
       .then(res => res.json())
       .then(data => {
         if (data.firstName) {
@@ -21,7 +23,7 @@ export default function DashboardPage() {
       <div className={styles.dashboardContent}>
         <div className={styles.welcomeSection}>
           <h1 className={styles.welcomeMessage}>
-              Welcome back{" "}, 
+              Welcome back, {" "}
             <span className={styles.highlightUser}>
               {firstName ? `${firstName}` : "User"}!
             </span>
