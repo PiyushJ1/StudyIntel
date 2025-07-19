@@ -11,7 +11,7 @@ router.post("/", async (req: Request, res: Response) => {
   try {
     await authenticateUser(email, password);
 
-    // generate jwt token if user was authenticated
+    // generate jwt token after user is authenticated
     const token = jwt.sign({ email }, process.env.JWT_SECRET!, {
       expiresIn: "5h",
     });
@@ -26,7 +26,7 @@ router.post("/", async (req: Request, res: Response) => {
       domain: ".studyintel.app",
     });
 
-    return res.status(200).json({ message: "Signin was successful" });
+    return res.status(200).json({ message: "Sign in was successful" });
   } catch (error) {
     if (
       error instanceof UserNotFoundError ||
@@ -38,7 +38,7 @@ router.post("/", async (req: Request, res: Response) => {
     } else {
       return res
         .status(500)
-        .json({ message: "Signin was unsuccessful. Please try again" });
+        .json({ message: "Sign in was unsuccessful. Please try again" });
     }
   }
 });
