@@ -1,12 +1,12 @@
-# 📚 StudyIntel
+# StudyIntel
 
-**StudyIntel** is an AI-powered SaaS platform I’m building solo as a 2nd-year university student. It helps students stop wasting time and start studying smarter. By tracking study habits and visualizing progress, it reveals what’s working and what’s not, so users can stay focused, improve consistently, and reach their academic goals.
+**StudyIntel** is a study intelligence platform I’m building solo as a 2nd-year university student. It helps students stop wasting time and start studying smarter. By tracking study habits and visualising progress, it reveals what’s working and what’s not, so users can stay focused, improve consistently, and reach their academic goals. The platform provides AI-powered insights and interactive data visualisation, acting as a personal academic coach.
 
 🌐 **Live at:** [https://studyintel.app](https://studyintel.app)
 
 ---
 
-## ✨ Key Features (In Progress)
+## Key Features (In Progress)
 
 - **📊 Smart Study Analytics**  
   Track sessions by subject, method, and time to uncover useful patterns.
@@ -19,13 +19,13 @@
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 <p align="left"><img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" /> <img src="https://img.shields.io/badge/Tailwind_CSS-grey?style=for-the-badge&logo=tailwind-css&logoColor=38B2AC"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" /> <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express&logoColor=white" /> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" /> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" /></p>
 
 ---
 
-## 🚀 Development Progress
+## Development Progress
 
 > ✅ Core infrastructure and auth are live  
 > 🛠 Currently building study tracking & dashboard features
@@ -34,21 +34,23 @@
 - Landing page with waitlist
 - Email/password auth (sign-up, login, logout)
 - Login/register page UI
+- Cookie-based session management
 - Dashboard navigation bar sections
+- Storing user info and waitlist in a PostgreSQL database
 
-### 🔄 In Progress
+### In Progress
 - Study session tracker UI (manual input + timer)
 - Backend APIs for session storage
 - Basic dashboard with session summaries
 
-### 🔜 Coming Next
+### Coming Next
 - Charts: study time by day/week/subject
 - Profile settings page
 - MVP polish and responsiveness
 
 ---
 
-## 🗺️ MVP Plan
+## MVP Plan
 
 ### 🎯 Goal  
 Deliver a minimal, usable product that lets students log study sessions and see their progress visually.  
