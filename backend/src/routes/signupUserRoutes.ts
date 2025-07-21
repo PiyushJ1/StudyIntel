@@ -3,6 +3,7 @@ import { saveNewUserAccount } from "../utils/signupUserStorage";
 import { User } from "../models/interfaces";
 import { validatePassword } from "../utils/validation";
 import validator from "validator";
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
@@ -22,6 +23,29 @@ router.post("/", async (req: Request, res: Response) => {
 
   try {
     await saveNewUserAccount(newUser);
+
+    // sign token for the new user
+    const token = jwt.sign(
+      {
+        firstName: newUser.firstName,
+      },
+      process.env.JWT_SECRET!,
+      {
+        expiresIn: "5h",
+      },
+    );
+
+    // create cookie to send through browser
+    const isProd = process.env.NODE_ENV === "production";
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
+      maxAge: 1000 * 60 * 60 * 5, // 5 hour cookie duration
+      path: "/",
+      ...(isProd && { domain: ".studyintel.app" }), // only set in production
+    });
+
     return res
       .status(201)
       .json({ message: "New user info saved successfully" });
