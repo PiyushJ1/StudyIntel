@@ -41,7 +41,6 @@ export default function DashboardPage() {
               animateOn="view"
             />
             {" "}
-              
             {loading ? (
               <span className={styles.highlightUser}></span>
             ) : (
