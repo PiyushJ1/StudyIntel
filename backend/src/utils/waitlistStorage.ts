@@ -39,15 +39,15 @@ export async function saveEmailToWaitlist(email: string): Promise<void> {
         </h1>
 
         <h2 style="font-weight: 500; font-size: 20px; margin-top: 28px; color: rgb(0, 0, 0);">
-          Thank you so much for joining the waitlist — we're thrilled to have you on board.
+          Thank you so much for joining the waitlist — I’m thrilled to have you on board.
         </h2>
 
         <p style="margin-top: 20px; color: rgb(0, 0, 0);">
-          As we build the platform, we'll keep you updated with exciting new features and updates designed to help you unlock your academic potential.
+          As I build the platform, I’ll keep you updated with exciting new features and updates designed to help you unlock your academic potential.
         </p>
 
         <p style="color: rgb(0, 0, 0);">
-          In the meantime, we'd love to hear your ideas or feedback. Your input will help make 
+          In the meantime, I would love to hear your ideas or feedback. Your input will help make 
           <span style="color: #286FD9;">Study</span><span style="color: #8b5cf6;">Intel</span> the best study intelligence tool out there.
         </p>
 
@@ -65,11 +65,11 @@ export async function saveEmailToWaitlist(email: string): Promise<void> {
   const emailTextContent = `
     Welcome to the StudyIntel waitlist!
 
-    Thank you so much for joining the waitlist! We're thrilled to have you on board.
+    Thank you so much for joining the waitlist! I'm thrilled to have you on board.
 
-    As we build the platform, we'll keep you updated with exciting new features and updates designed to help you unlock your academic potential.
+    As I build the platform, I'll keep you updated with exciting new features and updates designed to help you unlock your academic potential.
 
-    In the meantime, we'd love to hear your ideas or feedback. Your input will help make StudyIntel the best study intelligence tool out there.
+    In the meantime, I would love to hear your ideas or feedback. Your input will help make StudyIntel the best study intelligence tool out there.
 
     Thanks again for your support!
 
