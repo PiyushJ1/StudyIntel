@@ -36,7 +36,6 @@ export default function SignupPage() {
     }
     
     // handle user sign up logic 
-    console.log('Signup submitted:', formData);
     try {
       if (formData.password !== formData.confirmPassword) {
         alert("Passwords do not match");
@@ -48,6 +47,7 @@ export default function SignupPage() {
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signup`, {
         method: 'POST',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dataToSend)
       });
