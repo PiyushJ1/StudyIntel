@@ -198,6 +198,17 @@
     0 0 20px rgba(59, 130, 246, 0.2);
 }
 
+.signinButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2), 0 0 40px rgba(59, 130, 246, 0.3);
+}
+
+.signinButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .signinButton:active {
   transform: translateY(0);
 }
@@ -382,10 +393,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.signinButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
 }
