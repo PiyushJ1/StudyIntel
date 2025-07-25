@@ -15,6 +15,8 @@ export default function SigninPage() {
   });
   const [showPassword, setShowPassword] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -24,6 +26,7 @@ export default function SigninPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     // handle user signin 
     try {
@@ -37,6 +40,7 @@ export default function SigninPage() {
       if (!response.ok) {
         const errorData = await response.json();
         alert(`Submission failed: ${errorData.message || response.statusText}`);
+        setIsSubmitting(false);
         return;
       }
             
@@ -45,6 +49,7 @@ export default function SigninPage() {
       }
     } catch (err) {
       alert('Could not log in');
+      setIsSubmitting(false);
       console.log("error:", err);
     }
   };
@@ -105,8 +110,19 @@ export default function SigninPage() {
             </Link>
           </div>
 
-          <button type="submit" className={styles.signinButton}>
-            Sign In
+          <button 
+            type="submit" 
+            className={styles.signinButton}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <span className={styles.loading}>
+                <span className={styles.spinner}></span>
+                Signing In...
+              </span>
+            ) : (
+              'Sign In'
+            )}
           </button>
 
           <div className={styles.divider}>
