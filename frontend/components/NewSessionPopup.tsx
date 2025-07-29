@@ -91,7 +91,15 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
           </div>
             
           <div className={styles.buttonContainer}>
-            <button className={styles.startButton} onClick={() => setRunning(true)}>Start</button>
+            <button 
+              className={styles.startButton} 
+              onClick={async (e) => {
+                handleStartSession(e);
+                setRunning(true);
+              }}
+            >
+              Start
+            </button>
             <button className={styles.pauseButton} onClick={() => setRunning(false)}>Pause</button>
             <button className={styles.resetButton} onClick={() => (setSeconds(0), setRunning(false))}>Reset</button>
             <button 
