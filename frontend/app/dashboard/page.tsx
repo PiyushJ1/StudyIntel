@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function DashboardPage() {
   const [firstName, setFirstName] = useState<string | null>(null);
+  const [timeStudied, setTimeStudied] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,10 +15,16 @@ export default function DashboardPage() {
     })
       .then(res => res.json())
       .then(data => {
+        // get user's first name to display welcome message
         if (data.firstName) {
           setFirstName(data.firstName);
         }
         setLoading(false);
+
+        // get user's study time in last 1 week
+        if (data.timeStudied) {
+          setTimeStudied(data.timeStudied ?? "X");
+        }
       })
       .catch(err => {
         console.error("Failed to fetch user data:", err);
@@ -61,6 +68,16 @@ export default function DashboardPage() {
         <div className={styles.subtitleSection}>
           <h2 className={styles.subtitleText}>
             Ready to keep levelling up your study journey?
+          </h2>
+        </div>
+
+        <div className={styles.progressSection}>
+          <h2 className={styles.progressText}>
+            You studied {" "}
+            {timeStudied ? (
+              `${timeStudied}`
+            ) : ( "X" )}
+            {" "}hours today. Great work!
           </h2>
         </div>
           
