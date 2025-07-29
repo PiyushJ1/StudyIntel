@@ -9,11 +9,27 @@ router.post("/", async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
-    const user = await authenticateUser(email, password);
+    let user: any = {};
+    if (process.env.NODE_ENV === "development") {
+      // local dev testing
+      user = {
+        userId: -1,
+        email: "piyxsh@gmail.com",
+        firstName: "Piyushhh",
+        timeStudied: "5.78",
+      };
+    } else {
+      // used in production
+      user = await authenticateUser(email, password);
+    }
 
     // generate jwt token after user is authenticated
     const token = jwt.sign(
-      { email: user.email, firstName: user.firstName },
+      {
+        userId: user.userId,
+        firstName: user.firstName,
+        timeStudied: user.timeStudied,
+      },
       process.env.JWT_SECRET!,
       {
         expiresIn: "5h",
