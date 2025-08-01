@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://studyintel.app/sitemap.xml
