@@ -1,0 +1,12 @@
+# Git Commit Prefixes (for reference and best practices)
+- `feat`: A new feature.
+- `fix`: A bug fix.
+- `docs`: Documentation changes.
+- `style`: Formatting, missing semicolons, etc.; no code changes.
+- `refactor`: A code change that neither fixes a bug nor adds a feature.
+- `perf`: A code change that improves performance.
+- `test`: Adding missing tests or correcting existing tests.
+- `build`: Changes that affect the build system or external dependencies.
+- `ci`: Changes to CI configuration files and scripts.
+- `chore`: Other changes that don't modify source code or tests.
+- `revert`: Reverts a previous commit.
