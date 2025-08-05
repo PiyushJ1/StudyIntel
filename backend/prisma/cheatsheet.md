@@ -44,28 +44,28 @@ const prisma = new PrismaClient();
 
 ✅ Create User
 await prisma.user.create({
-  data: {
-    id: "uuid-v4-here",
-    firstname: "John",
-    lastname: "Doe",
-    email: "john@example.com",
-    password: "hashed_password_here"
-  }
+data: {
+id: "uuid-v4-here",
+firstname: "John",
+lastname: "Doe",
+email: "john@example.com",
+password: "hashed_password_here"
+}
 });
 
 ✅ Find Unique User by Email
 const user = await prisma.user.findUnique({
-  where: { email: "john@example.com" }
+where: { email: "john@example.com" }
 });
 
 ✅ Insert into Waitlist
 await prisma.waitlistEmail.create({
-  data: { email: "someone@example.com" }
+data: { email: "someone@example.com" }
 });
 
 ✅ Find Email in Waitlist
 const entry = await prisma.waitlistEmail.findUnique({
-  where: { email: "someone@example.com" }
+where: { email: "someone@example.com" }
 });
 
 🔁 MIGRATIONS (Schema-Driven)
@@ -78,10 +78,10 @@ npx prisma migrate dev --name add_new_feature
 SQL is saved in prisma/migrations/.
 
 🧼 NAMING RULES (Prisma vs PostgreSQL)
-Prisma	PostgreSQL	Mapping
-User	users	@@map("users")
-email	emails	@map("emails")
-createdAt	created_at	Implicitly handled
+Prisma PostgreSQL Mapping
+User users @@map("users")
+email emails @map("emails")
+createdAt created_at Implicitly handled
 
 Always use @map or @@map when mapping to existing DB.
 
@@ -96,4 +96,3 @@ await prisma.$queryRaw`SELECT * FROM users WHERE id = ${userId}`;
 🧪 RESETTING DB (Dev Only)
 npx prisma migrate reset
 Drops DB, applies migrations, and seeds data.
-
