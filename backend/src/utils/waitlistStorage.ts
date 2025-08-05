@@ -1,23 +1,23 @@
-import db from "../db";
+import { PrismaClient } from "../generated/prisma";
 import { Resend } from "resend";
 import { EmailAlreadyInWaitlistError } from "../errors/auth";
 
-// send a confirmation email to the user
+const prisma = new PrismaClient();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function saveEmailToWaitlist(email: string): Promise<void> {
-  // check if email is already in waitlist
-  const existingEmail = await db.query(
-    "SELECT 1 FROM waitlistemails WHERE emails = $1",
-    [email],
-  );
+  // check if email already exists
+  const existingEmail = await prisma.waitlistEmail.findUnique({
+    where: { email },
+  });
 
-  if ((existingEmail.rowCount ?? 0) > 0) {
+  if (existingEmail) {
     throw new EmailAlreadyInWaitlistError();
   }
 
-  // save email to db
-  await db.query("INSERT INTO waitlistemails (emails) VALUES ($1)", [email]);
+  await prisma.waitlistEmail.create({
+    data: { email },
+  });
 
   const emailHtmlContent = `<body style="margin:0; padding:0; background-color:#ffffff; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); font-size: 16px; line-height: 1.6;">
     <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
