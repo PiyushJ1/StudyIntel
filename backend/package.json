@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "build": "tsc",
+    "build": "tsc && npx prisma generate",
     "build:watch": "tsc --watch",
     "postinstall": "npm run build",
     "lint": "eslint . --ext .ts --ignore-pattern dist/",
