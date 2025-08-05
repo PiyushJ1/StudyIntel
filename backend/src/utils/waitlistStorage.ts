@@ -1,4 +1,4 @@
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import { Resend } from "resend";
 import { EmailAlreadyInWaitlistError } from "../errors/auth";
 
