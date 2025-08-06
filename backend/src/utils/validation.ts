@@ -1,6 +1,8 @@
+import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import db from "../db";
 import { InvalidPasswordError, UserNotFoundError } from "../errors/auth";
+
+const prisma = new PrismaClient();
 
 export function validatePassword(password: string): boolean {
   // password length is less than 9 characters
@@ -26,16 +28,13 @@ export async function authenticateUser(
   email: string,
   password: string,
 ): Promise<{ id: string; firstName: string; lastName: string; email: string }> {
-  const result = await db.query(
-    "SELECT id, firstname, lastname, email, password FROM users WHERE email = $1",
-    [email],
-  );
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
 
-  if (result.rowCount === 0) {
+  if (!user) {
     throw new UserNotFoundError();
   }
-
-  const user = result.rows[0];
 
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
