@@ -188,14 +188,15 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.3));
+  filter: drop-shadow(0 0 30px rgba(69, 73, 79, 0.3));
   font-family: 'Poppins', sans-serif;
 }
 
 .subtitle {
   font-size: clamp(1.25rem, 2vw, 1.5rem);
   font-weight: 500;
-  background: linear-gradient(to right, var(--text-secondary), var(--text-muted));
+  /* background: linear-gradient(var(--text-primary), var(--text-secondary)); */
+  background: var(--text-secondary);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

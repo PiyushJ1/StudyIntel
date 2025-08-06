@@ -6,40 +6,7 @@ import Link from 'next/link';
 import WaitlistPopup from '../components/WaitlistPopup';
 
 export default function HomePage() {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const [isWaitlistPopupOpen, setIsWaitlistPopupOpen] = useState(false);
-  
-  useEffect(() => {
-    const words = ['Get personalised study insights.', 'Visualise your learning progress.', 'Reach your academic potential.'];
-    const currentWord = words[currentWordIndex];
-    const timeout = setTimeout(() => {
-      if (isPaused) {
-        setIsPaused(false);
-        setIsDeleting(true);
-        return;
-      }
-
-      if (isDeleting) {
-        setCurrentText(currentWord.substring(0, currentText.length - 1));
-          
-        if (currentText === '') {
-          setIsDeleting(false);
-          setCurrentWordIndex((prev) => (prev + 1) % words.length);
-        }
-      } else {
-        setCurrentText(currentWord.substring(0, currentText.length + 1));
-          
-        if (currentText === currentWord) {
-          setIsPaused(true);
-        }
-      }
-    }, isPaused ? 1500 : isDeleting ? 40 : 70);
-
-    return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, isPaused, currentWordIndex]);
 
   // Prevent scrolling when popup is open
   useEffect(() => {
@@ -105,13 +72,15 @@ export default function HomePage() {
       {/* Hero Section */}
       <main className={styles.heroContainer}>
         <div className={styles.contentContainer}>
-          <h1 className={styles.mainTitle}>
-            <div className={styles.typingContainer}>
-              <span className={styles.typingText}>{currentText}</span>
-              <span className={styles.cursor}></span>
-            </div>
-          </h1>
-          <h2 className={styles.subtitle}>AI-powered study intelligence with beautiful data visualisation. <br></br>See your study patterns, receive actionable insights.</h2>
+          <div className={styles.mainTitle}>
+            The future of studying starts here.
+          </div>
+
+          <h2 className={styles.subtitle}>
+            Get real-time, personalised insights into how you study.
+            <br></br> 
+            Backed by your own data. Tailored just for you.
+          </h2>
             
           <div className={styles.ctaSection}>
             <button onClick={handleWaitlistClick} className={styles.waitlistButton}>
