@@ -5,6 +5,13 @@ export class UserNotFoundError extends Error {
   }
 }
 
+export class AccountAlreadyExistsError extends Error {
+  constructor(message = "An account with this email has already been signed up.") {
+    super(message);
+    this.name = "AccountAlreadyExistsError"
+  }
+}
+
 export class InvalidPasswordError extends Error {
   constructor(message = "Incorrect password") {
     super(message);
