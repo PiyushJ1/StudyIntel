@@ -5,8 +5,8 @@ import styles from "./Courses.module.css"
 
 export default function CoursesPage() {
   const [courses, setCourses]= useState<string[]>(['', '', '']);
-  const [submittedCourses, setSubmittedCourses] = useState<string[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [_submittedCourses, setSubmittedCourses] = useState<string[]>([]);
+  const [_isSubmitting, setIsSubmitting] = useState(false);
   const [userId, setUserId] = useState<string>('');
 
   useEffect(() => {
@@ -64,6 +64,7 @@ export default function CoursesPage() {
       setCourses(['', '', '']);
       setSubmittedCourses(validCourses);
     } catch (err) {
+      console.log("Error: ", err);
       alert("Error adding courses");
     } finally {
       setIsSubmitting(false);
