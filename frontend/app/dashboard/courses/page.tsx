@@ -1,12 +1,28 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Courses.module.css"
 
 export default function CoursesPage() {
   const [courses, setCourses]= useState<string[]>(['', '', '']);
   const [submittedCourses, setSubmittedCourses] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [userId, setUserId] = useState<string>('');
+
+  useEffect(() => {
+    fetch("/api/me", {
+      credentials: "include",
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.courses) {
+          setUserId(data.userId);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to fetch user data:", err);
+      });
+  }, []);
 
   const handleCourseChange = (index: number, value: string) => {
     const newCourses = [...courses];
@@ -28,12 +44,15 @@ export default function CoursesPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userCourses`, 
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/new-courses`, 
         {
           method: "POST",
           credentials: "include",
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(validCourses)
+          body: JSON.stringify({
+            courses: validCourses,
+            userId: userId
+          })
         }
       );
       
@@ -42,6 +61,7 @@ export default function CoursesPage() {
         return;
       }
 
+      setCourses(['', '', '']);
       setSubmittedCourses(validCourses);
     } catch (err) {
       alert("Error adding courses");
@@ -93,16 +113,7 @@ export default function CoursesPage() {
           <div className={styles.displayCourses}>
             <h2 className={styles.coursesLabel}>Your Courses:</h2>
             <div className={styles.userCourses}>
-              {submittedCourses.length > 0 ? (
-                submittedCourses.map((course, index) => (
-                  <span key={index}>
-                    {course}
-                    {index < submittedCourses.length - 1 ? ", " : ""}
-                  </span>
-                ))
-              ) : (
-                <span>No courses added yet</span>
-              )}
+              <span>No courses added yet</span>
             </div>
           </div>
         </div>
