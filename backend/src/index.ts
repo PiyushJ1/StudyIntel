@@ -5,6 +5,7 @@ import signupUserRoute from "./routes/signupUserRoute";
 import signinRoute from "./routes/signinRoute";
 import startSession from "./routes/startSessionRoute";
 import finishSession from "./routes/finishSessionRoute";
+import newCourses from "./routes/newCourses";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -30,11 +31,14 @@ app.use("/api/signup", signupUserRoute);
 // authentice user log in
 app.use("/api/signin", signinRoute);
 
-// start new study session
+// TO-DO: start new study session
 app.use("/api/start-session", startSession);
 
-// finish and save study session info
+// TO-DO: finish and save study session info
 app.use("/api/finish-session", finishSession);
+
+// add the user's courses which they are studying
+app.use("/api/new-courses", newCourses);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
