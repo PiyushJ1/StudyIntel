@@ -8,15 +8,26 @@ datasource db {
 }
 
 model User {
-  id        String  @id @db.Uuid
+  id        String   @id @db.Uuid
   firstname String
   lastname  String
-  email     String @unique
+  email     String   @unique
   password  String
+  courses   String[] // will migrate later
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("users")
+}
+
+model UserCourse {
+  id         String @id @default(uuid())
+  userId     String
+  courseCode String
+
+  // add other fields here later
+
+  @@unique([userId, courseCode])
 }
 
 model WaitlistEmail {
