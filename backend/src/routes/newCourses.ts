@@ -21,7 +21,7 @@ router.post("/", async (req: Request, res: Response) => {
   try {
     await prisma.user.update({
       where: { id: finalUserId },
-      data: { courses: courses }
+      data: { courses: courses },
     });
 
     return res.status(201).json({ message: "Courses added successfully" });
