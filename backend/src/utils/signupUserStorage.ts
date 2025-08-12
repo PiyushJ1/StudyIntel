@@ -11,7 +11,7 @@ export async function saveNewUserAccount(
 ): Promise<void> {
   const existingUser = await prisma.user.findUnique({
     where: { email: newUser.email },
-  })
+  });
 
   // check if the email already has an account signed up with it
   if (existingUser) {
@@ -28,6 +28,6 @@ export async function saveNewUserAccount(
       lastname: newUser.lastName,
       email: newUser.email,
       password: hashedPassword,
-    }
+    },
   });
 }

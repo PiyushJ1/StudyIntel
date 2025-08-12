@@ -6,9 +6,11 @@ export class UserNotFoundError extends Error {
 }
 
 export class AccountAlreadyExistsError extends Error {
-  constructor(message = "An account with this email has already been signed up.") {
+  constructor(
+    message = "An account with this email has already been signed up.",
+  ) {
     super(message);
-    this.name = "AccountAlreadyExistsError"
+    this.name = "AccountAlreadyExistsError";
   }
 }
 
