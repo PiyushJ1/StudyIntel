@@ -47,7 +47,7 @@ export default function Navbar({ seconds, running, setSeconds, setRunning, forma
             
           <nav className={styles.navCenter}>
             <Link href="/dashboard" className={`${styles.navLink} ${pathName === '/dashboard' ? styles.active : ''}`}>📊 Dashboard</Link>
-            <Link href="/dashboard/sessions" className={`${styles.navLink} ${pathName === '/dashboard/sessions' ? styles.active : ''}`}>⏱️ Sessions</Link>
+            <Link href="/dashboard/courses" className={`${styles.navLink} ${pathName === '/dashboard/courses' ? styles.active : ''}`}>📚 Courses</Link>
             <Link href="/dashboard/insights" className={`${styles.navLink} ${pathName === '/dashboard/insights' ? styles.active : ''}`}>💡 Insights</Link>
           </nav>
 
