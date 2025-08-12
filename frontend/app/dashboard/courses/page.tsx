@@ -24,6 +24,8 @@ export default function CoursesPage() {
       });
   }, []);
 
+  console.log("User id: ", userId);
+
   const handleCourseChange = (index: number, value: string) => {
     const newCourses = [...courses];
     newCourses[index] = value.toUpperCase(); // convert course codes to uppercase
