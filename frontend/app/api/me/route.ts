@@ -15,7 +15,12 @@ export async function GET(_req: Request) {
 
   try {
     const { payload } = await jwtVerify(token, secret);
-    return NextResponse.json({ userId: payload.userId, firstName: payload.firstName, timeStudied: payload.timeStudied });
+    return NextResponse.json({ 
+      userId: payload.userId, 
+      firstName: payload.firstName, 
+      timeStudied: payload.timeStudied,
+      courses: payload.courses 
+    });
   } catch {
     return NextResponse.json({ error: "Invalid token" }, { status: 401 });
   }
