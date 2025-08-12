@@ -35,7 +35,8 @@ export default function WaitlistPopup({ isOpen, onClose }: WaitlistPopupProps) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
-        });
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
