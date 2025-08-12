@@ -16,7 +16,8 @@ export default function CoursesPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("submit");
+
+    // remove elements from array
     const validCourses = courses.filter(course => course.trim() !== '');
 
     if (validCourses.length < 2) {
@@ -30,13 +31,15 @@ export default function CoursesPage() {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userCourses`, 
         {
           method: "POST",
+          credentials: "include",
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(validCourses)
         }
       );
       
       if (!response.ok) {
-
+        alert("Submission failed");
+        return;
       }
 
       setSubmittedCourses(validCourses);
