@@ -80,44 +80,6 @@ export default function DashboardPage() {
             {" "}hours today. Great work!
           </h2>
         </div>
-
-        <div>
-          <h2>Add Courses</h2>
-          <form>
-            <input
-              type="text"
-              id="course1"
-              name="course1"
-              placeholder="Add course code"
-              // value={course1}
-              // onChange={e => setCourse1(e.target.value)}
-            />
-            <input
-              type="text"
-              id="course2"
-              name="course2"
-              placeholder="Add course code"
-              // value={course2}
-              // onChange={e => setCourse2(e.target.value)}
-            />
-            <input
-              type="text"
-              id="course3"
-              name="course3"
-              placeholder="Add course code"
-              // value={course3}
-              // onChange={e => setCourse3(e.target.value)}
-            />
-            <button type="submit">Add Courses</button>
-          </form>
-        </div>
-
-        <div>
-          <h2>
-            Your Courses:
-          </h2>
-        </div>
-
           
         {/* <div className={styles.contentWrapper}>
           <div className={styles.mainContent}>
