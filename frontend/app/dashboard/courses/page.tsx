@@ -8,14 +8,17 @@ export default function CoursesPage() {
   const [displayCourses, setDisplayCourses] = useState<string[]>([])
   const [_submittedCourses, _setSubmittedCourses] = useState<string[]>([]);
   const [_isSubmitting, setIsSubmitting] = useState(false);
-  const [userId, _setUserId] = useState<string>('');
+  const [userId, setUserId] = useState<string>('');
 
   const fetchUserData = () => {
     fetch("/api/me", {
       credentials: "include",
     })
       .then(res => res.json())
-      .then(data => {        
+      .then(data => {
+        if (data.userId) {
+          setUserId(data.userId);
+        }
         if (data.courses) {
           setDisplayCourses(data.courses);
         }
