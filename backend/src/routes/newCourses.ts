@@ -7,8 +7,6 @@ const prisma = new PrismaClient();
 router.post("/", async (req: Request, res: Response) => {
   const { courses, userId } = req.body;
 
-  console.log("Hit new courses");
-
   if (!courses) {
     return res.status(400).json({ error: "" });
   }
