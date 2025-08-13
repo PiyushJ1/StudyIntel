@@ -27,9 +27,23 @@ export function validatePassword(password: string): boolean {
 export async function authenticateUser(
   email: string,
   password: string,
-): Promise<{ id: string; firstName: string; lastName: string; email: string }> {
+): Promise<{
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  courses: string[];
+}> {
   const user = await prisma.user.findUnique({
     where: { email },
+    select: {
+      id: true,
+      firstname: true,
+      lastname: true,
+      email: true,
+      password: true,
+      courses: true,
+    },
   });
 
   if (!user) {
@@ -46,5 +60,6 @@ export async function authenticateUser(
     firstName: user.firstname,
     lastName: user.lastname,
     email: user.email,
+    courses: user.courses || [],
   };
 }
