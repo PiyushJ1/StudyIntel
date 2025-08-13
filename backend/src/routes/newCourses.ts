@@ -11,16 +11,9 @@ router.post("/", async (req: Request, res: Response) => {
     return res.status(400).json({ error: "" });
   }
 
-  let finalUserId: string;
-  if (process.env.NODE_ENV === "development") {
-    finalUserId = "f8ccedbe-1fb4-494d-acd8-cd6c9c756c99";
-  } else {
-    finalUserId = userId;
-  }
-
   try {
     await prisma.user.update({
-      where: { id: finalUserId },
+      where: { id: userId },
       data: { courses: courses },
     });
 
