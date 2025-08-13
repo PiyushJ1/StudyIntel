@@ -5,26 +5,29 @@ import styles from "./Courses.module.css"
 
 export default function CoursesPage() {
   const [courses, setCourses]= useState<string[]>(['', '', '']);
+  const [displayCourses, setDisplayCourses] = useState<string[]>([])
   const [_submittedCourses, setSubmittedCourses] = useState<string[]>([]);
   const [_isSubmitting, setIsSubmitting] = useState(false);
   const [userId, setUserId] = useState<string>('');
 
-  useEffect(() => {
+  const fetchUserData = () => {
     fetch("/api/me", {
       credentials: "include",
     })
       .then(res => res.json())
-      .then(data => {
+      .then(data => {        
         if (data.courses) {
-          setUserId(data.userId);
+          setDisplayCourses(data.courses);
         }
       })
       .catch(err => {
         console.error("Failed to fetch user data:", err);
       });
-  }, []);
+  }
 
-  console.log("User id: ", userId);
+  useEffect(() => {
+    fetchUserData();
+  }, [])
 
   const handleCourseChange = (index: number, value: string) => {
     const newCourses = [...courses];
@@ -32,11 +35,12 @@ export default function CoursesPage() {
     setCourses(newCourses);
   }
 
+  let validCourses;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // remove elements from array
-    const validCourses = courses.filter(course => course.trim() !== '');
+    validCourses = courses.filter(course => course.trim() !== '');
 
     if (validCourses.length < 2) {
       alert("Please enter at least 2 courses");
@@ -64,7 +68,8 @@ export default function CoursesPage() {
       }
 
       setCourses(['', '', '']);
-      setSubmittedCourses(validCourses);
+      setDisplayCourses(validCourses);
+      fetchUserData();
     } catch (err) {
       console.log("Error: ", err);
       alert("Error adding courses");
@@ -86,7 +91,7 @@ export default function CoursesPage() {
                 name="course1"
                 value={courses[0]}
                 onChange={e => handleCourseChange(0, e.target.value)}
-                placeholder="Course code e.g. COMP1521"
+                placeholder="Course code e.g. COMPXXX"
                 className={styles.input}
               />
               <input
@@ -95,7 +100,7 @@ export default function CoursesPage() {
                 name="course2"
                 value={courses[1]}
                 onChange={e => handleCourseChange(1, e.target.value)}
-                placeholder="Course code e.g. DESN2000"
+                placeholder="Course code e.g. DESNXXXX"
                 className={styles.input}
               />
               <input
@@ -104,7 +109,7 @@ export default function CoursesPage() {
                 name="course3"
                 value={courses[2]}
                 onChange={e => handleCourseChange(2, e.target.value)}
-                placeholder="Course code e.g. MATH2859"
+                placeholder="Course code e.g. MATHXXXX"
                 className={styles.input}
               />
               <button type="submit" className={styles.submitCoursesButton}>
@@ -116,7 +121,9 @@ export default function CoursesPage() {
           <div className={styles.displayCourses}>
             <h2 className={styles.coursesLabel}>Your Courses:</h2>
             <div className={styles.userCourses}>
-              <span>No courses added yet</span>
+              <span>
+                {displayCourses.length > 0 ? displayCourses.join(', ') : "No courses added yet" }
+              </span>
             </div>
           </div>
         </div>
