@@ -71,7 +71,6 @@ export default function CoursesPage() {
 
       setCourses(['', '', '']);
       setDisplayCourses(validCourses);
-      fetchUserData();
     } catch (err) {
       console.log("Error: ", err);
       alert("Error adding courses");
