@@ -6,9 +6,9 @@ import styles from "./Courses.module.css"
 export default function CoursesPage() {
   const [courses, setCourses]= useState<string[]>(['', '', '']);
   const [displayCourses, setDisplayCourses] = useState<string[]>([])
-  const [_submittedCourses, setSubmittedCourses] = useState<string[]>([]);
+  const [_submittedCourses, _setSubmittedCourses] = useState<string[]>([]);
   const [_isSubmitting, setIsSubmitting] = useState(false);
-  const [userId, setUserId] = useState<string>('');
+  const [userId, _setUserId] = useState<string>('');
 
   const fetchUserData = () => {
     fetch("/api/me", {
@@ -35,12 +35,11 @@ export default function CoursesPage() {
     setCourses(newCourses);
   }
 
-  let validCourses;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // remove elements from array
-    validCourses = courses.filter(course => course.trim() !== '');
+    const validCourses = courses.filter(course => course.trim() !== '');
 
     if (validCourses.length < 2) {
       alert("Please enter at least 2 courses");
