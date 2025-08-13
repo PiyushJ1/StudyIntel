@@ -8,7 +8,7 @@ router.post("/", async (req: Request, res: Response) => {
   const { courses, userId } = req.body;
 
   if (!courses) {
-    return res.status(400).json({ error: "" });
+    return res.status(400).json({ error: "Could not get user courses" });
   }
 
   try {
