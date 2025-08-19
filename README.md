@@ -1,5 +1,8 @@
 # StudyIntel
 
+Description Coming Soon.
+
+<!--
 **StudyIntel** is a study intelligence platform I’m building solo as a 2nd-year university student. It helps students stop wasting time and start studying smarter. By tracking study habits and visualising progress, it reveals what’s working and what’s not, so users can stay focused, improve consistently, and reach their academic goals. The platform provides AI-powered insights and interactive data visualisation, acting as a personal academic coach.
 
 🌐 **Live at:** [https://studyintel.app](https://studyintel.app)
@@ -139,3 +142,4 @@ Your best study day
 Short tip (pre-written, no need for AI now)
 
 🔧 Use something like SendGrid or Resend to schedule digests
+-->
