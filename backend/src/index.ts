@@ -6,6 +6,7 @@ import signinRoute from "./routes/signinRoute";
 import startSession from "./routes/startSessionRoute";
 import finishSession from "./routes/finishSessionRoute";
 import newCourses from "./routes/newCourses";
+import userInfo from "./routes/userInfo";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -30,6 +31,9 @@ app.use("/api/signup", signupUserRoute);
 
 // authentice user log in
 app.use("/api/signin", signinRoute);
+
+// fetch user info
+app.use("/api/users", userInfo);
 
 // TO-DO: start new study session
 app.use("/api/start-session", startSession);

@@ -15,13 +15,30 @@ export async function GET(_req: Request) {
 
   try {
     const { payload } = await jwtVerify(token, secret);
-    return NextResponse.json({ 
-      userId: payload.userId, 
-      firstName: payload.firstName, 
-      timeStudied: payload.timeStudied,
-      courses: payload.courses 
+    const userId = payload.userId;
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`, {
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
     });
-  } catch {
-    return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+
+    if (!res.ok) {
+      return NextResponse.json({ error: "Failed to fetch user info "}, { status: res.status });
+    }
+
+    const user = await res.json();
+
+    return NextResponse.json({ 
+      userId,
+      firstname: user.firstname,
+      timestudied: user.timestudied,
+      courses: user.courses,
+    });
+  } catch (err) {
+    console.error("Err in fetching user info: ", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

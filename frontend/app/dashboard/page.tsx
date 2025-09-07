@@ -16,14 +16,14 @@ export default function DashboardPage() {
       .then(res => res.json())
       .then(data => {
         // get user's first name to display welcome message
-        if (data.firstName) {
-          setFirstName(data.firstName);
+        if (data.firstname) {
+          setFirstName(data.firstname);
         }
         setLoading(false);
 
-        // get user's study time in last 1 week
-        if (data.timeStudied) {
-          setTimeStudied(data.timeStudied ?? "X");
+        // get user's recent study time
+        if (data.timestudied) {
+          setTimeStudied(data.timestudied);
         }
       })
       .catch(err => {

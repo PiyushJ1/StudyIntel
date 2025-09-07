@@ -10,7 +10,7 @@
     "postinstall": "npm run build",
     "lint": "eslint . --ext .ts --ignore-pattern dist/",
     "lint:fix": "eslint . --ext .ts --ignore-pattern dist/ --fix",
-    "format": "prettier . --write"
+    "prettier": "prettier . --write"
   },
   "dependencies": {
     "@prisma/client": "^6.13.0",
