@@ -15,9 +15,6 @@ router.post("/", async (req: Request, res: Response) => {
     const token = jwt.sign(
       {
         userId: user.id,
-        firstName: user.firstName,
-        timeStudied: -1,
-        courses: user.courses,
       },
       process.env.JWT_SECRET!,
       {
