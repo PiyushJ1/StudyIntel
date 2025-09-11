@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import styles from "./NewSessionPopup.module.css";
+import styles from "../styles/NewSessionPopup.module.css";
 
 interface NewSessionPopupProps {
   isOpen: boolean;

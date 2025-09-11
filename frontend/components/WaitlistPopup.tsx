@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './WaitlistPopup.module.css';
+import styles from '../styles/WaitlistPopup.module.css';
 
 interface WaitlistPopupProps {
   isOpen: boolean;
