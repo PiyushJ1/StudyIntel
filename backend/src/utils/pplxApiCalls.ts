@@ -28,7 +28,17 @@ export async function getCourseTopics(courseCode: string): Promise<any> {
       body: JSON.stringify(payload),
     });
 
-    return await res.json();
+    const data = await res.json();
+
+    // clean JSON output
+    const rawTopics = data.choices[0].message.content;
+    const cleanTopics = rawTopics
+      .replace(/```json|```/g, "") 
+      .trim();
+
+    const topics = JSON.parse(cleanTopics);
+
+    return topics;
   } catch (error) {
     console.error("Error calling Perplexity API:", error);
     throw new Error("Failed to fetch topics from Pplx API");
