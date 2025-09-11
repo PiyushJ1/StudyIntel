@@ -7,6 +7,7 @@ import startSession from "./routes/startSessionRoute";
 import finishSession from "./routes/finishSessionRoute";
 import newCourses from "./routes/newCourses";
 import userInfo from "./routes/userInfo";
+import courseTopics from "./routes/courseTopics";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -43,6 +44,9 @@ app.use("/api/finish-session", finishSession);
 
 // add the user's courses which they are studying
 app.use("/api/new-courses", newCourses);
+
+// web scrape the course's topics in week-by-week format with PerplexityAI
+app.use("/api/scrape-course", courseTopics);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
