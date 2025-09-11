@@ -3,7 +3,7 @@ import { getCourseTopics } from "../utils/pplxApiCalls";
 
 const router = Router();
 
-router.get("/:courseCode", async (req: Request, res: Response) => {
+router.post("/:courseCode", async (req: Request, res: Response) => {
   const { courseCode } = req.params;
 
   try {
