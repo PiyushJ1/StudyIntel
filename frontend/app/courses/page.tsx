@@ -101,7 +101,7 @@ export default function CoursesPage() {
                 name="course2"
                 value={courses[1]}
                 onChange={e => handleCourseChange(1, e.target.value)}
-                placeholder="Course code e.g. DESNXXXX"
+                placeholder="Course code e.g. COMMXXXX"
                 className={styles.input}
               />
               <input
@@ -110,7 +110,7 @@ export default function CoursesPage() {
                 name="course3"
                 value={courses[2]}
                 onChange={e => handleCourseChange(2, e.target.value)}
-                placeholder="Course code e.g. MATHXXXX"
+                placeholder="Course code e.g. MATHXXXX (Optional)"
                 className={styles.input}
               />
               <button type="submit" className={styles.submitCoursesButton}>
@@ -126,6 +126,52 @@ export default function CoursesPage() {
                 {displayCourses.length > 0 ? displayCourses.join(', ') : "No courses added yet" }
               </span>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.userCoursesContainer}>
+        <div className={styles.userCoursesContent}>
+          <div className={styles.userCourseOne}>
+            <h2>{displayCourses[0]}</h2>
+            <p>Week 1</p>
+            <p>Week 2</p>
+            <p>Week 3</p>
+            <p>Week 4</p>
+            <p>Week 5</p>
+            <p>Flex Week</p>
+            <p>Week 7</p>
+            <p>Week 8</p>
+            <p>Week 9</p>
+            <p>Week 10</p>
+          </div>
+
+          <div className={styles.userCourseOne}>
+            <h2>{displayCourses[1]}</h2>
+            <p>Week 1</p>
+            <p>Week 2</p>
+            <p>Week 3</p>
+            <p>Week 4</p>
+            <p>Week 5</p>
+            <p>Flex Week</p>
+            <p>Week 7</p>
+            <p>Week 8</p>
+            <p>Week 9</p>
+            <p>Week 10</p>
+          </div>
+
+          <div className={styles.userCourseOne}>
+            <h2>{displayCourses[2]}</h2>
+            <p>Week 1</p>
+            <p>Week 2</p>
+            <p>Week 3</p>
+            <p>Week 4</p>
+            <p>Week 5</p>
+            <p>Flex Week</p>
+            <p>Week 7</p>
+            <p>Week 8</p>
+            <p>Week 9</p>
+            <p>Week 10</p>
           </div>
         </div>
       </div>
