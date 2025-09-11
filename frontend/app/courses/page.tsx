@@ -77,6 +77,26 @@ export default function CoursesPage() {
     } finally {
       setIsSubmitting(false);
     }
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[0]}`, 
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ courseCode: validCourses[0] }),
+        }
+      );
+
+      if (!res.ok) {
+        console.error("Scraping API failed");
+      } else {
+        const data = await res.json();
+        console.log(data);
+      }
+    } catch (err) {
+      console.error("Error scraping courses", err);
+    }
   }
 
   return (
@@ -132,47 +152,9 @@ export default function CoursesPage() {
 
       <div className={styles.userCoursesContainer}>
         <div className={styles.userCoursesContent}>
-          <div className={styles.userCourseOne}>
-            <h2>{displayCourses[0]}</h2>
-            <p>Week 1</p>
-            <p>Week 2</p>
-            <p>Week 3</p>
-            <p>Week 4</p>
-            <p>Week 5</p>
-            <p>Flex Week</p>
-            <p>Week 7</p>
-            <p>Week 8</p>
-            <p>Week 9</p>
-            <p>Week 10</p>
-          </div>
-
-          <div className={styles.userCourseOne}>
-            <h2>{displayCourses[1]}</h2>
-            <p>Week 1</p>
-            <p>Week 2</p>
-            <p>Week 3</p>
-            <p>Week 4</p>
-            <p>Week 5</p>
-            <p>Flex Week</p>
-            <p>Week 7</p>
-            <p>Week 8</p>
-            <p>Week 9</p>
-            <p>Week 10</p>
-          </div>
-
-          <div className={styles.userCourseOne}>
-            <h2>{displayCourses[2]}</h2>
-            <p>Week 1</p>
-            <p>Week 2</p>
-            <p>Week 3</p>
-            <p>Week 4</p>
-            <p>Week 5</p>
-            <p>Flex Week</p>
-            <p>Week 7</p>
-            <p>Week 8</p>
-            <p>Week 9</p>
-            <p>Week 10</p>
-          </div>
+          <button>
+            he
+          </button>
         </div>
       </div>
     </main>
