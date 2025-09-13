@@ -32,9 +32,7 @@ export async function getCourseTopics(courseCode: string): Promise<any> {
 
     // clean JSON output
     const rawTopics = data.choices[0].message.content;
-    const cleanTopics = rawTopics
-      .replace(/```json|```/g, "") 
-      .trim();
+    const cleanTopics = rawTopics.replace(/```json|```/g, "").trim();
 
     const topics = JSON.parse(cleanTopics);
 
