@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   res.send("Backend running successfully.");
 });
 
-// mount all API routes under /api
+// mount all API routes under "/api"
 app.use("/api", routes);
 
 app.listen(PORT, () => {
