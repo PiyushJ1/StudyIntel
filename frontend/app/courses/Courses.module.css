@@ -116,3 +116,10 @@
 .coursesLabel {
   font-weight: 600;
 }
+
+.userCoursesContainer {
+  min-height: calc(100vh - 80px);
+  animation: fadeIn 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
