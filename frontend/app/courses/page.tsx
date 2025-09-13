@@ -7,8 +7,9 @@ export default function CoursesPage() {
   const [courses, setCourses]= useState<string[]>(['', '', '']);
   const [displayCourses, setDisplayCourses] = useState<string[]>([])
   const [_submittedCourses, _setSubmittedCourses] = useState<string[]>([]);
-  const [_isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [userId, setUserId] = useState<string>('');
+  const [scrapedCourseTopics, setScrapedCourseTopics] = useState<Record<string, string>>({});
 
   const fetchUserData = () => {
     fetch("/api/me", {
@@ -93,6 +94,11 @@ export default function CoursesPage() {
       } else {
         const data = await res.json();
         console.log(data);
+
+        // store topics object
+        setScrapedCourseTopics(
+          Object.assign({}, data.topics)
+        );
       }
     } catch (err) {
       console.error("Error scraping courses", err);
@@ -100,63 +106,126 @@ export default function CoursesPage() {
   }
 
   return (
-    <main className={styles.coursesContainer}>
-      <div className={styles.coursesContent}>
-        <div className={styles.addCoursesSection}>
-          <h1 className={styles.addCoursesMessage}>Add Your Courses</h1>
-          <div className={styles.inputGroup}>
-            <form onSubmit={handleSubmit} className={styles.form}>
-              <input
-                type="text"
-                id="course1"
-                name="course1"
-                value={courses[0]}
-                onChange={e => handleCourseChange(0, e.target.value)}
-                placeholder="Course code e.g. COMPXXX"
-                className={styles.input}
-              />
-              <input
-                type="text"
-                id="course2"
-                name="course2"
-                value={courses[1]}
-                onChange={e => handleCourseChange(1, e.target.value)}
-                placeholder="Course code e.g. COMMXXXX"
-                className={styles.input}
-              />
-              <input
-                type="text"
-                id="course3"
-                name="course3"
-                value={courses[2]}
-                onChange={e => handleCourseChange(2, e.target.value)}
-                placeholder="Course code e.g. MATHXXXX (Optional)"
-                className={styles.input}
-              />
-              <button type="submit" className={styles.submitCoursesButton}>
-                Add Courses
-              </button>
-            </form>
-          </div>
+    <>
+      <main className={styles.coursesContainer}>
+        <div className={styles.coursesContent}>
+          <div className={styles.addCoursesSection}>
+            <h1 className={styles.addCoursesMessage}>Add Your Courses</h1>
+            <div className={styles.inputGroup}>
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <input
+                  type="text"
+                  id="course1"
+                  name="course1"
+                  value={courses[0]}
+                  onChange={e => handleCourseChange(0, e.target.value)}
+                  placeholder="Course code e.g. COMPXXX"
+                  className={styles.input}
+                />
+                <input
+                  type="text"
+                  id="course2"
+                  name="course2"
+                  value={courses[1]}
+                  onChange={e => handleCourseChange(1, e.target.value)}
+                  placeholder="Course code e.g. COMMXXXX"
+                  className={styles.input}
+                />
+                <input
+                  type="text"
+                  id="course3"
+                  name="course3"
+                  value={courses[2]}
+                  onChange={e => handleCourseChange(2, e.target.value)}
+                  placeholder="Course code e.g. MATHXXXX (Optional)"
+                  className={styles.input}
+                />
+                <button 
+                  type="submit"  
+                  className={styles.submitCoursesButton} 
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Loading..." : "Add Courses"}
+                </button>
+              </form>
+            </div>
 
-          <div className={styles.displayCourses}>
-            <h2 className={styles.coursesLabel}>Your Courses:</h2>
-            <div className={styles.userCourses}>
-              <span>
-                {displayCourses.length > 0 ? displayCourses.join(', ') : "No courses added yet" }
-              </span>
+            <div className={styles.displayCourses}>
+              <h2 className={styles.coursesLabel}>Your Courses:</h2>
+              <div className={styles.userCourses}>
+                <span>
+                  {displayCourses.length > 0 ? displayCourses.join(', ') : "No courses added yet" }
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className={styles.userCoursesContainer}>
-        <div className={styles.userCoursesContent}>
-          <button>
-            he
-          </button>
+        <div className={styles.userCoursesContainer}>
+          <div className={styles.coursesContent}>
+            <h2>Course Topics</h2>
+            {Object.keys(scrapedCourseTopics).length > 0 ? (
+              <>
+                <h2>{displayCourses[0]}</h2>
+                <ul>
+                  {Object.entries(scrapedCourseTopics).map(([week, topic]) => (
+                    <li key={week}>
+                      <strong>{week}:</strong>{" "}
+                      <input
+                        type="text"
+                        defaultValue={topic}
+                        className={styles.input}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <span>Enter your courses to view their weekly topics. </span>
+            )}
+
+            {Object.keys(scrapedCourseTopics).length > 0 ? (
+              <>
+                <h2>{displayCourses[1]}</h2>
+                <ul>
+                  {Object.entries(scrapedCourseTopics).map(([week, topic]) => (
+                    <li key={week}>
+                      <strong>{week}:</strong>{" "}
+                      <input
+                        type="text"
+                        defaultValue={topic}
+                        className={styles.input}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <span>Enter your courses to view their weekly topics. </span>
+            )}
+
+            {Object.keys(scrapedCourseTopics).length > 0 ? (
+              <>
+                <h2>{displayCourses[2]}</h2>
+                <ul>
+                  {Object.entries(scrapedCourseTopics).map(([week, topic]) => (
+                    <li key={week}>
+                      <strong>{week}:</strong>{" "}
+                      <input
+                        type="text"
+                        defaultValue={topic}
+                        className={styles.input}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <span>Enter your courses to view their weekly topics. </span>
+            )}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
