@@ -10,7 +10,7 @@ export async function GET(_req: Request) {
   const token = (await cookieStore).get("token")?.value;
 
   if (!token) {
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    return NextResponse.json({ error: "Not authenticated. Token is invalid or doesn't exist." }, { status: 401 });
   }
 
   try {
