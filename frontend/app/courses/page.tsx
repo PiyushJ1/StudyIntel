@@ -9,7 +9,9 @@ export default function CoursesPage() {
   const [_submittedCourses, _setSubmittedCourses] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userId, setUserId] = useState<string>('');
-  const [scrapedCourseTopics, setScrapedCourseTopics] = useState<Record<string, string>>({});
+  const [scrapedCourseOneTopics, setScrapedCourseOneTopics] = useState<Record<string, string>>({});
+  const [scrapedCourseTwoTopics, setScrapedCourseTwoTopics] = useState<Record<string, string>>({});
+  const [scrapedCourseThreeTopics, setScrapedCourseThreeTopics] = useState<Record<string, string>>({});
 
   const fetchUserData = () => {
     fetch("/api/me", {
@@ -38,6 +40,7 @@ export default function CoursesPage() {
     newCourses[index] = value.toUpperCase(); // convert course codes to uppercase
     setCourses(newCourses);
   }
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,7 +83,8 @@ export default function CoursesPage() {
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[0]}`, 
+      // fetch topics for course 1
+      const res1 = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[0]}`, 
         {
           method: "POST",
           credentials: "include",
@@ -89,15 +93,48 @@ export default function CoursesPage() {
         }
       );
 
-      if (!res.ok) {
+      // fetch topics for course 2
+      const res2 = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[1]}`, 
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ courseCode: validCourses[1] }),
+        }
+      );
+
+      // fetch topics for course 3
+      const res3 = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[2]}`, 
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ courseCode: validCourses[2] }),
+        }
+      );
+
+      if (!res1.ok || !res2.ok || !res3.ok) {
         console.error("Scraping API failed");
       } else {
-        const data = await res.json();
-        console.log(data);
+        const topics1 = await res1.json();
+        const topics2 = await res2.json();
+        const topics3 = await res3.json();
+
+        console.log(topics1);
+        console.log(topics2);
+        console.log(topics3);
 
         // store topics object
-        setScrapedCourseTopics(
-          Object.assign({}, data.topics)
+        setScrapedCourseOneTopics(
+          Object.assign({}, topics1.topics)
+        );
+
+        setScrapedCourseTwoTopics(
+          Object.assign({}, topics2.topics)
+        );
+
+        setScrapedCourseThreeTopics(
+          Object.assign({}, topics3.topics)
         );
       }
     } catch (err) {
@@ -164,11 +201,11 @@ export default function CoursesPage() {
         <div className={styles.userCoursesContainer}>
           <div className={styles.coursesContent}>
             <h2>Course Topics</h2>
-            {Object.keys(scrapedCourseTopics).length > 0 ? (
+            {Object.keys(scrapedCourseOneTopics).length > 0 ? (
               <>
                 <h2>{displayCourses[0]}</h2>
                 <ul>
-                  {Object.entries(scrapedCourseTopics).map(([week, topic]) => (
+                  {Object.entries(scrapedCourseOneTopics).map(([week, topic]) => (
                     <li key={week}>
                       <strong>{week}:</strong>{" "}
                       <input
@@ -184,11 +221,11 @@ export default function CoursesPage() {
               <span>Enter your courses to view their weekly topics. </span>
             )}
 
-            {Object.keys(scrapedCourseTopics).length > 0 ? (
+            {Object.keys(scrapedCourseTwoTopics).length > 0 ? (
               <>
                 <h2>{displayCourses[1]}</h2>
                 <ul>
-                  {Object.entries(scrapedCourseTopics).map(([week, topic]) => (
+                  {Object.entries(scrapedCourseTwoTopics).map(([week, topic]) => (
                     <li key={week}>
                       <strong>{week}:</strong>{" "}
                       <input
@@ -201,14 +238,14 @@ export default function CoursesPage() {
                 </ul>
               </>
             ) : (
-              <span>Enter your courses to view their weekly topics. </span>
+              ""
             )}
 
-            {Object.keys(scrapedCourseTopics).length > 0 ? (
+            {Object.keys(scrapedCourseThreeTopics).length > 0 ? (
               <>
                 <h2>{displayCourses[2]}</h2>
                 <ul>
-                  {Object.entries(scrapedCourseTopics).map(([week, topic]) => (
+                  {Object.entries(scrapedCourseThreeTopics).map(([week, topic]) => (
                     <li key={week}>
                       <strong>{week}:</strong>{" "}
                       <input
@@ -221,7 +258,7 @@ export default function CoursesPage() {
                 </ul>
               </>
             ) : (
-              <span>Enter your courses to view their weekly topics. </span>
+              ""
             )}
           </div>
         </div>
