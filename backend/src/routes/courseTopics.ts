@@ -10,7 +10,7 @@ router.post("/:courseCode", async (req: Request, res: Response) => {
     const topics = await getCourseTopics(courseCode);
     return res.status(200).json({ topics });
   } catch (err) {
-    return res.status(500).json({ error: "Failed to call Perplexity API " });
+    return res.status(500).json({ error: "Failed to call PerplexityAI API " });
   }
 });
 
