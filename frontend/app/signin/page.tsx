@@ -11,7 +11,8 @@ export default function SigninPage() {
 
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
+    rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -102,8 +103,16 @@ export default function SigninPage() {
 
           <div className={styles.formOptions}>
             <label className={styles.checkboxContainer}>
-              <input type="checkbox" className={styles.checkbox} />
-              <span className={styles.checkboxLabel}>Remember me</span>
+              <input
+                type="checkbox"
+                className={styles.checkbox}
+                name="rememberMe"
+                checked={formData.rememberMe}
+                onChange={(e) => 
+                  setFormData({ ...formData, rememberMe: e.target.checked })
+                }
+              />
+              <span className={styles.checkboxLabel}>Remember Me</span>
             </label>
             <Link href="/forgot-password" className={styles.forgotLink}>
               Forgot password?
