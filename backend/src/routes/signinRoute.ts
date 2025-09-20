@@ -6,21 +6,18 @@ import { InvalidPasswordError, UserNotFoundError } from "../errors/auth";
 const router = Router();
 
 router.post("/", async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, remember } = req.body;
 
   try {
     const user = await authenticateUser(email, password);
 
     // generate jwt token after user is authenticated
-    const token = jwt.sign(
-      {
-        userId: user.id,
-      },
-      process.env.JWT_SECRET!,
-      {
-        expiresIn: "5h",
-      },
-    );
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
+      expiresIn: remember ? "720h" : "5h" // 1 month or 5 hours
+    });
+
+    // set a longer cookie expiration time if user selects "Remember Me"
+    const maxDuration = remember ? (1000 * 60 * 60 * 720) : (1000 * 60 * 60 * 5);
 
     // create cookie to send through browser
     const isProd = process.env.NODE_ENV === "production";
@@ -28,7 +25,7 @@ router.post("/", async (req: Request, res: Response) => {
       httpOnly: true,
       secure: isProd,
       sameSite: isProd ? "none" : "lax",
-      maxAge: 1000 * 60 * 60 * 5, // 5 hour cookie duration
+      maxAge: maxDuration,
       path: "/",
       ...(isProd && { domain: ".studyintel.app" }), // only set in production
     });
