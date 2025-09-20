@@ -71,6 +71,23 @@
   box-sizing: border-box;
 }
 
+.topicInput {
+  flex: 1;
+  width: 100%;
+  min-width: 180px;
+  padding: 1rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: rgba(var(--foreground-rgb), 0.04);
+  border: 1.5px solid rgba(var(--foreground-rgb), 0.1);
+  border-radius: 0.75rem;
+  color: var(--foreground);
+  font-size: 1rem;
+  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
 .input:focus {
   outline: none;
   border-color: #3b82f6;
