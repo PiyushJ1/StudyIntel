@@ -200,7 +200,8 @@ export default function CoursesPage() {
 
         <div className={styles.userCoursesContainer}>
           <div className={styles.coursesContent}>
-            <h2>Course Topics</h2>
+            <h2>Course Topics (Note: Topics can be incorrect. Please verify.)</h2>
+            <br/>
             {Object.keys(scrapedCourseOneTopics).length > 0 ? (
               <>
                 <h2>{displayCourses[0]}</h2>
@@ -211,7 +212,7 @@ export default function CoursesPage() {
                       <input
                         type="text"
                         defaultValue={topic}
-                        className={styles.input}
+                        className={styles.topicInput}
                       />
                     </li>
                   ))}
@@ -231,7 +232,7 @@ export default function CoursesPage() {
                       <input
                         type="text"
                         defaultValue={topic}
-                        className={styles.input}
+                        className={styles.topicInput}
                       />
                     </li>
                   ))}
@@ -251,7 +252,7 @@ export default function CoursesPage() {
                       <input
                         type="text"
                         defaultValue={topic}
-                        className={styles.input}
+                        className={styles.topicInput}
                       />
                     </li>
                   ))}
