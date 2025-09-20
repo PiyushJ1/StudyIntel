@@ -60,7 +60,7 @@ export default function Navbar({ seconds, running, setSeconds, setRunning, forma
               }
             >{sessionButtonLabel}
             </button>
-            <Link href="/dashboard/profile" className={styles.profileButton}>👤 Profile</Link>
+            <Link href="/profile" className={styles.profileButton}>👤 Profile</Link>
           </div>
         </div>
       </header>
