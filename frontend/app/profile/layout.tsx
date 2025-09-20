@@ -1,3 +1,4 @@
+import DashboardWrapper from "@/components/DashboardWrapper";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
 export default function ProfileLayout({ children }: { children: React.ReactNode }) {
   return (
     <section>
-      {/* Optional shared layout UI here */}
-      {children}
+      <DashboardWrapper>
+        {children}
+      </DashboardWrapper>
     </section>
   );
 };
