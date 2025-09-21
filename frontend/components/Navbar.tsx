@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -14,9 +14,15 @@ interface NavbarProps {
   formatTime: (s: number) => string;
 }
 
-export default function Navbar({ seconds, running, setSeconds, setRunning, formatTime }: NavbarProps) {
+export default function Navbar({
+  seconds,
+  running,
+  setSeconds,
+  setRunning,
+  formatTime,
+}: NavbarProps) {
   const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
-  
+
   const pathName = usePathname();
 
   const handleNewSession = (e: React.MouseEvent) => {
@@ -32,7 +38,7 @@ export default function Navbar({ seconds, running, setSeconds, setRunning, forma
   if (seconds > 0 && running) {
     sessionButtonLabel = `⏱️ ${formatTime(seconds)}`;
   } else if (seconds > 0 && !running) {
-    sessionButtonLabel = `⏸️ ${formatTime(seconds)}`
+    sessionButtonLabel = `⏸️ ${formatTime(seconds)}`;
   }
 
   return (
@@ -44,29 +50,48 @@ export default function Navbar({ seconds, running, setSeconds, setRunning, forma
               StudyIntel
             </Link>
           </div>
-            
+
           <nav className={styles.navCenter}>
-            <Link href="/dashboard" className={`${styles.navLink} ${pathName === '/dashboard' ? styles.active : ''}`}>📊 Dashboard</Link>
-            <Link href="/courses" className={`${styles.navLink} ${pathName === '/courses' ? styles.active : ''}`}>📚 Courses</Link>
-            <Link href="/insights" className={`${styles.navLink} ${pathName === '/insights' ? styles.active : ''}`}>💡 Insights</Link>
+            <Link
+              href="/dashboard"
+              className={`${styles.navLink} ${pathName === "/dashboard" ? styles.active : ""}`}
+            >
+              📊 Dashboard
+            </Link>
+            <Link
+              href="/courses"
+              className={`${styles.navLink} ${pathName === "/courses" ? styles.active : ""}`}
+            >
+              📚 Courses
+            </Link>
+            <Link
+              href="/insights"
+              className={`${styles.navLink} ${pathName === "/insights" ? styles.active : ""}`}
+            >
+              💡 Insights
+            </Link>
           </nav>
 
           <div className={styles.navRight}>
-            <button onClick={handleNewSession} 
+            <button
+              onClick={handleNewSession}
               className={
-                seconds > 0 
-                  ? `${styles.newSessionButton} ${styles.sessionActive}` 
+                seconds > 0
+                  ? `${styles.newSessionButton} ${styles.sessionActive}`
                   : styles.newSessionButton
               }
-            >{sessionButtonLabel}
+            >
+              {sessionButtonLabel}
             </button>
-            <Link href="/profile" className={styles.profileButton}>👤 Profile</Link>
+            <Link href="/profile" className={styles.profileButton}>
+              👤 Profile
+            </Link>
           </div>
         </div>
       </header>
 
-      <NewSessionPopup 
-        isOpen={isNewSessionPopupOpen} 
+      <NewSessionPopup
+        isOpen={isNewSessionPopupOpen}
         onClose={handleCloseNewSessionPopup}
         seconds={seconds}
         _running={running}
@@ -75,4 +100,4 @@ export default function Navbar({ seconds, running, setSeconds, setRunning, forma
       />
     </>
   );
-};
+}

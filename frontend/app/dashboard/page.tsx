@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import styles from "./dashboard.module.css";
 import DecryptedText from "../../components/DecryptedText";
@@ -13,8 +13,8 @@ export default function DashboardPage() {
     fetch("/api/me", {
       credentials: "include",
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         // get user's first name to display welcome message
         if (data.firstname) {
           setFirstName(data.firstname);
@@ -26,7 +26,7 @@ export default function DashboardPage() {
           setTimeStudied(data.timestudied);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Failed to fetch user data:", err);
         setLoading(false);
       });
@@ -46,8 +46,7 @@ export default function DashboardPage() {
               parentClassName=""
               encryptedClassName=""
               animateOn="view"
-            />
-            {" "}
+            />{" "}
             {loading ? (
               <span className={styles.highlightUser}></span>
             ) : (
@@ -73,14 +72,11 @@ export default function DashboardPage() {
 
         <div className={styles.progressSection}>
           <h2 className={styles.progressText}>
-            You studied {" "}
-            {timeStudied ? (
-              `${timeStudied}`
-            ) : ( "X" )}
-            {" "}hours today. Great work!
+            You studied {timeStudied ? `${timeStudied}` : "X"} hours today.
+            Great work!
           </h2>
         </div>
-          
+
         {/* <div className={styles.contentWrapper}>
           <div className={styles.mainContent}>
             {/* <div className={styles.mainCard}>
@@ -124,4 +120,4 @@ export default function DashboardPage() {
       </div>
     </main>
   );
-};
+}

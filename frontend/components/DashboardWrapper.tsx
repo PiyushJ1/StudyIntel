@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
@@ -23,15 +23,15 @@ export default function DashboardWrapper({ children }: DashboardWrapperProps) {
   }, [running]);
 
   const formatTime = (s: number) => {
-    const hours = String(Math.floor(s / 3600)).padStart(2, '0');
-    const mins = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-    const secs = String(s % 60).padStart(2, '0');
+    const hours = String(Math.floor(s / 3600)).padStart(2, "0");
+    const mins = String(Math.floor((s % 3600) / 60)).padStart(2, "0");
+    const secs = String(s % 60).padStart(2, "0");
     return `${hours}:${mins}:${secs}`;
   };
 
   return (
     <>
-      <Navbar 
+      <Navbar
         seconds={seconds}
         running={running}
         setSeconds={setSeconds}
@@ -41,4 +41,4 @@ export default function DashboardWrapper({ children }: DashboardWrapperProps) {
       {children}
     </>
   );
-} 
+}

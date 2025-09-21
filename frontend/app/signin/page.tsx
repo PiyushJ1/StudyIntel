@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import styles from './signin.module.css';
-import Image from 'next/image';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import styles from "./signin.module.css";
+import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SigninPage() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +21,7 @@ export default function SigninPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -29,27 +29,30 @@ export default function SigninPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // handle user signin 
+    // handle user signin
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signin`, {
-        method: 'POST',
-        credentials: "include",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/signin`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        },
+      );
+
       if (!response.ok) {
         const errorData = await response.json();
         alert(`Submission failed: ${errorData.message || response.statusText}`);
         setIsSubmitting(false);
         return;
       }
-            
+
       if (response.ok) {
-        router.push('/dashboard');
+        router.push("/dashboard");
       }
     } catch (err) {
-      alert('Could not log in');
+      alert("Could not log in");
       setIsSubmitting(false);
       console.log("error:", err);
     }
@@ -60,12 +63,16 @@ export default function SigninPage() {
       <div className={styles.signinCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Welcome Back</h1>
-          <p className={styles.subtitle}>Sign in to keep leveling up your studies 🚀</p>
+          <p className={styles.subtitle}>
+            Sign in to keep leveling up your studies 🚀
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
-            <label htmlFor="email" className={styles.label}>Email Address</label>
+            <label htmlFor="email" className={styles.label}>
+              Email Address
+            </label>
             <input
               type="email"
               id="email"
@@ -79,10 +86,12 @@ export default function SigninPage() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="password" className={styles.label}>Password</label>
+            <label htmlFor="password" className={styles.label}>
+              Password
+            </label>
             <div className={styles.passwordContainer}>
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 value={formData.password}
@@ -96,7 +105,7 @@ export default function SigninPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className={styles.passwordToggle}
               >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
+                {showPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </div>
           </div>
@@ -108,7 +117,7 @@ export default function SigninPage() {
                 className={styles.checkbox}
                 name="rememberMe"
                 checked={formData.rememberMe}
-                onChange={(e) => 
+                onChange={(e) =>
                   setFormData({ ...formData, rememberMe: e.target.checked })
                 }
               />
@@ -119,8 +128,8 @@ export default function SigninPage() {
             </Link>
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className={styles.signinButton}
             disabled={isSubmitting}
           >
@@ -130,7 +139,7 @@ export default function SigninPage() {
                 Signing In...
               </span>
             ) : (
-              'Sign In'
+              "Sign In"
             )}
           </button>
 
@@ -140,9 +149,9 @@ export default function SigninPage() {
 
           <button type="button" className={styles.googleButton}>
             <span className={styles.googleIcon}>
-              <Image 
-                src='/assets/google-logo.png'
-                alt='google-icon'
+              <Image
+                src="/assets/google-logo.png"
+                alt="google-icon"
                 width={24}
                 height={24}
               />
@@ -153,19 +162,19 @@ export default function SigninPage() {
 
         <button type="button" className={styles.microsoftButton}>
           <span className={styles.microsoftIcon}>
-            <Image 
-              src='/assets/microsoft-logo.png'
-              alt='microsoft-icon'
+            <Image
+              src="/assets/microsoft-logo.png"
+              alt="microsoft-icon"
               width={19}
               height={19}
             />
           </span>
-            Continue with Microsoft
+          Continue with Microsoft
         </button>
 
         <div className={styles.footer}>
           <p className={styles.footerText}>
-            Don&apos;t have an account?{' '}
+            Don&apos;t have an account?{" "}
             <Link href="/signup" className={styles.signupLink}>
               Sign up
             </Link>
@@ -178,4 +187,4 @@ export default function SigninPage() {
       </Link>
     </div>
   );
-};
+}

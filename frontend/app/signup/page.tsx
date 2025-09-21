@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import styles from './signup.module.css';
-import Image from 'next/image';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import styles from "./signup.module.css";
+import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -22,20 +22,20 @@ export default function SignupPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic password validation
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
+      alert("Passwords do not match");
       return;
     }
-    
-    // handle user sign up logic 
+
+    // handle user sign up logic
     try {
       if (formData.password !== formData.confirmPassword) {
         alert("Passwords do not match");
@@ -43,14 +43,17 @@ export default function SignupPage() {
       }
 
       // deconstruct form data to exclude confirmPassword (only used for frontend validation)
-      const { confirmPassword: _, ...dataToSend} = formData;
+      const { confirmPassword: _, ...dataToSend } = formData;
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signup`, {
-        method: 'POST',
-        credentials: "include",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dataToSend)
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/signup`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dataToSend),
+        },
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -58,10 +61,10 @@ export default function SignupPage() {
         return;
       }
 
-      router.push('/dashboard');
+      router.push("/dashboard");
     } catch (err) {
-      console.log('Signing up caused an error', err);
-      alert('Could not sign up');
+      console.log("Signing up caused an error", err);
+      alert("Could not sign up");
     }
   };
 
@@ -70,13 +73,17 @@ export default function SignupPage() {
       <div className={styles.signupCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>Create Account</h1>
-          <p className={styles.subtitle}>Join now and transform your learning experience</p>
+          <p className={styles.subtitle}>
+            Join now and transform your learning experience
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.nameRow}>
             <div className={styles.inputGroup}>
-              <label htmlFor="firstName" className={styles.label}>First Name</label>
+              <label htmlFor="firstName" className={styles.label}>
+                First Name
+              </label>
               <input
                 type="text"
                 id="firstName"
@@ -89,7 +96,9 @@ export default function SignupPage() {
               />
             </div>
             <div className={styles.inputGroup}>
-              <label htmlFor="lastName" className={styles.label}>Last Name</label>
+              <label htmlFor="lastName" className={styles.label}>
+                Last Name
+              </label>
               <input
                 type="text"
                 id="lastName"
@@ -104,7 +113,9 @@ export default function SignupPage() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="email" className={styles.label}>Email Address</label>
+            <label htmlFor="email" className={styles.label}>
+              Email Address
+            </label>
             <input
               type="email"
               id="email"
@@ -118,10 +129,12 @@ export default function SignupPage() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="password" className={styles.label}>Password</label>
+            <label htmlFor="password" className={styles.label}>
+              Password
+            </label>
             <div className={styles.passwordContainer}>
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 value={formData.password}
@@ -135,16 +148,18 @@ export default function SignupPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className={styles.passwordToggle}
               >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
+                {showPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </div>
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="confirmPassword" className={styles.label}>Confirm Password</label>
+            <label htmlFor="confirmPassword" className={styles.label}>
+              Confirm Password
+            </label>
             <div className={styles.passwordContainer}>
               <input
-                type={showConfirmPassword ? 'text' : 'password'}
+                type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
                 name="confirmPassword"
                 value={formData.confirmPassword}
@@ -158,7 +173,7 @@ export default function SignupPage() {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className={styles.passwordToggle}
               >
-                {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </div>
           </div>
@@ -167,10 +182,22 @@ export default function SignupPage() {
             <label className={styles.checkboxContainer}>
               <input type="checkbox" className={styles.checkbox} required />
               <span className={styles.checkboxLabel}>
-                I agree to the{' '}
-                <Link href="/terms" target='_blank' className={styles.termsLink}>Terms of Service</Link>
-                {' '}and{' '}
-                <Link href="/privacy" target='_blank' className={styles.privacyLink}>Privacy Policy</Link>
+                I agree to the{" "}
+                <Link
+                  href="/terms"
+                  target="_blank"
+                  className={styles.termsLink}
+                >
+                  Terms of Service
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="/privacy"
+                  target="_blank"
+                  className={styles.privacyLink}
+                >
+                  Privacy Policy
+                </Link>
               </span>
             </label>
           </div>
@@ -185,9 +212,9 @@ export default function SignupPage() {
 
           <button type="button" className={styles.googleButton}>
             <span className={styles.googleIcon}>
-              <Image 
-                src='/assets/google-logo.png'
-                alt='google-icon'
+              <Image
+                src="/assets/google-logo.png"
+                alt="google-icon"
                 width={24}
                 height={24}
               />
@@ -198,9 +225,9 @@ export default function SignupPage() {
 
         <button type="button" className={styles.microsoftButton}>
           <span className={styles.microsoftIcon}>
-            <Image 
-              src='/assets/microsoft-logo.png'
-              alt='microsoft-icon'
+            <Image
+              src="/assets/microsoft-logo.png"
+              alt="microsoft-icon"
               width={19}
               height={19}
             />
@@ -210,7 +237,7 @@ export default function SignupPage() {
 
         <div className={styles.footer}>
           <p className={styles.footerText}>
-            Already have an account?{' '}
+            Already have an account?{" "}
             <Link href="/signin" className={styles.signinLink}>
               Sign in
             </Link>
@@ -223,4 +250,4 @@ export default function SignupPage() {
       </Link>
     </div>
   );
-};
+}

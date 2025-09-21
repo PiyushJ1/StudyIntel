@@ -21,7 +21,7 @@
   border: 1px solid rgba(var(--foreground-rgb), 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 
+  box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.25),
     0 0 60px rgba(var(--foreground-rgb), 0.1);
   width: 70rem;
@@ -70,7 +70,14 @@
   background-clip: text;
   color: transparent;
   margin-bottom: 0.75rem;
-  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    "Inter",
+    "SF Pro Display",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   letter-spacing: -0.02em;
   filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.15));
 }
@@ -81,7 +88,14 @@
   opacity: 0.8;
   line-height: 1.6;
   margin: 0;
-  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    "Inter",
+    "SF Pro Text",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
 .stopwatch {
@@ -115,7 +129,14 @@
   border-radius: 1rem;
   font-size: 1rem;
   font-weight: 600;
-  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    "Inter",
+    "SF Pro Text",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(20px);
@@ -193,4 +214,3 @@
     transform: translateY(0) scale(1);
   }
 }
-

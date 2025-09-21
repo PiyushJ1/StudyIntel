@@ -10,28 +10,37 @@ export async function GET(_req: Request) {
   const token = (await cookieStore).get("token")?.value;
 
   if (!token) {
-    return NextResponse.json({ error: "Not authenticated. Token is invalid or doesn't exist." }, { status: 401 });
+    return NextResponse.json(
+      { error: "Not authenticated. Token is invalid or doesn't exist." },
+      { status: 401 },
+    );
   }
 
   try {
     const { payload } = await jwtVerify(token, secret);
     const userId = payload.userId;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`, {
-      method: 'GET',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     if (!res.ok) {
-      return NextResponse.json({ error: "Failed to fetch user info "}, { status: res.status });
+      return NextResponse.json(
+        { error: "Failed to fetch user info " },
+        { status: res.status },
+      );
     }
 
     const user = await res.json();
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       userId,
       firstname: user.firstname,
       timestudied: user.timestudied,

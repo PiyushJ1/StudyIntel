@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import styles from "../styles/NewSessionPopup.module.css";
@@ -12,7 +12,14 @@ interface NewSessionPopupProps {
   setRunning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function NewSessionPopup({ isOpen, onClose, seconds, _running, setSeconds, setRunning }: NewSessionPopupProps) {
+export default function NewSessionPopup({
+  isOpen,
+  onClose,
+  seconds,
+  _running,
+  setSeconds,
+  setRunning,
+}: NewSessionPopupProps) {
   const [sessionId, setSessionId] = React.useState<string | null>(null);
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -26,12 +33,15 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
     console.log("Calling session start endpoint");
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/start-session`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({}) // send empty object for now (course code is hardcoded in backend)
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/start-session`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}), // send empty object for now (course code is hardcoded in backend)
+        },
+      );
 
       if (!response.ok) {
         console.log("Could not start and save new study session");
@@ -45,7 +55,7 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
       alert("Could not save session start info");
       console.log("Error:", err);
     }
-  }
+  };
 
   const handleFinishSession = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -57,12 +67,15 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
 
     // save study session info to db
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/finish-session`, {
-        method: "PATCH",
-        credentials: "include",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({ sessionId })
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/finish-session`,
+        {
+          method: "PATCH",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionId }),
+        },
+      );
 
       if (!response.ok) {
         console.log("Could not finish session");
@@ -75,14 +88,14 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
       alert("Could not save session end info");
       console.log("Error:", err);
     }
-  }
+  };
 
   const formatTime = (s: number) => {
-    const hours = String(Math.floor(s / 3600)).padStart(2, '0');
-    const mins = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-    const secs = String(s % 60).padStart(2, '0');
+    const hours = String(Math.floor(s / 3600)).padStart(2, "0");
+    const mins = String(Math.floor((s % 3600) / 60)).padStart(2, "0");
+    const secs = String(s % 60).padStart(2, "0");
     return `${hours}:${mins}:${secs}`;
-  }
+  };
 
   if (!isOpen) return null;
 
@@ -91,31 +104,36 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
       <div className={styles.popup}>
         <>
           <button className={styles.closeButton} onClick={onClose}>
-              ×
+            ×
           </button>
-            
+
           <div className={styles.header}>
             <h2 className={styles.title}>Start New Study Session</h2>
             <p className={styles.subtitle}>
-                Let&apos;s get started! What and how long would you like to study?  
+              Let&apos;s get started! What and how long would you like to study?
             </p>
           </div>
 
-          <div className={styles.stopwatch}>
-            {formatTime(seconds)}
-          </div>
-            
+          <div className={styles.stopwatch}>{formatTime(seconds)}</div>
+
           <div className={styles.buttonContainer}>
-            <button 
-              className={styles.startButton} 
-              onClick={handleStartSession}
-            >
+            <button className={styles.startButton} onClick={handleStartSession}>
               Start
             </button>
-            <button className={styles.pauseButton} onClick={() => setRunning(false)}>Pause</button>
-            <button className={styles.resetButton} onClick={() => (setSeconds(0), setRunning(false))}>Reset</button>
-            <button 
-              className={styles.finishButton} 
+            <button
+              className={styles.pauseButton}
+              onClick={() => setRunning(false)}
+            >
+              Pause
+            </button>
+            <button
+              className={styles.resetButton}
+              onClick={() => (setSeconds(0), setRunning(false))}
+            >
+              Reset
+            </button>
+            <button
+              className={styles.finishButton}
               onClick={handleFinishSession}
             >
               Finish
