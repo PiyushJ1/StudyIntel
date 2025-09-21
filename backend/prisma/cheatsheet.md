@@ -1,5 +1,8 @@
 # Prisma + PostgreSQL (Railway) Cheatsheet
 
+for auto-linting: npx prisma format
+
+
 ## 🔧 SETUP
 
 ### 1. Install Prisma
