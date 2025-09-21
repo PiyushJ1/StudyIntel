@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/NewSessionPopup.module.css";
 
 interface NewSessionPopupProps {
@@ -13,6 +13,8 @@ interface NewSessionPopupProps {
 }
 
 export default function NewSessionPopup({ isOpen, onClose, seconds, _running, setSeconds, setRunning }: NewSessionPopupProps) {
+  const [sessionId, setSessionId] = React.useState<string | null>(null);
+
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -24,16 +26,21 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
     console.log("Calling session start endpoint");
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/start-session`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/start-session`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json"},
-        body: JSON.stringify("session here")
+        body: JSON.stringify({}) // send empty object for now (course code is hardcoded in backend)
       });
 
       if (!response.ok) {
-        // error handling
+        console.log("Could not start and save new study session");
+        return;
       }
+
+      const data = await response.json();
+      setSessionId(data.sessionId);
+      setRunning(true);
     } catch (err) {
       alert("Could not save session start info");
       console.log("Error:", err);
@@ -42,20 +49,28 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
 
   const handleFinishSession = async (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log("Calling session finish endpoint");
+
+    if (!sessionId) {
+      alert("No session to finish");
+      return;
+    }
 
     // save study session info to db
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/finish-session`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/finish-session`, {
         method: "PATCH",
         credentials: "include",
         headers: { "Content-Type": "application/json"},
-        body: JSON.stringify("session here")
+        body: JSON.stringify({ sessionId })
       });
 
       if (!response.ok) {
-        // error handling
+        console.log("Could not finish session");
       }
+
+      setSeconds(0);
+      setRunning(false);
+      setSessionId(null);
     } catch (err) {
       alert("Could not save session end info");
       console.log("Error:", err);
@@ -93,10 +108,7 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
           <div className={styles.buttonContainer}>
             <button 
               className={styles.startButton} 
-              onClick={async (e) => {
-                handleStartSession(e);
-                setRunning(true);
-              }}
+              onClick={handleStartSession}
             >
               Start
             </button>
@@ -104,11 +116,7 @@ export default function NewSessionPopup({ isOpen, onClose, seconds, _running, se
             <button className={styles.resetButton} onClick={() => (setSeconds(0), setRunning(false))}>Reset</button>
             <button 
               className={styles.finishButton} 
-              onClick={async (e) => {
-                handleFinishSession(e);
-                setSeconds(0);
-                setRunning(false);
-              }}
+              onClick={handleFinishSession}
             >
               Finish
             </button>
