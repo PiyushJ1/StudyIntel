@@ -1,6 +1,10 @@
 # Prisma + PostgreSQL (Railway) Cheatsheet
 
-for auto-linting: npx prisma format
+STYLE FORMATTING: npx prisma format
+
+GENERATE PRISMA CLIENT: npx prisma generate
+
+PUSH TO PGSQL: npx prisma db push
 
 ## 🔧 SETUP
 
