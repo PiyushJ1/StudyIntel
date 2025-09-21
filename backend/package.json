@@ -13,7 +13,7 @@
     "prettier": "prettier . --write"
   },
   "dependencies": {
-    "@prisma/client": "^6.13.0",
+    "@prisma/client": "^6.16.2",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
