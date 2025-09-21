@@ -10,9 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
+  frontend:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,6 +31,32 @@ jobs:
           cd frontend
           npm run lint
 
+      - name: Check frontend formatting
+        run: |
+          cd frontend
+          npx prettier --check "**/*.ts"
+
+      - name: Type check frontend
+        run: |
+          cd frontend
+          npx tsc --noEmit
+
+      - name: Security audit frontend
+        run: |
+          cd frontend
+          npm audit --audit-level=moderate
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
       - name: Install backend dependencies
         run: |
           cd backend
@@ -41,3 +66,18 @@ jobs:
         run: |
           cd backend
           npm run lint
+
+      - name: Check backend formatting
+        run: |
+          cd backend
+          npx prettier --check "**/*.ts"
+
+      - name: Type check backend
+        run: |
+          cd backend
+          npx tsc --noEmit
+
+      - name: Security audit backend
+        run: |
+          cd backend
+          npm audit --audit-level=moderate
