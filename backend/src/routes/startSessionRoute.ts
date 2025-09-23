@@ -15,11 +15,9 @@ router.post("/", async (req: Request, res: Response) => {
     }
 
     if (!courseCode) {
-      return res
-        .status(400)
-        .json({
-          error: "Can't start a session without the corresponding course code",
-        });
+      return res.status(400).json({
+        error: "Can't start a session without the corresponding course code",
+      });
     }
 
     const payload = jwt.verify(token, process.env.JWT_SECRET!) as {
