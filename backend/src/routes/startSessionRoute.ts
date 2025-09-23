@@ -8,28 +8,39 @@ const prisma = new PrismaClient();
 router.post("/", async (req: Request, res: Response) => {
   try {
     const token = req.cookies.token;
+    const { courseCode } = req.body;
+
     if (!token) {
       return res.status(401).json({ error: "Not authenticated" });
+    }
+
+    if (!courseCode) {
+      return res
+        .status(400)
+        .json({
+          error: "Can't start a session without the corresponding course code",
+        });
     }
 
     const payload = jwt.verify(token, process.env.JWT_SECRET!) as {
       userId: string;
     };
-    const userId = payload.userId;
 
-    const courseCode = "COMP2511";
-
-    // Create new course if it doesnt already exist
-    // const newCourse = await prisma.course.create({
-    //   data: {
-    //     code: "hello",
-    //     name: "fdfsfsd"
-    //   },
-    // })
+    let course = await prisma.course.findUnique({
+      where: { code: courseCode },
+    });
+    if (!course) {
+      course = await prisma.course.create({
+        data: {
+          code: courseCode,
+          name: "Course",
+        },
+      });
+    }
 
     const newSession = await prisma.studySession.create({
       data: {
-        userId,
+        userId: payload.userId,
         courseCode,
         startTime: new Date(), // current timestamp
         // endTime is stored in finish session route
