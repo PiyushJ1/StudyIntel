@@ -110,7 +110,7 @@
   font-family: monospace;
   letter-spacing: -0.02em;
   filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.15));
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .buttonContainer {
@@ -123,7 +123,8 @@
 
 .startButton,
 .pauseButton,
-.resetButton {
+.resetButton,
+.finishButton {
   padding: 1rem 2rem;
   border: none;
   border-radius: 1rem;
@@ -168,7 +169,7 @@
 .pauseButton:hover {
   background: #3b82f6;
   transform: translateY(-2px);
-  box-shadow: 0 16px 50px rgba(8, 79, 201, 0.3);
+  box-shadow: 0 5px 15px #3b82f6;
 }
 
 .resetButton {
@@ -183,16 +184,24 @@
   box-shadow: 0 12px 40px rgba(var(--foreground-rgb), 0.2);
 }
 
+.finishButton {
+  background: rgb(63, 2, 137);
+  color: var(--foreground);
+  border: 1px solid rgba(var(--foreground-rgb), 0.2);
+}
+
+.finishButton:hover {
+  background: rgb(63, 2, 137);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgb(63, 2, 137);;
+}
+
 .startButton:active,
 .pauseButton:active,
 .resetButton:active,
 .finishButton:active {
   transform: translateY(0);
   transition: all 0.1s ease;
-}
-
-.finishButton {
-  cursor: pointer;
 }
 
 @keyframes fadeInOverlay {
@@ -213,4 +222,38 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* Container for all user courses */
+.userCourses {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* space between each radio option */
+  padding: 1rem 2.5rem;
+  color: white;
+  margin: 0 auto;
+}
+
+/* Each course option */
+.courseOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* space between radio and label text */
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  background: rgba(var(--foreground-rgb), 0.05);
+  color: white;
+}
+
+.courseOption:hover {
+  background: rgba(var(--foreground-rgb), 0.1);
+}
+
+.courseOption input[type="radio"] {
+  accent-color: #8b5cf6; /* makes radio purple like your Start button gradient */
+  width: 1.2rem;
+  height: 1.2rem;
 }
