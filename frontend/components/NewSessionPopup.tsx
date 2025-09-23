@@ -131,7 +131,7 @@ export default function NewSessionPopup({
           <div className={styles.header}>
             <h2 className={styles.title}>Start New Study Session</h2>
             <p className={styles.subtitle}>
-              Let&apos;s get started! What course would you like to study for?
+              Let&apos;s get started. What course would you like to study for?
             </p>
           </div>
 
