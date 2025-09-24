@@ -33,7 +33,6 @@ router.get("/:userId", async (req: Request, res: Response) => {
         id: true,
         firstname: true,
         courses: true,
-        // timestudied: true, (add this to prisma schema to fetch later)
       },
     });
 
@@ -41,7 +40,33 @@ router.get("/:userId", async (req: Request, res: Response) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    return res.status(200).json(user);
+    // fetch all the study sessions for the current user
+    const sessions = await prisma.studySession.findMany({
+      where: { userId },
+      select: {
+        courseCode: true,
+        duration: true,
+      },
+    });
+
+    // add all of the sessions and group them by course
+    const totalStudyTimes: Record<string, number> = {};
+    for (const session of sessions) {
+      // check if duration is not null
+      if (session.duration) {
+        // init total duration for current course to 0 if it doesn't exist
+        if (!totalStudyTimes[session.courseCode]) {
+          totalStudyTimes[session.courseCode] = 0;
+        }
+        // add duration for current course
+        totalStudyTimes[session.courseCode] += session.duration;
+      }
+    }
+
+    return res.status(200).json({
+      user,
+      totalStudyTimes,
+    });
   } catch (err) {
     console.log("Error fetch user info: ", err);
     return res.status(500).json({ error: "Server error" });
