@@ -38,13 +38,13 @@ export async function GET(_req: Request) {
       );
     }
 
-    const user = await res.json();
+    const data = await res.json();
 
     return NextResponse.json({
       userId,
-      firstname: user.firstname,
-      timestudied: user.timestudied,
-      courses: user.courses,
+      firstname: data.user.firstname,
+      timestudied: data.totalStudyTimes,
+      courses: data.user.courses,
     });
   } catch (err) {
     console.error("Err in fetching user info: ", err);
