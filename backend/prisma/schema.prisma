@@ -49,6 +49,7 @@ model StudySession {
   courseCode String
   startTime  DateTime
   endTime    DateTime?
+  duration   Int?
 
   @@index([userId, courseCode])
 }
