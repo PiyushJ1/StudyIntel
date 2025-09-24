@@ -32,7 +32,6 @@ export default function NewSessionPopup({
       .then((data) => {
         if (data.courses) {
           setDisplayCourses(data.courses)
-          console.log(data.courses);
         }
       })
       .catch((err) => {
