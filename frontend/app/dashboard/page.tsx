@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 
 export default function DashboardPage() {
   const [firstName, setFirstName] = useState<string | null>(null);
-  const [timeStudied, setTimeStudied] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [timeStudied, setTimeStudied] = useState<Record<string, number>>({});
 
   useEffect(() => {
     fetch("/api/me", {
@@ -21,7 +21,7 @@ export default function DashboardPage() {
         }
         setLoading(false);
 
-        // get user's recent study time
+        // get user's lifetime study time
         if (data.timestudied) {
           setTimeStudied(data.timestudied);
         }
@@ -72,8 +72,12 @@ export default function DashboardPage() {
 
         <div className={styles.progressSection}>
           <h2 className={styles.progressText}>
-            You studied {timeStudied ? `${timeStudied}` : "X"} hours today.
-            Great work!
+            <h2>Total time spent studying</h2>
+            {Object.entries(timeStudied).map(([course, seconds]) => (
+              <div key={course}>
+                {course}: {Math.floor(seconds / 3600)} hours, {Math.floor((seconds % 3600) / 60)} minutes, {seconds % 60} seconds
+              </div>
+            ))}
           </h2>
         </div>
 
