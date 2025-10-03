@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 export async function saveNewUserAccount(
   newUser: Omit<User, "id">,
-): Promise<void> {
+): Promise<string> {
   const existingUser = await prisma.user.findUnique({
     where: { email: newUser.email },
   });
@@ -30,4 +30,6 @@ export async function saveNewUserAccount(
       password: hashedPassword,
     },
   });
+
+  return id;
 }
