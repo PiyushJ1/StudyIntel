@@ -36,7 +36,7 @@ model UserCourse {
 
 model Course {
   code          String         @id
-  name          String         @unique
+  name          String
   studySessions StudySession[]
   userCourses   UserCourse[]
 }
