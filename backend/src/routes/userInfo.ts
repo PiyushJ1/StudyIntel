@@ -23,9 +23,9 @@ router.get("/:userId", async (req: Request, res: Response) => {
     };
 
     // check if user is trying to access another user's info
-    // if (decoded.userId !== userId) {
-    //   return res.status(403).json({ error: "Forbidden action" });
-    // }
+    if (decoded.userId !== userId) {
+      return res.status(403).json({ error: "Forbidden action" });
+    }
 
     const user = await prisma.user.findUnique({
       where: { id: userId },
