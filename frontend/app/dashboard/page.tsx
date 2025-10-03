@@ -72,7 +72,7 @@ export default function DashboardPage() {
 
         <div className={styles.progressSection}>
           <h2 className={styles.progressText}>
-            <h2>Total time spent studying</h2>
+            <p>Total time spent studying</p>
             {Object.entries(timeStudied).map(([course, seconds]) => (
               <div key={course}>
                 {course}: {Math.floor(seconds / 3600)} hours, {Math.floor((seconds % 3600) / 60)} minutes, {seconds % 60} seconds
