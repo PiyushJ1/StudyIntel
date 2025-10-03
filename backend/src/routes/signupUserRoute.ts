@@ -22,18 +22,12 @@ router.post("/", async (req: Request, res: Response) => {
   }
 
   try {
-    await saveNewUserAccount(newUser);
+    const newUserId = await saveNewUserAccount(newUser);
 
     // sign token for the new user
-    const token = jwt.sign(
-      {
-        firstName: newUser.firstName,
-      },
-      process.env.JWT_SECRET!,
-      {
-        expiresIn: "5h",
-      },
-    );
+    const token = jwt.sign({ userId: newUserId }, process.env.JWT_SECRET!, {
+      expiresIn: "10h",
+    });
 
     // create cookie to send through browser
     const isProd = process.env.NODE_ENV === "production";
