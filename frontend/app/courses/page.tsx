@@ -100,6 +100,9 @@ export default function CoursesPage() {
         },
       );
 
+      const topics1 = await res1.json();
+      setScrapedCourseOneTopics(Object.assign({}, topics1.topics));
+
       // fetch topics for course 2
       const res2 = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[1]}`,
@@ -110,6 +113,9 @@ export default function CoursesPage() {
           body: JSON.stringify({ courseCode: validCourses[1] }),
         },
       );
+
+      const topics2 = await res2.json();
+      setScrapedCourseTwoTopics(Object.assign({}, topics2.topics));
 
       // fetch topics for course 3
       const res3 = await fetch(
@@ -122,23 +128,11 @@ export default function CoursesPage() {
         },
       );
 
+      const topics3 = await res3.json();
+      setScrapedCourseThreeTopics(Object.assign({}, topics3.topics));
+
       if (!res1.ok || !res2.ok || !res3.ok) {
         console.error("Scraping API failed");
-      } else {
-        const topics1 = await res1.json();
-        const topics2 = await res2.json();
-        const topics3 = await res3.json();
-
-        console.log(topics1);
-        console.log(topics2);
-        console.log(topics3);
-
-        // store topics object
-        setScrapedCourseOneTopics(Object.assign({}, topics1.topics));
-
-        setScrapedCourseTwoTopics(Object.assign({}, topics2.topics));
-
-        setScrapedCourseThreeTopics(Object.assign({}, topics3.topics));
       }
     } catch (err) {
       console.error("Error scraping courses", err);
