@@ -41,6 +41,13 @@ export default function HomePage() {
     }
   };
 
+  // const router = useRouter();
+
+  // const handleTryStudyIntel = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   router.push("signup");
+  // }
+
   return (
     <>
       <header className={styles.navbar}>
@@ -119,12 +126,15 @@ export default function HomePage() {
           </h2>
 
           <div className={styles.ctaSection}>
-            <button
-              onClick={handleWaitlistClick}
+            {/* <button
+              onClick={handleTryStudyIntel}
               className={styles.waitlistButton}
             >
               Try StudyIntel
-            </button>
+            </button> */}
+            <Link href="/signup" className={styles.waitlistButton}>
+              Try StudyIntel
+            </Link>
             <button
               onClick={handleWaitlistClick}
               className={styles.secondaryButton}
@@ -133,14 +143,14 @@ export default function HomePage() {
             </button>
 
             <p className={styles.waitlistText}>
-              Join the future of academic excellence – completely free.
+              Join the future of academic excellence&mdash;tailored for UNSW students.
             </p>
           </div>
         </div>
       </main>
 
       {/* About Section */}
-      <section id="about" className={styles.aboutSection}>
+      {/* <section id="about" className={styles.aboutSection}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>Why StudyIntel?</h2>
           <p className={styles.aboutText}>
@@ -152,9 +162,9 @@ export default function HomePage() {
             you study best, so you can focus on what matters most.
           </p>
         </div>
-      </section>
+      </section> */}
 
-      {/* Features Section */}
+      {/* Features Section
       <section id="features" className={styles.featuresSection}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>
@@ -216,10 +226,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Video Demo Section */}
-      <section className={styles.videoSection}>
+      {/* <section className={styles.videoSection}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>See StudyIntel in Action</h2>
           <p className={styles.sectionSubtitle}>
@@ -238,10 +248,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials Section */}
-      <section id="testimonials" className={styles.testimonialsSection}>
+      {/* <section id="testimonials" className={styles.testimonialsSection}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>Loved by Students Everywhere</h2>
           <div className={styles.testimonialsGrid}>
@@ -299,10 +309,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
-      <section className={styles.ctaSection2}>
+      {/* <section className={styles.ctaSection2}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.ctaTitle}>
             Ready to Transform Your Study Game?
@@ -326,10 +336,10 @@ export default function HomePage() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
-      <footer id="contact" className={styles.footer}>
+      {/* <footer id="contact" className={styles.footer}>
         <div className={styles.footerContainer}>
           <div className={styles.footerContent}>
             <div className={styles.footerSection}>
@@ -449,7 +459,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
 
       <WaitlistPopup
         isOpen={isWaitlistPopupOpen}

@@ -1,5 +1,3 @@
-/* Note: CSS Variables and global styles are in app/globals.css */
-
 .container {
   display: flex;
   flex-direction: column;
