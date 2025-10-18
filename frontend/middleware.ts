@@ -13,7 +13,8 @@ export async function middleware(req: NextRequest) {
   try {
     await jwtVerify(token, secret);
     return NextResponse.next();
-  } catch (error) {
+  } catch (err) {
+    console.log("error: ", err);
     return NextResponse.redirect(new URL("/signin", req.url));
   }
 }
