@@ -44,7 +44,7 @@ export default function HomePage() {
 
   return (
     <>
-    <DarkVeil />
+      <DarkVeil />
       <header className={styles.navbar}>
         <div className={styles.navContainer}>
           <div className={styles.navLeft}>
