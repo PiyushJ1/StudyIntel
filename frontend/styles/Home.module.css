@@ -1,3 +1,13 @@
+.darkVeil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* or 1 */
+  pointer-events: none; /* so it doesn’t block clicks */
+}
+
 .container {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,6 @@
 "use client";
 
+import DarkVeil from "@/styles/DarkVeil";
 import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
@@ -41,15 +42,9 @@ export default function HomePage() {
     }
   };
 
-  // const router = useRouter();
-
-  // const handleTryStudyIntel = (e: React.MouseEvent) => {
-  //   e.preventDefault();
-  //   router.push("signup");
-  // }
-
   return (
     <>
+    <DarkVeil />
       <header className={styles.navbar}>
         <div className={styles.navContainer}>
           <div className={styles.navLeft}>
