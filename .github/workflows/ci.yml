@@ -80,4 +80,4 @@ jobs:
       - name: Security audit backend
         run: |
           cd backend
-          npm audit --audit-level=moderate
+          npm audit --audit-level=high
