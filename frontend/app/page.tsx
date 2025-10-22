@@ -44,108 +44,100 @@ export default function HomePage() {
 
   return (
     <>
-      <DarkVeil />
-      <header className={styles.navbar}>
-        <div className={styles.navContainer}>
-          <div className={styles.navLeft}>
-            <Link href="/" className={styles.logo}>
+      <div style={{ width: "100%", height: "100vh", position: "relative" }}>
+        <header className={styles.navbar}>
+          <div className={styles.navContainer}>
+            <div className={styles.navLeft}>
+              <Link href="/" className={styles.logo}>
               StudyIntel
-            </Link>
-          </div>
+              </Link>
+            </div>
 
-          <nav className={styles.navCenter}>
-            <a
-              href="#features"
-              onClick={(e) => handleSmoothScroll(e, "features")}
-              className={styles.navLink}
-            >
+            <nav className={styles.navCenter}>
+              <a
+                href="#features"
+                onClick={(e) => handleSmoothScroll(e, "features")}
+                className={styles.navLink}
+              >
               Features
-            </a>
-            <a
-              href="#about"
-              onClick={(e) => handleSmoothScroll(e, "about")}
-              className={styles.navLink}
-            >
+              </a>
+              <a
+                href="#about"
+                onClick={(e) => handleSmoothScroll(e, "about")}
+                className={styles.navLink}
+              >
               About
-            </a>
-            <a
-              href="#testimonials"
-              onClick={(e) => handleSmoothScroll(e, "testimonials")}
-              className={styles.navLink}
-            >
+              </a>
+              <a
+                href="#testimonials"
+                onClick={(e) => handleSmoothScroll(e, "testimonials")}
+                className={styles.navLink}
+              >
               Reviews
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleSmoothScroll(e, "contact")}
-              className={styles.navLink}
-            >
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => handleSmoothScroll(e, "contact")}
+                className={styles.navLink}
+              >
               Contact
-            </a>
-          </nav>
+              </a>
+            </nav>
 
-          <div className={styles.navRight}>
-            <Link
-              href="/signin"
-              className={`${styles.signinButton} ${styles.disabled}`}
-            >
+            <div className={styles.navRight}>
+              <Link
+                href="/signin"
+                className={`${styles.signinButton} ${styles.disabled}`}
+              >
               Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className={`${styles.signupButtonNav} ${styles.disabled}`}
-            >
+              </Link>
+              <Link
+                href="/signup"
+                className={`${styles.signupButtonNav} ${styles.disabled}`}
+              >
               Sign Up
-            </Link>
-            <button
-              onClick={handleWaitlistClick}
-              className={styles.joinWaitlistButton}
-            >
+              </Link>
+              <button
+                onClick={handleWaitlistClick}
+                className={styles.joinWaitlistButton}
+              >
               Join Waitlist
-            </button>
+              </button>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Hero Section */}
-      <main className={styles.heroContainer}>
-        <div className={styles.contentContainer}>
-          <div className={styles.mainTitle}>
-            The future of studying starts here.
-          </div>
+        {/* Hero Section */}
+        <main className={styles.heroContainer}>
+          <div className={styles.contentContainer}>
+            <div className={styles.mainTitle}>
+            Stop guessing how you study.
+            </div>
 
-          <h2 className={styles.subtitle}>
-            Get real-time, personalised insights into how you study.
-            <br></br>
-            Backed by your own data. Tailored just for you.
-          </h2>
+            <h2 className={styles.subtitle}>
+            Track your progress, visualise your habits, and <br/> get personalised insights — all powered by your own data.
+            </h2>
 
-          <div className={styles.ctaSection}>
-            {/* <button
-              onClick={handleTryStudyIntel}
-              className={styles.waitlistButton}
-            >
-              Try StudyIntel
-            </button> */}
-            <Link href="/signup" className={styles.waitlistButton}>
-              Try StudyIntel
-            </Link>
-            <button
-              onClick={handleWaitlistClick}
-              className={styles.secondaryButton}
-            >
+            <div className={styles.ctaSection}>
+              <Link href="/signup" className={styles.waitlistButton}>
+              Get Started
+              </Link>
+              <button
+                onClick={handleWaitlistClick}
+                className={styles.secondaryButton}
+              >
               Join Waitlist
-            </button>
+              </button>
 
-            <p className={styles.waitlistText}>
-              Join the future of academic excellence&mdash;tailored for UNSW students.
-            </p>
+              <p className={styles.waitlistText}>
+              The smarter way to study, designed for UNSW students.
+              </p>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
 
-      {/* About Section */}
-      {/* <section id="about" className={styles.aboutSection}>
+        {/* About Section */}
+        {/* <section id="about" className={styles.aboutSection}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>Why StudyIntel?</h2>
           <p className={styles.aboutText}>
@@ -159,7 +151,7 @@ export default function HomePage() {
         </div>
       </section> */}
 
-      {/* Features Section
+        {/* Features Section
       <section id="features" className={styles.featuresSection}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>
@@ -223,8 +215,8 @@ export default function HomePage() {
         </div>
       </section> */}
 
-      {/* Video Demo Section */}
-      {/* <section className={styles.videoSection}>
+        {/* Video Demo Section */}
+        {/* <section className={styles.videoSection}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>See StudyIntel in Action</h2>
           <p className={styles.sectionSubtitle}>
@@ -245,8 +237,8 @@ export default function HomePage() {
         </div>
       </section> */}
 
-      {/* Testimonials Section */}
-      {/* <section id="testimonials" className={styles.testimonialsSection}>
+        {/* Testimonials Section */}
+        {/* <section id="testimonials" className={styles.testimonialsSection}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>Loved by Students Everywhere</h2>
           <div className={styles.testimonialsGrid}>
@@ -306,8 +298,8 @@ export default function HomePage() {
         </div>
       </section> */}
 
-      {/* CTA Section */}
-      {/* <section className={styles.ctaSection2}>
+        {/* CTA Section */}
+        {/* <section className={styles.ctaSection2}>
         <div className={styles.sectionContainer}>
           <h2 className={styles.ctaTitle}>
             Ready to Transform Your Study Game?
@@ -333,8 +325,8 @@ export default function HomePage() {
         </div>
       </section> */}
 
-      {/* Footer */}
-      {/* <footer id="contact" className={styles.footer}>
+        {/* Footer */}
+        {/* <footer id="contact" className={styles.footer}>
         <div className={styles.footerContainer}>
           <div className={styles.footerContent}>
             <div className={styles.footerSection}>
@@ -456,10 +448,13 @@ export default function HomePage() {
         </div>
       </footer> */}
 
-      <WaitlistPopup
-        isOpen={isWaitlistPopupOpen}
-        onClose={() => setIsWaitlistPopupOpen(false)}
-      />
+        <WaitlistPopup
+          isOpen={isWaitlistPopupOpen}
+          onClose={() => setIsWaitlistPopupOpen(false)}
+        />
+
+        <DarkVeil/>
+      </div>
     </>
   );
 }
