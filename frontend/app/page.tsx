@@ -111,11 +111,11 @@ export default function HomePage() {
         <main className={styles.heroContainer}>
           <div className={styles.contentContainer}>
             <div className={styles.mainTitle}>
-            Stop guessing how you study.
+            Turn your Study Time into <span className="italic">Real Progress.</span>
             </div>
 
             <h2 className={styles.subtitle}>
-            Track your progress, visualise your habits, and <br/> get personalised insights — all powered by your own data.
+            Track your studies, visualise your habits, and <br/> get personalised insights — all powered by your own data.
             </h2>
 
             <div className={styles.ctaSection}>
