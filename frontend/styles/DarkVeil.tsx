@@ -87,7 +87,7 @@ export default function DarkVeil({
   hueShift = 0,
   noiseIntensity = 0,
   scanlineIntensity = 0,
-  speed = 0.5,
+  speed = 2,
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1
@@ -158,7 +158,7 @@ export default function DarkVeil({
         left: 0,
         width: '100vw',
         height: '100vh',
-        zIndex: -1,
+        zIndex: 0,
         pointerEvents: 'none', // don’t block clicks
       }}
     />
