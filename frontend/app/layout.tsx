@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "StudyIntel | A study intelligence platform",
+  title: "StudyIntel | Study Analytics",
   description:
     "Get the intel you need to dominate your academics. AI-driven insights, performance analytics, and strategic study optimization.",
   icons: {
