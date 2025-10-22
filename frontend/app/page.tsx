@@ -111,7 +111,7 @@ export default function HomePage() {
         <main className={styles.heroContainer}>
           <div className={styles.contentContainer}>
             <div className={styles.mainTitle}>
-            Turn Study Time into <span className="italic"> Real Results.</span>
+            Start studying with confidence.
             </div>
 
             <h2 className={styles.subtitle}>
