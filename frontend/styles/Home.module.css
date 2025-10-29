@@ -47,7 +47,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
+  z-index: 3;
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -56,7 +56,7 @@
 }
 
 .navContainer {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -85,7 +85,6 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-right: -110px;
 }
 
 .navLink {

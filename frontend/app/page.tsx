@@ -97,12 +97,12 @@ export default function HomePage() {
               >
               Sign Up
               </Link>
-              <button
+              {/* <button
                 onClick={handleWaitlistClick}
                 className={styles.joinWaitlistButton}
               >
               Join Waitlist
-              </button>
+              </button> */}
             </div>
           </div>
         </header>
@@ -130,7 +130,7 @@ export default function HomePage() {
               </button>
 
               <p className={styles.waitlistText}>
-              The smarter way to study, designed for UNSW students.
+              The smarter way to study. Designed for UNSW students.
               </p>
             </div>
           </div>
