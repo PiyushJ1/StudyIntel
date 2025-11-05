@@ -75,7 +75,9 @@ export default function DashboardPage() {
             <p>Total time spent studying</p>
             {Object.entries(timeStudied).map(([course, seconds]) => (
               <div key={course}>
-                {course}: {Math.floor(seconds / 3600)} hours, {Math.floor((seconds % 3600) / 60)} minutes, {seconds % 60} seconds
+                {course}: {Math.floor(seconds / 3600)} hours,{" "}
+                {Math.floor((seconds % 3600) / 60)} minutes, {seconds % 60}{" "}
+                seconds
               </div>
             ))}
           </h2>

@@ -32,7 +32,7 @@ export async function GET(_req: Request) {
         firstname: cachedFirstName,
         timestudied: cachedTimeStudied,
         courses: cachedCourses,
-      })
+      });
     }
 
     // cache miss (couldn't find cache for items)
@@ -70,7 +70,7 @@ export async function GET(_req: Request) {
       await redis.set(
         `user:${userId}:totalStudyTimes`,
         JSON.stringify(totalStudyTimes),
-        { ex: 100000 }
+        { ex: 100000 },
       );
       cachedTimeStudied = totalStudyTimes;
     }

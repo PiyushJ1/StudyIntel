@@ -49,7 +49,7 @@ export default function HomePage() {
           <div className={styles.navContainer}>
             <div className={styles.navLeft}>
               <Link href="/" className={styles.logo}>
-              StudyIntel
+                StudyIntel
               </Link>
             </div>
 
@@ -59,28 +59,28 @@ export default function HomePage() {
                 onClick={(e) => handleSmoothScroll(e, "features")}
                 className={styles.navLink}
               >
-              Features
+                Features
               </a>
               <a
                 href="#about"
                 onClick={(e) => handleSmoothScroll(e, "about")}
                 className={styles.navLink}
               >
-              About
+                About
               </a>
               <a
                 href="#testimonials"
                 onClick={(e) => handleSmoothScroll(e, "testimonials")}
                 className={styles.navLink}
               >
-              Reviews
+                Reviews
               </a>
               <a
                 href="#contact"
                 onClick={(e) => handleSmoothScroll(e, "contact")}
                 className={styles.navLink}
               >
-              Contact
+                Contact
               </a>
             </nav>
 
@@ -89,13 +89,13 @@ export default function HomePage() {
                 href="/signin"
                 className={`${styles.signinButton} ${styles.disabled}`}
               >
-              Sign In
+                Sign In
               </Link>
               <Link
                 href="/signup"
                 className={`${styles.signupButtonNav} ${styles.disabled}`}
               >
-              Sign Up
+                Sign Up
               </Link>
               {/* <button
                 onClick={handleWaitlistClick}
@@ -111,26 +111,27 @@ export default function HomePage() {
         <main className={styles.heroContainer}>
           <div className={styles.contentContainer}>
             <div className={styles.mainTitle}>
-            Start studying with confidence.
+              Start studying with confidence.
             </div>
 
             <h2 className={styles.subtitle}>
-            Track your progress, visualise your habits, and <br/> get personalised insights — all powered by your own data.
+              Track your progress, visualise your habits, and <br /> get
+              personalised insights — all powered by your own data.
             </h2>
 
             <div className={styles.ctaSection}>
               <Link href="/signup" className={styles.waitlistButton}>
-              Get Started
+                Get Started
               </Link>
               <button
                 onClick={handleWaitlistClick}
                 className={styles.secondaryButton}
               >
-              Join Waitlist
+                Join Waitlist
               </button>
 
               <p className={styles.waitlistText}>
-              The smarter way to study. Designed for UNSW students.
+                The smarter way to study. Designed for UNSW students.
               </p>
             </div>
           </div>
@@ -453,7 +454,7 @@ export default function HomePage() {
           onClose={() => setIsWaitlistPopupOpen(false)}
         />
 
-        <DarkVeil/>
+        <DarkVeil />
       </div>
     </>
   );

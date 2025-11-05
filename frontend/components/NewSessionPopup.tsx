@@ -31,7 +31,7 @@ export default function NewSessionPopup({
       .then((res) => res.json())
       .then((data) => {
         if (data.courses) {
-          setDisplayCourses(data.courses)
+          setDisplayCourses(data.courses);
         }
       })
       .catch((err) => {
@@ -51,7 +51,7 @@ export default function NewSessionPopup({
       alert("Please select a course");
       return;
     }
-  
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/start-session`,
@@ -59,7 +59,7 @@ export default function NewSessionPopup({
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ courseCode: trackedCourse }), 
+          body: JSON.stringify({ courseCode: trackedCourse }),
         },
       );
 
@@ -135,7 +135,7 @@ export default function NewSessionPopup({
           </div>
 
           <div className={styles.userCourses}>
-            {displayCourses.map(course => (
+            {displayCourses.map((course) => (
               <label key={course} className={styles.courseOption}>
                 <input
                   type="radio"
