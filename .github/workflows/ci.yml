@@ -1,84 +1,84 @@
-# name: CI/CD Pipeline
+name: CI/CD Pipeline
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - main
-#   workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
-# jobs:
-#   frontend:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: '22'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
-#       - name: Install frontend dependencies
-#         run: |
-#           cd frontend
-#           npm install
-#           npm install @upstash/redis   # <-- hacky fix to satisfy TS
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+          npm install @upstash/redis   # <-- hacky fix to satisfy TS
 
-#       - name: Run frontend lint
-#         run: |
-#           cd frontend
-#           npm run lint
+      - name: Run frontend lint
+        run: |
+          cd frontend
+          npm run lint
 
-#       - name: Check frontend formatting
-#         run: |
-#           cd frontend
-#           npx prettier --check "**/*.ts"
+      - name: Check frontend formatting
+        run: |
+          cd frontend
+          npx prettier --check "**/*.ts"
 
-#       - name: Type check frontend
-#         run: |
-#           cd frontend
-#           npx tsc --noEmit
+      - name: Type check frontend
+        run: |
+          cd frontend
+          npx tsc --noEmit
 
-#       - name: Security audit frontend
-#         run: |
-#           cd frontend
-#           npm audit --audit-level=moderate
+      - name: Security audit frontend
+        run: |
+          cd frontend
+          npm audit --audit-level=moderate
 
-#   backend:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: '22'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
-#       - name: Install backend dependencies
-#         run: |
-#           cd backend
-#           npm install
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
 
-#       - name: Run backend lint
-#         run: |
-#           cd backend
-#           npm run lint
+      - name: Run backend lint
+        run: |
+          cd backend
+          npm run lint
 
-#       - name: Check backend formatting
-#         run: |
-#           cd backend
-#           npx prettier --check "**/*.ts"
+      - name: Check backend formatting
+        run: |
+          cd backend
+          npx prettier --check "**/*.ts"
 
-#       - name: Type check backend
-#         run: |
-#           cd backend
-#           npx tsc --noEmit
+      - name: Type check backend
+        run: |
+          cd backend
+          npx tsc --noEmit
 
-#       - name: Security audit backend
-#         run: |
-#           cd backend
-#           npm audit --audit-level=high
+      - name: Security audit backend
+        run: |
+          cd backend
+          npm audit --audit-level=high
