@@ -25,6 +25,7 @@ jobs:
         run: |
           cd frontend
           npm install
+          npm install @upstash/redis   # <-- hacky fix to satisfy TS
 
       - name: Run frontend lint
         run: |
