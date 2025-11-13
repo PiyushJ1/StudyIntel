@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
+import redis from "../lib/redis";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -27,6 +28,23 @@ router.get("/:userId", async (req: Request, res: Response) => {
       return res.status(403).json({ error: "Forbidden action" });
     }
 
+    let cachedFirstName = await redis.get(`user:${userId}:firstname`);
+    let cachedCourses = await redis.get(`user:${userId}:courses`);
+    let cachedTimeStudied = await redis.get(`user:${userId}:totalStudyTimes`);
+
+    // short circuit code to return cached fields (cache hit)
+    if (cachedFirstName && cachedCourses && cachedTimeStudied) {
+      return res.status(200).json({
+        user: {
+          id: userId,
+          firstname: cachedFirstName,
+          courses: cachedCourses,
+        },
+        timestudied: cachedTimeStudied,
+      });
+    }
+
+    // couldn't find cache for items (cache miss)
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -61,6 +79,26 @@ router.get("/:userId", async (req: Request, res: Response) => {
         // add duration for current course
         totalStudyTimes[session.courseCode] += session.duration;
       }
+    }
+
+    // cache the fields if they haven't been already
+    if (!cachedFirstName && user.firstname) {
+      await redis.set(`user:${userId}:firstname`, user.firstname, {
+        ex: 1000000,
+      }); // cached for ~11.5 days
+      cachedFirstName = user.firstname;
+    }
+    if (!cachedTimeStudied && totalStudyTimes) {
+      await redis.set(
+        `user:${userId}:totalStudyTimes`,
+        JSON.stringify(totalStudyTimes),
+        { ex: 100000 },
+      );
+      cachedTimeStudied = totalStudyTimes;
+    }
+    if (!cachedCourses && user.courses) {
+      await redis.set(`user:${userId}:courses`, user.courses, { ex: 100000 });
+      cachedCourses = user.courses;
     }
 
     return res.status(200).json({
