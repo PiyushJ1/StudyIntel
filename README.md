@@ -1,6 +1,13 @@
 # StudyIntel
 
-Description Coming Soon.
+### [Live Website](https://studyintel.app)
+
+**A study analytics platform for UNSW students to track their studies, visualise progress, and receive AI-powered feedback.**
+
+More information coming soon. 
+
+
+
 
 <!--
 **StudyIntel** is a study intelligence platform I’m building solo as a 2nd-year university student. It helps students stop wasting time and start studying smarter. By tracking study habits and visualising progress, it reveals what’s working and what’s not, so users can stay focused, improve consistently, and reach their academic goals. The platform provides AI-powered insights and interactive data visualisation, acting as a personal academic coach.
