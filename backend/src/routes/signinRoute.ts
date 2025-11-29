@@ -47,15 +47,6 @@ router.post("/", async (req: Request, res: Response) => {
       .status(200)
       .json({ message: "Sign in was successful", firstName: user.firstName });
   } catch (error) {
-    // // set failed attempt expiry
-    // const TTL = await redis.ttl(`loginAttempts:${email}`);
-    // if (TTL === 1) {
-    //   await redis.expire(`loginAttempts:${email}`, 15 * 60); // 15 min expiry
-    // }
-
-    // // increase failed attempt count
-    // await redis.incr(`loginAttempts:${email}`);
-
     const attempts = await redis.incr(`loginAttempts:${email}`);
     if (attempts >= 1) {
       await redis.expire(`loginAttempts:${email}`, 15 * 60); // 15 min expiry
