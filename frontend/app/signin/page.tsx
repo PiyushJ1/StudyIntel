@@ -41,6 +41,9 @@ export default function SigninPage() {
         },
       );
 
+      const data = await response.json();
+      localStorage.setItem("firstName", data.firstName);
+
       if (!response.ok) {
         const errorData = await response.json();
         alert(`Submission failed: ${errorData.message || response.statusText}`);

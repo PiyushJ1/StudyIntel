@@ -30,7 +30,9 @@ router.post("/", async (req: Request, res: Response) => {
       ...(isProd && { domain: ".studyintel.app" }), // only set in production
     });
 
-    return res.status(200).json({ message: "Sign in was successful" });
+    return res
+      .status(200)
+      .json({ message: "Sign in was successful", firstName: user.firstName });
   } catch (error) {
     if (
       error instanceof UserNotFoundError ||
