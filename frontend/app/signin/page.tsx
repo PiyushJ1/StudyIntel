@@ -42,11 +42,18 @@ export default function SigninPage() {
       );
 
       const data = await response.json();
+
+      // rate limit hit alert
+      if (response.status === 429) {
+        alert(data.message);
+        setIsSubmitting(false);
+        return;
+      }
+
       localStorage.setItem("firstName", data.firstName);
 
       if (!response.ok) {
-        const errorData = await response.json();
-        alert(`Submission failed: ${errorData.message || response.statusText}`);
+        alert(`Submission failed: ${data.message || response.statusText}`);
         setIsSubmitting(false);
         return;
       }
