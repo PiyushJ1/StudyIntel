@@ -10,16 +10,17 @@ export default function DashboardPage() {
   const [timeStudied, setTimeStudied] = useState<Record<string, number>>({});
 
   useEffect(() => {
+    const name = localStorage.getItem("firstName");
+    if (name) {
+      setFirstName(name);
+      setLoading(false);
+    }
+
     fetch("/api/me", {
       credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
-        // get user's first name to display welcome message
-        if (data.firstname) {
-          setFirstName(data.firstname);
-        }
-        setLoading(false);
 
         // get user's lifetime study time
         if (data.timestudied) {
