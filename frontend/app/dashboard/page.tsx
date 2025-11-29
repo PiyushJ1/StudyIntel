@@ -21,7 +21,6 @@ export default function DashboardPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-
         // get user's lifetime study time
         if (data.timestudied) {
           setTimeStudied(data.timestudied);
