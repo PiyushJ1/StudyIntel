@@ -5,17 +5,11 @@ import DecryptedText from "../../components/DecryptedText";
 import { useState, useEffect } from "react";
 
 export default function DashboardPage() {
-  const [firstName, setFirstName] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [firstName, setFirstName] = useState(() => localStorage.getItem("firstName") || "")
+  const [loading, setLoading] = useState(() => !localStorage.getItem("firstName"));
   const [timeStudied, setTimeStudied] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    const name = localStorage.getItem("firstName");
-    if (name) {
-      setFirstName(name);
-      setLoading(false);
-    }
-
     fetch("/api/me", {
       credentials: "include",
     })
@@ -25,6 +19,7 @@ export default function DashboardPage() {
         if (data.timestudied) {
           setTimeStudied(data.timestudied);
         }
+        // setLoading(false);
       })
       .catch((err) => {
         console.error("Failed to fetch user data:", err);
