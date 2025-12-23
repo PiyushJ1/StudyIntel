@@ -177,31 +177,182 @@
   color: var(--primary-blue);
 }
 
-.progressSection {
-  margin-bottom: 1rem;
-  animation: delayFadeIn 1s cubic-bezier(0.25, 0.1, 0.25, 1);
-  animation-delay: 2s;
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  animation: delayFadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation-delay: 0.3s;
   animation-fill-mode: both;
   opacity: 0;
+}
+
+.statCard {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.9));
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.statCard:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+}
+
+.statCard:hover::before {
+  opacity: 1;
+}
+
+.statIcon {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Charts Grid */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  animation: delayFadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+.chartCard {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.6), rgba(17, 24, 39, 0.8));
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  min-height: 320px;
+}
+
+.chartTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.emptyChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.emptyChartSub {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* Highlight Card */
+.highlightCard {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  animation: delayFadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation-delay: 0.7s;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+.highlightIcon {
+  font-size: 2.5rem;
+}
+
+.highlightContent {
+  flex: 1;
+}
+
+.highlightTitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.highlightValue {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: "Poppins", sans-serif;
+}
+
+.highlightDate {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
 }
 
 @keyframes delayFadeIn {
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
-}
-
-.progressText {
-  font-style: italic;
 }
 
 /* Responsive design */
 @media (max-width: 1024px) {
   .dashboardContent {
     padding: 1.5rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chartsGrid {
+    grid-template-columns: 1fr;
   }
 
   .contentWrapper {
@@ -216,6 +367,27 @@
 @media (max-width: 768px) {
   .dashboardContent {
     padding: 1rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .statCard {
+    padding: 1rem;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+  }
+
+  .statLabel {
+    font-size: 0.75rem;
+  }
+
+  .chartsGrid {
+    grid-template-columns: 1fr;
   }
 
   .contentWrapper {
@@ -234,5 +406,17 @@
 
   .welcomeMessage {
     font-size: 2rem;
+  }
+
+  .highlightCard {
+    padding: 1rem;
+  }
+
+  .highlightIcon {
+    font-size: 2rem;
+  }
+
+  .highlightValue {
+    font-size: 1rem;
   }
 }
