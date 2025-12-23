@@ -39,17 +39,16 @@ export async function GET() {
       );
     }
 
-    // manually set fields from response
     const data = await res.json();
-    const firstName = data.user.firstname;
-    const totalStudyTimes = data.timestudied;
-    const courses = data.user.courses;
 
     return NextResponse.json({
       userId,
-      firstname: firstName,
-      timestudied: totalStudyTimes,
-      courses: courses,
+      firstname: data.user.firstname,
+      lastname: data.user.lastname,
+      email: data.user.email,
+      courses: data.user.courses,
+      createdAt: data.user.createdAt,
+      stats: data.stats,
     });
   } catch (err) {
     console.error("Err in fetching user info: ", err);

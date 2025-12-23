@@ -1,10 +1,75 @@
 import { Router, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
-import redis from "../lib/redis";
+// import redis from "../lib/redis";
 
 const router = Router();
 const prisma = new PrismaClient();
+
+// Helper function to calculate study streak
+function calculateStreak(sessionDates: Date[]): number {
+  if (sessionDates.length === 0) return 0;
+
+  // Get unique dates (as date strings to ignore time)
+  const uniqueDates = [
+    ...new Set(
+      sessionDates.map((d) => new Date(d).toISOString().split("T")[0]),
+    ),
+  ].sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
+
+  const today = new Date().toISOString().split("T")[0];
+  const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
+
+  // Check if most recent session is today or yesterday
+  if (uniqueDates[0] !== today && uniqueDates[0] !== yesterday) {
+    return 0; // Streak broken
+  }
+
+  let streak = 1;
+  for (let i = 1; i < uniqueDates.length; i++) {
+    const prevDate = new Date(uniqueDates[i - 1]);
+    const currDate = new Date(uniqueDates[i]);
+    const diffDays = Math.floor(
+      (prevDate.getTime() - currDate.getTime()) / 86400000,
+    );
+
+    if (diffDays === 1) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+
+  return streak;
+}
+
+// Helper function to get weekly activity (hours per day for last 7 days)
+function getWeeklyActivity(
+  sessions: { startTime: Date; duration: number | null }[],
+): Record<string, number> {
+  const weeklyData: Record<string, number> = {};
+  const today = new Date();
+
+  // Initialize last 7 days with 0
+  for (let i = 6; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    const dateStr = date.toISOString().split("T")[0];
+    weeklyData[dateStr] = 0;
+  }
+
+  // Sum up durations per day
+  for (const session of sessions) {
+    if (session.duration) {
+      const dateStr = new Date(session.startTime).toISOString().split("T")[0];
+      if (weeklyData.hasOwnProperty(dateStr)) {
+        weeklyData[dateStr] += session.duration;
+      }
+    }
+  }
+
+  return weeklyData;
+}
 
 router.get("/:userId", async (req: Request, res: Response) => {
   const { userId } = req.params;
@@ -28,29 +93,16 @@ router.get("/:userId", async (req: Request, res: Response) => {
       return res.status(403).json({ error: "Forbidden action" });
     }
 
-    let cachedFirstName = await redis.get(`user:${userId}:firstname`);
-    let cachedCourses = await redis.get(`user:${userId}:courses`);
-    let cachedTimeStudied = await redis.get(`user:${userId}:totalStudyTimes`);
-
-    // short circuit code to return cached fields (cache hit)
-    if (cachedFirstName && cachedCourses && cachedTimeStudied) {
-      return res.status(200).json({
-        user: {
-          id: userId,
-          firstname: cachedFirstName,
-          courses: cachedCourses,
-        },
-        timestudied: cachedTimeStudied,
-      });
-    }
-
     // couldn't find cache for items (cache miss)
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
         id: true,
         firstname: true,
+        lastname: true,
+        email: true,
         courses: true,
+        createdAt: true,
       },
     });
 
@@ -62,48 +114,70 @@ router.get("/:userId", async (req: Request, res: Response) => {
     const sessions = await prisma.studySession.findMany({
       where: { userId },
       select: {
+        id: true,
         courseCode: true,
         duration: true,
+        startTime: true,
+        endTime: true,
+      },
+      orderBy: {
+        startTime: "desc",
       },
     });
 
-    // add all of the sessions and group them by course
+    // Calculate stats
     const totalStudyTimes: Record<string, number> = {};
+    let totalSeconds = 0;
+    let sessionCount = 0;
+    const sessionDates: Date[] = [];
+
     for (const session of sessions) {
-      // check if duration is not null
       if (session.duration) {
-        // init total duration for current course to 0 if it doesn't exist
+        // Total per course
         if (!totalStudyTimes[session.courseCode]) {
           totalStudyTimes[session.courseCode] = 0;
         }
-        // add duration for current course
         totalStudyTimes[session.courseCode] += session.duration;
+
+        // Overall totals
+        totalSeconds += session.duration;
+        sessionCount++;
+        sessionDates.push(session.startTime);
       }
     }
 
-    // cache the fields if they haven't been already
-    if (!cachedFirstName && user.firstname) {
-      await redis.set(`user:${userId}:firstname`, user.firstname, {
-        ex: 1000000,
-      }); // cached for ~11.5 days
-      cachedFirstName = user.firstname;
-    }
-    if (!cachedTimeStudied && totalStudyTimes) {
-      await redis.set(
-        `user:${userId}:totalStudyTimes`,
-        JSON.stringify(totalStudyTimes),
-        { ex: 100000 },
-      );
-      cachedTimeStudied = totalStudyTimes;
-    }
-    if (!cachedCourses && user.courses) {
-      await redis.set(`user:${userId}:courses`, user.courses, { ex: 100000 });
-      cachedCourses = user.courses;
-    }
+    // Calculate derived stats
+    const averageSessionSeconds =
+      sessionCount > 0 ? Math.round(totalSeconds / sessionCount) : 0;
+    const streak = calculateStreak(sessionDates);
+    const weeklyActivity = getWeeklyActivity(sessions);
+
+    // Find longest session
+    const longestSession = sessions.reduce(
+      (max, session) => {
+        if (session.duration && session.duration > (max.duration || 0)) {
+          return {
+            duration: session.duration,
+            date: session.startTime,
+            course: session.courseCode,
+          };
+        }
+        return max;
+      },
+      { duration: 0, date: null as Date | null, course: "" },
+    );
 
     return res.status(200).json({
       user,
-      totalStudyTimes,
+      stats: {
+        totalSeconds,
+        sessionCount,
+        averageSessionSeconds,
+        streak,
+        totalStudyTimes,
+        weeklyActivity,
+        longestSession,
+      },
     });
   } catch (err) {
     console.log("Error fetch user info: ", err);
