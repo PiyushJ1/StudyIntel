@@ -44,7 +44,11 @@
 
 /* Profile Card */
 .profileCard {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.6), rgba(17, 24, 39, 0.8));
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
   border: 1px solid var(--card-border);
   border-radius: 1rem;
   padding: 2rem;
@@ -114,7 +118,11 @@
 
 /* Section Cards */
 .sectionCard {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.6), rgba(17, 24, 39, 0.8));
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
   border: 1px solid var(--card-border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -230,4 +238,3 @@
     font-size: 1.25rem;
   }
 }
-

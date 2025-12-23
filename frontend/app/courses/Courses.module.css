@@ -4,17 +4,13 @@
   background: var(--dark-bg);
   color: var(--text-primary);
   font-family: "Inter", sans-serif;
-  margin-bottom: -5rem;
-
-  animation: fadeIn 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-  opacity: 0;
-  animation-fill-mode: forwards;
+  animation: fadeIn 0.6s ease-out;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(17px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -23,106 +19,242 @@
 }
 
 .coursesContent {
-  max-width: 1400px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.addCoursesSection {
-  margin-top: -2rem;
-  margin-bottom: -0.5rem;
+/* Page Header */
+.pageHeader {
+  margin-bottom: 2rem;
 }
 
-.addCoursesMessage {
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: 550;
-  color: white;
-  margin: 0;
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
   font-family: "Poppins", sans-serif;
-  letter-spacing: -0.02em;
 }
 
-.form {
-  padding: 1rem 0 1rem 0;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
+.pageSubtitle {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 1rem;
 }
 
-.inputGroup {
+/* Course Cards Section */
+.courseCardsSection {
+  margin-bottom: 2rem;
+}
+
+.courseCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
-.input {
-  flex: 1;
-  width: 100%;
-  min-width: 180px;
-  padding: 1rem 1rem;
-  background: rgba(var(--foreground-rgb), 0.04);
-  border: 1.5px solid rgba(var(--foreground-rgb), 0.1);
-  border-radius: 0.75rem;
-  color: var(--foreground);
-  font-size: 1rem;
-  font-family:
-    "Inter",
-    "SF Pro Text",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
+.courseCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-top: 3px solid;
+  border-radius: 1rem;
+  padding: 1.5rem;
   transition: all 0.3s ease;
-  box-sizing: border-box;
 }
 
-.topicInput {
-  flex: 1;
+.courseCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.courseCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.courseCode {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.coursePercentBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.courseStatsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.courseStat {
+  text-align: center;
+}
+
+.courseStatValue {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: "Poppins", sans-serif;
+}
+
+.courseStatLabel {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+.courseProgressBar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.courseProgressFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Balance Card */
+.balanceCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.balanceTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.balanceBarContainer {
+  display: flex;
+  height: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 1rem;
+}
+
+.balanceSegment {
+  height: 100%;
+  transition: width 0.5s ease;
+  min-width: 2px;
+}
+
+.balanceLegend {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legendText {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.balanceEmpty {
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+}
+
+/* Add Courses Card */
+.addCoursesCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.addCoursesTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.input {
   width: 100%;
-  min-width: 180px;
-  padding: 1rem 1rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  background: rgba(var(--foreground-rgb), 0.04);
-  border: 1.5px solid rgba(var(--foreground-rgb), 0.1);
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
   border-radius: 0.75rem;
-  color: var(--foreground);
+  color: var(--text-primary);
   font-size: 1rem;
-  font-family:
-    "Inter",
-    "SF Pro Text",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
+  font-family: "Inter", sans-serif;
   transition: all 0.3s ease;
-  box-sizing: border-box;
 }
 
 .input:focus {
   outline: none;
-  border-color: #3b82f6;
-  background: rgba(var(--foreground-rgb), 0.06);
-  box-shadow:
-    0 0 0 3px rgba(59, 130, 246, 0.1),
-    0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  transform: translateY(-1px);
+  border-color: var(--primary-blue);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .input::placeholder {
-  color: var(--foreground);
-  opacity: 0.5;
+  color: var(--text-muted);
 }
 
-.submitCoursesButton {
-  flex-shrink: 0;
-  width: auto;
-  min-width: 140px;
-  padding: 1rem 2rem;
-  background: linear-gradient(to right, #3b82f6, #9333ea);
+.submitButton {
+  padding: 0.875rem 1.5rem;
+  background: var(--gradient-primary);
   color: white;
   border: none;
   border-radius: 0.75rem;
@@ -130,36 +262,252 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family:
-    "Inter",
-    "SF Pro Display",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
-  letter-spacing: -0.01em;
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.15),
-    0 0 30px rgba(59, 130, 246, 0.2);
+  width: fit-content;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Topics Section */
+.topicsSection {
+  margin-top: 2rem;
+}
+
+.topicsHeader {
   margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 30px;
 }
 
-.displayCourses {
-  margin-top: -2rem;
-}
-
-.coursesLabel {
+.topicsTitle {
+  font-size: 1.25rem;
   font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  font-family: "Poppins", sans-serif;
 }
 
-.userCoursesContainer {
-  min-height: calc(100vh - 80px);
-  animation: fadeIn 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-  opacity: 0;
-  animation-fill-mode: forwards;
+.topicsSubtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.topicsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+
+.topicsCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-top: 3px solid;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.topicsCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.topicsCardTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.topicsCardActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.fetchButton {
+  padding: 0.5rem 1rem;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #a78bfa;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fetchButton:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.25);
+}
+
+.fetchButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refetchButton {
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  color: var(--text-muted);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.refetchButton:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.refetchButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.saveButton {
+  padding: 0.5rem 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.saveButtonActive {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.saveButtonActive:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.3);
+}
+
+.topicsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.topicItem {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.weekLabel {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  min-width: 50px;
+}
+
+.topicInput {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s ease;
+}
+
+.topicInput:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.topicsCardEmpty {
+  padding: 2rem;
+  text-align: center;
+}
+
+.topicsCardEmpty p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .coursesContent {
+    padding: 1rem;
+  }
+
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .courseCardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .courseStatsRow {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .courseStatValue {
+    font-size: 1rem;
+  }
+
+  .topicsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .topicsCardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .topicsCardActions {
+    width: 100%;
+  }
+
+  .fetchButton,
+  .saveButton {
+    flex: 1;
+  }
+
+  .topicItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .topicInput {
+    width: 100%;
+  }
+
+  .balanceLegend {
+    gap: 1rem;
+  }
 }
