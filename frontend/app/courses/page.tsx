@@ -1,25 +1,53 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styles from "./Courses.module.css";
+
+interface CourseStats {
+  totalStudyTimes: Record<string, number>;
+  sessionCount: number;
+}
+
+type TopicsMap = Record<string, Record<string, string>>;
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState<string[]>(["", "", ""]);
   const [displayCourses, setDisplayCourses] = useState<string[]>([]);
-  const [_submittedCourses, _setSubmittedCourses] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userId, setUserId] = useState<string>("");
-  const [scrapedCourseOneTopics, setScrapedCourseOneTopics] = useState<
-    Record<string, string>
-  >({});
-  const [scrapedCourseTwoTopics, setScrapedCourseTwoTopics] = useState<
-    Record<string, string>
-  >({});
-  const [scrapedCourseThreeTopics, setScrapedCourseThreeTopics] = useState<
-    Record<string, string>
+  const [courseStats, setCourseStats] = useState<CourseStats | null>(null);
+
+  // Topics state
+  const [savedTopics, setSavedTopics] = useState<TopicsMap>({});
+  const [editableTopics, setEditableTopics] = useState<TopicsMap>({});
+  const [loadingTopics, setLoadingTopics] = useState(false);
+  const [savingTopics, setSavingTopics] = useState<string | null>(null);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState<
+    Record<string, boolean>
   >({});
 
-  const fetchUserData = () => {
+  // Fetch saved topics from database
+  const fetchSavedTopics = useCallback(async () => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/course-topics`,
+        {
+          credentials: "include",
+        },
+      );
+      if (res.ok) {
+        const data = await res.json();
+        if (data.topics) {
+          setSavedTopics(data.topics);
+          setEditableTopics(data.topics);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to fetch saved topics:", err);
+    }
+  }, []);
+
+  const fetchUserData = useCallback(() => {
     fetch("/api/me", {
       credentials: "include",
     })
@@ -31,26 +59,32 @@ export default function CoursesPage() {
         if (data.courses) {
           setDisplayCourses(data.courses);
         }
+        if (data.stats) {
+          setCourseStats({
+            totalStudyTimes: data.stats.totalStudyTimes || {},
+            sessionCount: data.stats.sessionCount || 0,
+          });
+        }
       })
       .catch((err) => {
         console.error("Failed to fetch user data:", err);
       });
-  };
+  }, []);
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+    fetchSavedTopics();
+  }, [fetchUserData, fetchSavedTopics]);
 
   const handleCourseChange = (index: number, value: string) => {
     const newCourses = [...courses];
-    newCourses[index] = value.toUpperCase(); // convert course codes to uppercase
+    newCourses[index] = value.toUpperCase();
     setCourses(newCourses);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // remove elements from array
     const validCourses = courses.filter((course) => course.trim() !== "");
 
     if (validCourses.length < 2) {
@@ -81,196 +115,410 @@ export default function CoursesPage() {
 
       setCourses(["", "", ""]);
       setDisplayCourses(validCourses);
+      fetchUserData();
     } catch (err) {
       console.log("Error: ", err);
       alert("Error adding courses");
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Fetch topics from AI for a specific course
+  const handleFetchTopicsForCourse = async (courseCode: string) => {
+    setLoadingTopics(true);
 
     try {
-      // fetch topics for course 1
-      const res1 = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[0]}`,
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${courseCode}`,
         {
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ courseCode: validCourses[0] }),
+          body: JSON.stringify({ courseCode }),
         },
       );
 
-      const topics1 = await res1.json();
-      setScrapedCourseOneTopics(Object.assign({}, topics1.topics));
-
-      // fetch topics for course 2
-      const res2 = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[1]}`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ courseCode: validCourses[1] }),
-        },
-      );
-
-      const topics2 = await res2.json();
-      setScrapedCourseTwoTopics(Object.assign({}, topics2.topics));
-
-      // fetch topics for course 3
-      const res3 = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/scrape-course/${validCourses[2]}`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ courseCode: validCourses[2] }),
-        },
-      );
-
-      const topics3 = await res3.json();
-      setScrapedCourseThreeTopics(Object.assign({}, topics3.topics));
-
-      if (!res1.ok || !res2.ok || !res3.ok) {
-        console.error("Scraping API failed");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.topics) {
+          setEditableTopics((prev) => ({
+            ...prev,
+            [courseCode]: data.topics,
+          }));
+          setHasUnsavedChanges((prev) => ({
+            ...prev,
+            [courseCode]: true,
+          }));
+        }
       }
     } catch (err) {
-      console.error("Error scraping courses", err);
+      console.error("Error fetching topics:", err);
+    } finally {
+      setLoadingTopics(false);
     }
   };
 
+  // Handle topic text change
+  const handleTopicChange = (
+    courseCode: string,
+    weekKey: string,
+    value: string,
+  ) => {
+    setEditableTopics((prev) => ({
+      ...prev,
+      [courseCode]: {
+        ...prev[courseCode],
+        [weekKey]: value,
+      },
+    }));
+    setHasUnsavedChanges((prev) => ({
+      ...prev,
+      [courseCode]: true,
+    }));
+  };
+
+  // Save topics to database
+  const handleSaveTopics = async (courseCode: string) => {
+    setSavingTopics(courseCode);
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/course-topics`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            courseCode,
+            topics: editableTopics[courseCode],
+          }),
+        },
+      );
+
+      if (res.ok) {
+        setSavedTopics((prev) => ({
+          ...prev,
+          [courseCode]: editableTopics[courseCode],
+        }));
+        setHasUnsavedChanges((prev) => ({
+          ...prev,
+          [courseCode]: false,
+        }));
+      } else {
+        alert("Failed to save topics");
+      }
+    } catch (err) {
+      console.error("Error saving topics:", err);
+      alert("Error saving topics");
+    } finally {
+      setSavingTopics(null);
+    }
+  };
+
+  // Helper functions
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    if (hours > 0) {
+      return `${hours}h ${mins}m`;
+    }
+    return `${mins}m`;
+  };
+
+  const toHours = (seconds: number) => {
+    return Math.round((seconds / 3600) * 10) / 10;
+  };
+
+  const totalStudyTime = courseStats
+    ? Object.values(courseStats.totalStudyTimes).reduce((a, b) => a + b, 0)
+    : 0;
+
+  const getCoursePercentage = (courseCode: string) => {
+    if (!courseStats || totalStudyTime === 0) return 0;
+    const courseTime = courseStats.totalStudyTimes[courseCode] || 0;
+    return Math.round((courseTime / totalStudyTime) * 100);
+  };
+
+  const getCourseSessionEstimate = (courseCode: string) => {
+    if (!courseStats || totalStudyTime === 0) return 0;
+    const courseTime = courseStats.totalStudyTimes[courseCode] || 0;
+    const proportion = courseTime / totalStudyTime;
+    return Math.round(courseStats.sessionCount * proportion);
+  };
+
+  const courseColors = ["#3b82f6", "#8b5cf6", "#10b981", "#f59e0b"];
+
   return (
-    <>
-      <main className={styles.coursesContainer}>
-        <div className={styles.coursesContent}>
-          <div className={styles.addCoursesSection}>
-            <h1 className={styles.addCoursesMessage}>Add Your Courses</h1>
-            <div className={styles.inputGroup}>
-              <form onSubmit={handleSubmit} className={styles.form}>
-                <input
-                  type="text"
-                  id="course1"
-                  name="course1"
-                  value={courses[0]}
-                  onChange={(e) => handleCourseChange(0, e.target.value)}
-                  placeholder="Course code e.g. COMPXXX"
-                  className={styles.input}
-                />
-                <input
-                  type="text"
-                  id="course2"
-                  name="course2"
-                  value={courses[1]}
-                  onChange={(e) => handleCourseChange(1, e.target.value)}
-                  placeholder="Course code e.g. COMMXXXX"
-                  className={styles.input}
-                />
-                <input
-                  type="text"
-                  id="course3"
-                  name="course3"
-                  value={courses[2]}
-                  onChange={(e) => handleCourseChange(2, e.target.value)}
-                  placeholder="Course code e.g. MATHXXXX (Optional)"
-                  className={styles.input}
-                />
-                <button
-                  type="submit"
-                  className={styles.submitCoursesButton}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Loading..." : "Add Courses"}
-                </button>
-              </form>
+    <main className={styles.coursesContainer}>
+      <div className={styles.coursesContent}>
+        {/* Header */}
+        <div className={styles.pageHeader}>
+          <h1 className={styles.pageTitle}>📚 My Courses</h1>
+          <p className={styles.pageSubtitle}>
+            Manage your courses and track progress for each subject
+          </p>
+        </div>
+
+        {/* Course Cards */}
+        {displayCourses.length > 0 && (
+          <div className={styles.courseCardsSection}>
+            <div className={styles.courseCardsGrid}>
+              {displayCourses.map((course, index) => {
+                const courseTime = courseStats?.totalStudyTimes[course] || 0;
+                const percentage = getCoursePercentage(course);
+                const sessions = getCourseSessionEstimate(course);
+                const color = courseColors[index % courseColors.length];
+
+                return (
+                  <div
+                    key={course}
+                    className={styles.courseCard}
+                    style={{ borderTopColor: color }}
+                  >
+                    <div className={styles.courseCardHeader}>
+                      <h3 className={styles.courseCode}>{course}</h3>
+                      <span
+                        className={styles.coursePercentBadge}
+                        style={{ backgroundColor: `${color}20`, color }}
+                      >
+                        {percentage}%
+                      </span>
+                    </div>
+
+                    <div className={styles.courseStatsRow}>
+                      <div className={styles.courseStat}>
+                        <span className={styles.courseStatValue}>
+                          {toHours(courseTime)}h
+                        </span>
+                        <span className={styles.courseStatLabel}>
+                          Total Time
+                        </span>
+                      </div>
+                      <div className={styles.courseStat}>
+                        <span className={styles.courseStatValue}>
+                          {sessions}
+                        </span>
+                        <span className={styles.courseStatLabel}>Sessions</span>
+                      </div>
+                      <div className={styles.courseStat}>
+                        <span className={styles.courseStatValue}>
+                          {sessions > 0
+                            ? formatTime(Math.round(courseTime / sessions))
+                            : "—"}
+                        </span>
+                        <span className={styles.courseStatLabel}>Avg</span>
+                      </div>
+                    </div>
+
+                    <div className={styles.courseProgressBar}>
+                      <div
+                        className={styles.courseProgressFill}
+                        style={{
+                          width: `${percentage}%`,
+                          backgroundColor: color,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
-            <div className={styles.displayCourses}>
-              <h2 className={styles.coursesLabel}>Your Courses:</h2>
-              <div className={styles.userCourses}>
-                <span>
-                  {displayCourses.length > 0
-                    ? displayCourses.join(", ")
-                    : "No courses added yet"}
-                </span>
+            {/* Overall Balance Card */}
+            <div className={styles.balanceCard}>
+              <h3 className={styles.balanceTitle}>📊 Study Balance</h3>
+              <div className={styles.balanceBarContainer}>
+                {displayCourses.map((course, index) => {
+                  const percentage = getCoursePercentage(course);
+                  const color = courseColors[index % courseColors.length];
+                  if (percentage === 0) return null;
+                  return (
+                    <div
+                      key={course}
+                      className={styles.balanceSegment}
+                      style={{
+                        width: `${percentage}%`,
+                        backgroundColor: color,
+                      }}
+                      title={`${course}: ${percentage}%`}
+                    />
+                  );
+                })}
+              </div>
+              <div className={styles.balanceLegend}>
+                {displayCourses.map((course, index) => {
+                  const color = courseColors[index % courseColors.length];
+                  return (
+                    <div key={course} className={styles.legendItem}>
+                      <span
+                        className={styles.legendDot}
+                        style={{ backgroundColor: color }}
+                      />
+                      <span className={styles.legendText}>{course}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              {totalStudyTime === 0 && (
+                <p className={styles.balanceEmpty}>
+                  Start studying to see your time distribution!
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Add Courses Form */}
+        <div className={styles.addCoursesCard}>
+          <h2 className={styles.addCoursesTitle}>
+            {displayCourses.length > 0 ? "Update Courses" : "Add Your Courses"}
+          </h2>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.inputsRow}>
+              <input
+                type="text"
+                value={courses[0]}
+                onChange={(e) => handleCourseChange(0, e.target.value)}
+                placeholder="e.g. COMP2521"
+                className={styles.input}
+              />
+              <input
+                type="text"
+                value={courses[1]}
+                onChange={(e) => handleCourseChange(1, e.target.value)}
+                placeholder="e.g. MATH1131"
+                className={styles.input}
+              />
+              <input
+                type="text"
+                value={courses[2]}
+                onChange={(e) => handleCourseChange(2, e.target.value)}
+                placeholder="e.g. COMP1531 (Optional)"
+                className={styles.input}
+              />
+            </div>
+            <button
+              type="submit"
+              className={styles.submitButton}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Saving..." : "Save Courses"}
+            </button>
+          </form>
+        </div>
+
+        {/* Course Topics Section */}
+        {displayCourses.length > 0 && (
+          <div className={styles.topicsSection}>
+            <div className={styles.topicsHeader}>
+              <div>
+                <h2 className={styles.topicsTitle}>📖 Weekly Topics</h2>
+                <p className={styles.topicsSubtitle}>
+                  Fetch AI-generated outlines, edit as needed, and save to your
+                  account
+                </p>
               </div>
             </div>
+
+            <div className={styles.topicsGrid}>
+              {displayCourses.map((course, index) => {
+                const topics = editableTopics[course] || {};
+                const hasSaved = !!savedTopics[course];
+                const hasTopics = Object.keys(topics).length > 0;
+                const color = courseColors[index % courseColors.length];
+                const isUnsaved = hasUnsavedChanges[course];
+
+                return (
+                  <div
+                    key={course}
+                    className={styles.topicsCard}
+                    style={{ borderTopColor: color }}
+                  >
+                    <div className={styles.topicsCardHeader}>
+                      <h3 className={styles.topicsCardTitle}>{course}</h3>
+                      <div className={styles.topicsCardActions}>
+                        {!hasTopics && (
+                          <button
+                            onClick={() => handleFetchTopicsForCourse(course)}
+                            className={styles.fetchButton}
+                            disabled={loadingTopics}
+                          >
+                            {loadingTopics ? "..." : "Fetch"}
+                          </button>
+                        )}
+                        {hasTopics && (
+                          <>
+                            <button
+                              onClick={() => handleFetchTopicsForCourse(course)}
+                              className={styles.refetchButton}
+                              disabled={loadingTopics}
+                              title="Re-fetch from AI"
+                            >
+                              ↻
+                            </button>
+                            <button
+                              onClick={() => handleSaveTopics(course)}
+                              className={`${styles.saveButton} ${isUnsaved ? styles.saveButtonActive : ""}`}
+                              disabled={savingTopics === course || !isUnsaved}
+                            >
+                              {savingTopics === course
+                                ? "Saving..."
+                                : isUnsaved
+                                  ? "Save"
+                                  : "Saved ✓"}
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    {hasTopics ? (
+                      <ul className={styles.topicsList}>
+                        {Object.entries(topics)
+                          .sort((a, b) => {
+                            const numA = parseInt(
+                              a[0].match(/\d+/)?.[0] || "0",
+                            );
+                            const numB = parseInt(
+                              b[0].match(/\d+/)?.[0] || "0",
+                            );
+                            return numA - numB;
+                          })
+                          .map(([week, topic]) => (
+                            <li key={week} className={styles.topicItem}>
+                              <span className={styles.weekLabel}>{week}</span>
+                              <input
+                                type="text"
+                                value={topic}
+                                onChange={(e) =>
+                                  handleTopicChange(
+                                    course,
+                                    week,
+                                    e.target.value,
+                                  )
+                                }
+                                className={styles.topicInput}
+                              />
+                            </li>
+                          ))}
+                      </ul>
+                    ) : (
+                      <div className={styles.topicsCardEmpty}>
+                        <p>
+                          {hasSaved
+                            ? "Loading saved topics..."
+                            : 'Click "Fetch" to get AI-generated topics'}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-
-        <div className={styles.userCoursesContainer}>
-          <div className={styles.coursesContent}>
-            <h2>
-              Course Topics (Note: Topics can be incorrect. Please verify.)
-            </h2>
-            <br />
-            {Object.keys(scrapedCourseOneTopics).length > 0 ? (
-              <>
-                <h2>{displayCourses[0]}</h2>
-                <ul>
-                  {Object.entries(scrapedCourseOneTopics).map(
-                    ([week, topic]) => (
-                      <li key={week}>
-                        <strong>{week}:</strong>{" "}
-                        <input
-                          type="text"
-                          defaultValue={topic}
-                          className={styles.topicInput}
-                        />
-                      </li>
-                    ),
-                  )}
-                </ul>
-              </>
-            ) : (
-              <span>Enter your courses to view their weekly topics. </span>
-            )}
-
-            {Object.keys(scrapedCourseTwoTopics).length > 0 ? (
-              <>
-                <h2>{displayCourses[1]}</h2>
-                <ul>
-                  {Object.entries(scrapedCourseTwoTopics).map(
-                    ([week, topic]) => (
-                      <li key={week}>
-                        <strong>{week}:</strong>{" "}
-                        <input
-                          type="text"
-                          defaultValue={topic}
-                          className={styles.topicInput}
-                        />
-                      </li>
-                    ),
-                  )}
-                </ul>
-              </>
-            ) : (
-              ""
-            )}
-
-            {Object.keys(scrapedCourseThreeTopics).length > 0 ? (
-              <>
-                <h2>{displayCourses[2]}</h2>
-                <ul>
-                  {Object.entries(scrapedCourseThreeTopics).map(
-                    ([week, topic]) => (
-                      <li key={week}>
-                        <strong>{week}:</strong>{" "}
-                        <input
-                          type="text"
-                          defaultValue={topic}
-                          className={styles.topicInput}
-                        />
-                      </li>
-                    ),
-                  )}
-                </ul>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-      </main>
-    </>
+        )}
+      </div>
+    </main>
   );
 }

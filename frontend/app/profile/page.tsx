@@ -53,7 +53,8 @@ export default function ProfilePage() {
       localStorage.removeItem("firstName");
 
       // Clear the cookie by making a request or setting it to expire
-      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
       // Redirect to home
       router.push("/");
@@ -142,7 +143,7 @@ export default function ProfilePage() {
             <div className={styles.statItem}>
               <span className={styles.statValue}>
                 {userData?.stats
-                  ? Math.round(userData.stats.totalSeconds / 3600 * 10) / 10
+                  ? Math.round((userData.stats.totalSeconds / 3600) * 10) / 10
                   : 0}
                 h
               </span>

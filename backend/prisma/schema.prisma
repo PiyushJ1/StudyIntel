@@ -59,3 +59,17 @@ model WaitlistEmail {
 
   @@map("waitlistemails")
 }
+
+model CourseTopic {
+  id         String @id @default(uuid())
+  userId     String @db.Uuid
+  courseCode String
+  weekNumber Int
+  topic      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, courseCode, weekNumber])
+  @@index([userId, courseCode])
+  @@map("course_topics")
+}

@@ -41,7 +41,7 @@ export default function DashboardPage() {
   const [firstName, setFirstName] = useState(() =>
     typeof window !== "undefined"
       ? localStorage.getItem("firstName") || ""
-      : ""
+      : "",
   );
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<Stats | null>(null);
@@ -276,7 +276,7 @@ export default function DashboardPage() {
                       weekday: "long",
                       month: "short",
                       day: "numeric",
-                    }
+                    },
                   )}
                 </div>
               )}

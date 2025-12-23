@@ -85,7 +85,8 @@ export default function InsightsPage() {
       insights.push({
         icon: "⏰",
         title: "Time to get back on track",
-        description: "Your streak has reset. Start a session today to build momentum!",
+        description:
+          "Your streak has reset. Start a session today to build momentum!",
         type: "warning",
       });
     }
@@ -135,7 +136,10 @@ export default function InsightsPage() {
         description: `Your average session is ${formatTime(stats.averageSessionSeconds)}. You're great at sustained focus!`,
         type: "success",
       });
-    } else if (stats.averageSessionSeconds > 0 && stats.averageSessionSeconds < 1800) {
+    } else if (
+      stats.averageSessionSeconds > 0 &&
+      stats.averageSessionSeconds < 1800
+    ) {
       insights.push({
         icon: "💡",
         title: "Try longer sessions",
@@ -197,7 +201,8 @@ export default function InsightsPage() {
       insights.push({
         icon: "👋",
         title: "Welcome to StudyIntel!",
-        description: "Start tracking your study sessions to see personalised insights here.",
+        description:
+          "Start tracking your study sessions to see personalised insights here.",
         type: "info",
       });
     }
@@ -211,7 +216,7 @@ export default function InsightsPage() {
     return (
       <main className={styles.insightsContainer}>
         <div className={styles.insightsContent}>
-          <div className={styles.loading}>Analyzing your study patterns...</div>
+          <div className={styles.loading}>Analysing your study patterns...</div>
         </div>
       </main>
     );
@@ -235,40 +240,13 @@ export default function InsightsPage() {
               <div className={styles.insightIcon}>{insight.icon}</div>
               <div className={styles.insightContent}>
                 <h3 className={styles.insightTitle}>{insight.title}</h3>
-                <p className={styles.insightDescription}>{insight.description}</p>
+                <p className={styles.insightDescription}>
+                  {insight.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Quick Stats Summary */}
-        {stats && stats.sessionCount > 0 && (
-          <div className={styles.summaryCard}>
-            <h3 className={styles.summaryTitle}>📊 Quick Summary</h3>
-            <div className={styles.summaryGrid}>
-              <div className={styles.summaryItem}>
-                <span className={styles.summaryValue}>
-                  {toHours(stats.totalSeconds)}h
-                </span>
-                <span className={styles.summaryLabel}>Total Studied</span>
-              </div>
-              <div className={styles.summaryItem}>
-                <span className={styles.summaryValue}>{stats.sessionCount}</span>
-                <span className={styles.summaryLabel}>Sessions</span>
-              </div>
-              <div className={styles.summaryItem}>
-                <span className={styles.summaryValue}>
-                  {formatTime(stats.averageSessionSeconds)}
-                </span>
-                <span className={styles.summaryLabel}>Avg Length</span>
-              </div>
-              <div className={styles.summaryItem}>
-                <span className={styles.summaryValue}>{stats.streak} 🔥</span>
-                <span className={styles.summaryLabel}>Day Streak</span>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </main>
   );

@@ -190,7 +190,11 @@
 }
 
 .statCard {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.8),
+    rgba(17, 24, 39, 0.9)
+  );
   border: 1px solid var(--card-border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -254,7 +258,11 @@
 }
 
 .chartCard {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.6), rgba(17, 24, 39, 0.8));
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
   border: 1px solid var(--card-border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -288,7 +296,11 @@
 
 /* Highlight Card */
 .highlightCard {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(59, 130, 246, 0.1)
+  );
   border: 1px solid rgba(139, 92, 246, 0.3);
   border-radius: 1rem;
   padding: 1.5rem;
