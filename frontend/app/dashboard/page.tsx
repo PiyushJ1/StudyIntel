@@ -111,6 +111,64 @@ export default function DashboardPage() {
   // Get total hours
   const totalHours = stats ? toHours(stats.totalSeconds) : 0;
 
+  // Loading skeleton
+  if (loading) {
+    return (
+      <main className={styles.dashboardContainer}>
+        <div className={styles.dashboardContent}>
+          {/* Welcome Skeleton */}
+          <div className={styles.welcomeSection}>
+            <div className={styles.skeletonWelcome}>
+              <div className={`${styles.skeleton} ${styles.skeletonTextLg}`} />
+            </div>
+          </div>
+
+          <div className={styles.subtitleSection}>
+            <div className={`${styles.skeleton} ${styles.skeletonTextMd}`} />
+          </div>
+
+          {/* Stats Skeleton */}
+          <div className={styles.statsGrid}>
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className={styles.statCard}>
+                <div
+                  className={`${styles.skeleton} ${styles.skeletonIcon}`}
+                />
+                <div
+                  className={`${styles.skeleton} ${styles.skeletonStatValue}`}
+                />
+                <div
+                  className={`${styles.skeleton} ${styles.skeletonStatLabel}`}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Charts Skeleton */}
+          <div className={styles.chartsGrid}>
+            <div className={styles.chartCard}>
+              <div className={`${styles.skeleton} ${styles.skeletonChartTitle}`} />
+              <div className={`${styles.skeleton} ${styles.skeletonChart}`} />
+            </div>
+            <div className={styles.chartCard}>
+              <div className={`${styles.skeleton} ${styles.skeletonChartTitle}`} />
+              <div className={`${styles.skeleton} ${styles.skeletonChart}`} />
+            </div>
+          </div>
+
+          {/* Highlight Skeleton */}
+          <div className={styles.highlightCard}>
+            <div className={`${styles.skeleton} ${styles.skeletonHighlightIcon}`} />
+            <div className={styles.highlightContent}>
+              <div className={`${styles.skeleton} ${styles.skeletonTextSm}`} />
+              <div className={`${styles.skeleton} ${styles.skeletonTextMd}`} style={{ marginTop: '0.5rem' }} />
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className={styles.dashboardContainer}>
       <div className={styles.dashboardContent}>
@@ -127,20 +185,16 @@ export default function DashboardPage() {
               encryptedClassName=""
               animateOn="view"
             />{" "}
-            {loading ? (
-              <span className={styles.highlightUser}></span>
-            ) : (
-              <DecryptedText
-                text={firstName ? `${firstName}!` : "Guest!"}
-                speed={60}
-                maxIterations={18}
-                characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!?1234567890"
-                className={styles.highlightUser}
-                parentClassName=""
-                encryptedClassName=""
-                animateOn="view"
-              />
-            )}
+            <DecryptedText
+              text={firstName ? `${firstName}!` : "Guest!"}
+              speed={60}
+              maxIterations={18}
+              characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!?1234567890"
+              className={styles.highlightUser}
+              parentClassName=""
+              encryptedClassName=""
+              animateOn="view"
+            />
           </h1>
         </div>
 
@@ -154,33 +208,27 @@ export default function DashboardPage() {
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
             <div className={styles.statIcon}>⏱️</div>
-            <div className={styles.statValue}>
-              {loading ? "—" : `${totalHours}h`}
-            </div>
+            <div className={styles.statValue}>{`${totalHours}h`}</div>
             <div className={styles.statLabel}>Total Study Time</div>
           </div>
 
           <div className={styles.statCard}>
             <div className={styles.statIcon}>📚</div>
-            <div className={styles.statValue}>
-              {loading ? "—" : stats?.sessionCount || 0}
-            </div>
+            <div className={styles.statValue}>{stats?.sessionCount || 0}</div>
             <div className={styles.statLabel}>Sessions Completed</div>
           </div>
 
           <div className={styles.statCard}>
             <div className={styles.statIcon}>📊</div>
             <div className={styles.statValue}>
-              {loading ? "—" : formatTime(stats?.averageSessionSeconds || 0)}
+              {formatTime(stats?.averageSessionSeconds || 0)}
             </div>
             <div className={styles.statLabel}>Avg Session</div>
           </div>
 
           <div className={styles.statCard}>
             <div className={styles.statIcon}>🔥</div>
-            <div className={styles.statValue}>
-              {loading ? "—" : `${stats?.streak || 0} days`}
-            </div>
+            <div className={styles.statValue}>{`${stats?.streak || 0} days`}</div>
             <div className={styles.statLabel}>Current Streak</div>
           </div>
         </div>
