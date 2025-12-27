@@ -44,7 +44,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div style={{ width: "100%", height: "auto", position: "relative" }}>
+      <div className={styles.pageWrapper}>
         <header className={styles.navbar}>
           <div className={styles.navContainer}>
             <div className={styles.navLeft}>
@@ -137,136 +137,50 @@ export default function HomePage() {
           </div>
         </main>
 
-        {/* About Section */}
-        {/* <section id="about" className={styles.aboutSection}>
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Why StudyIntel?</h2>
-          <p className={styles.aboutText}>
-            Turn your study sessions into actionable insights with AI-powered
-            analytics. Our AI analyzes your learning patterns and creates
-            beautiful, interactive dashboards that reveal hidden insights about
-            your study habits. <br></br>
-            <br></br>No more guesswork. StudyIntel helps you reveal when and how
-            you study best, so you can focus on what matters most.
-          </p>
-        </div>
-      </section> */}
-
-        {/* Features Section
-      <section id="features" className={styles.featuresSection}>
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>
-            Powerful Features for Smarter Studying
-          </h2>
-          <div className={styles.featuresGrid}>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>📊</div>
-              <h3 className={styles.featureTitle}>AI-Powered Analytics</h3>
-              <p className={styles.featureDescription}>
-                Unlock tailored insights into your study patterns, focus, and
-                learning efficiency, powered by advanced AI analysis.
-              </p>
-            </div>
-
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>📈</div>
-              <h3 className={styles.featureTitle}>Visual Progress Tracking</h3>
-              <p className={styles.featureDescription}>
-                Interactive dashboards and visualisations transform your study
-                data into clear, actionable insights.
-              </p>
-            </div>
-
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🎯</div>
-              <h3 className={styles.featureTitle}>Smart Recommendations</h3>
-              <p className={styles.featureDescription}>
-                Get AI-driven study tips and recommendations customised for your
-                unique learning style and goals.
-              </p>
-            </div>
-
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🔔</div>
-              <h3 className={styles.featureTitle}>Study Reminders</h3>
-              <p className={styles.featureDescription}>
-                Never miss a study session with intelligent reminders that adapt
-                to your schedule and priorities.
-              </p>
-            </div>
-
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>📱</div>
-              <h3 className={styles.featureTitle}>Multi-Platform Sync</h3>
-              <p className={styles.featureDescription}>
-                Access your study data seamlessly across all your devices with
-                real-time synchronisation.
-              </p>
-            </div>
-
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🔒</div>
-              <h3 className={styles.featureTitle}>Privacy First</h3>
-              <p className={styles.featureDescription}>
-                Your study data is encrypted and secure. We never share your
-                information with third parties.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-        {/* Video Demo Section */}
-        {/* <section className={styles.videoSection}>
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>See StudyIntel in Action</h2>
-          <p className={styles.sectionSubtitle}>
-            Watch your study data come to life with personalised AI insights and
-            interactive data visualisations.
-          </p>
-          <div className={styles.videoContainer}>
-            <div className={styles.videoPlaceholder}>
-              <div className={styles.playButton}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M8 5v14l11-7z" fill="currentColor" />
-                </svg>
-              </div>
-              <p className={styles.videoText}>Coming Soon</p>
-              <p className={styles.videoSubtext}>Check back here later.</p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-        {/* CTA Section */}
-        {/* <section className={styles.ctaSection2}>
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.ctaTitle}>
-            Ready to Transform Your Study Game?
-          </h2>
-          <p className={styles.ctaSubtitle}>
-            Join students who are already experiencing the future of study
-            intelligence
-          </p>
-          <div className={styles.ctaButtons}>
-            <button
-              onClick={handleWaitlistClick}
-              className={styles.ctaPrimaryButton}
-            >
-              Get Early Access
-            </button>
-            <button
-              onClick={handleWaitlistClick}
-              className={styles.ctaSecondaryButton}
-            >
-              Try StudyIntel
-            </button>
-          </div>
-        </div>
-      </section> */}
 
         {/* Footer */}
-        {/* <footer id="contact" className={styles.footer}>
+        <footer className={styles.footerMinimal}>
+          <div className={styles.footerIcons}>
+            <span className={styles.footerCredit}>by Piyush Jha</span>
+            <strong className={styles.footerDivider}>|</strong>
+            <a
+              href="https://www.linkedin.com/in/piyushj1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIconLink}
+              aria-label="LinkedIn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/PiyushJ1/StudyIntel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIconLink}
+              aria-label="GitHub"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+          </div>
+        </footer>
+
+                {/* <footer id="contact" className={styles.footer}>
         <div className={styles.footerContainer}>
           <div className={styles.footerContent}>
             <div className={styles.footerSection}>
@@ -387,6 +301,7 @@ export default function HomePage() {
           </div>
         </div>
       </footer> */}
+
 
         <WaitlistPopup
           isOpen={isWaitlistPopupOpen}
