@@ -1,3 +1,11 @@
+.pageWrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .darkVeil {
   position: fixed;
   top: 0;
@@ -5,7 +13,7 @@
   width: 100%;
   height: 100%;
   z-index: -1; /* or 1 */
-  pointer-events: none; /* so it doesn’t block clicks */
+  pointer-events: none; /* so it doesn't block clicks */
 }
 
 .container {
@@ -172,7 +180,7 @@
 }
 
 .heroContainer {
-  min-height: 100vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -753,6 +761,63 @@
   color: white;
   padding: 3rem 0 1rem 0;
   border-top: 1px solid var(--card-border);
+  position: relative;
+  z-index: 2;
+}
+
+/* Minimal Footer */
+.footerMinimal {
+  position: absolute;
+  bottom: clamp(1rem, 3vh, 2rem);
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2;
+}
+
+.footerCopyrightMinimal {
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+  color: var(--text-muted);
+  opacity: 0.5;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.02em;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.footerIcons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footerCredit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  font-family: "Inter", sans-serif;
+}
+
+.footerDivider {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.3;
+}
+
+.socialIconLink {
+  color: var(--text-muted);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialIconLink:hover {
+  color: var(--primary-blue);
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 .footerContainer {
@@ -763,13 +828,13 @@
 
 .footerContent {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
   margin-bottom: 2rem;
 }
 
 .footerSection:first-child {
-  grid-column: span 2;
+  grid-column: span 1;
 }
 
 .footerLogo {
@@ -993,6 +1058,11 @@
 
   .footerSection:first-child {
     grid-column: span 1;
+  }
+
+  .footerDescription {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .footerBottom {
