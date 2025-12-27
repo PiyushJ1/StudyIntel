@@ -273,29 +273,46 @@ export default function CoursesPage() {
               {[1, 2, 3].map((i) => (
                 <div key={i} className={styles.skeletonCourseCard}>
                   <div className={styles.skeletonCourseHeader}>
-                    <div className={`${styles.skeleton} ${styles.skeletonCourseCode}`} />
-                    <div className={`${styles.skeleton} ${styles.skeletonCourseBadge}`} />
+                    <div
+                      className={`${styles.skeleton} ${styles.skeletonCourseCode}`}
+                    />
+                    <div
+                      className={`${styles.skeleton} ${styles.skeletonCourseBadge}`}
+                    />
                   </div>
                   <div className={styles.skeletonStatsRow}>
                     {[1, 2, 3].map((j) => (
                       <div key={j} className={styles.skeletonStatItem}>
-                        <div className={`${styles.skeleton} ${styles.skeletonStatValue}`} />
-                        <div className={`${styles.skeleton} ${styles.skeletonStatLabel}`} />
+                        <div
+                          className={`${styles.skeleton} ${styles.skeletonStatValue}`}
+                        />
+                        <div
+                          className={`${styles.skeleton} ${styles.skeletonStatLabel}`}
+                        />
                       </div>
                     ))}
                   </div>
-                  <div className={`${styles.skeleton} ${styles.skeletonProgressBar}`} />
+                  <div
+                    className={`${styles.skeleton} ${styles.skeletonProgressBar}`}
+                  />
                 </div>
               ))}
             </div>
 
             {/* Skeleton Balance Card */}
             <div className={styles.skeletonBalanceCard}>
-              <div className={`${styles.skeleton} ${styles.skeletonBalanceTitle}`} />
-              <div className={`${styles.skeleton} ${styles.skeletonBalanceBar}`} />
+              <div
+                className={`${styles.skeleton} ${styles.skeletonBalanceTitle}`}
+              />
+              <div
+                className={`${styles.skeleton} ${styles.skeletonBalanceBar}`}
+              />
               <div className={styles.skeletonLegend}>
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className={`${styles.skeleton} ${styles.skeletonLegendItem}`} />
+                  <div
+                    key={i}
+                    className={`${styles.skeleton} ${styles.skeletonLegendItem}`}
+                  />
                 ))}
               </div>
             </div>
@@ -306,7 +323,10 @@ export default function CoursesPage() {
             <div className={`${styles.skeleton} ${styles.skeletonFormTitle}`} />
             <div className={styles.skeletonInputsRow}>
               {[1, 2, 3].map((i) => (
-                <div key={i} className={`${styles.skeleton} ${styles.skeletonInput}`} />
+                <div
+                  key={i}
+                  className={`${styles.skeleton} ${styles.skeletonInput}`}
+                />
               ))}
             </div>
             <div className={`${styles.skeleton} ${styles.skeletonButton}`} />

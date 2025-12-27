@@ -225,8 +225,12 @@ export default function InsightsPage() {
             <div key={i} className={styles.skeletonCard}>
               <div className={`${styles.skeleton} ${styles.skeletonIcon}`} />
               <div className={styles.skeletonContent}>
-                <div className={`${styles.skeleton} ${styles.skeletonCardTitle}`} />
-                <div className={`${styles.skeleton} ${styles.skeletonCardText}`} />
+                <div
+                  className={`${styles.skeleton} ${styles.skeletonCardTitle}`}
+                />
+                <div
+                  className={`${styles.skeleton} ${styles.skeletonCardText}`}
+                />
               </div>
             </div>
           ))}

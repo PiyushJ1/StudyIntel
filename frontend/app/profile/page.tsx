@@ -98,36 +98,53 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className={styles.skeletonInfoRow}>
-              <div className={`${styles.skeleton} ${styles.skeletonInfoLabel}`} />
-              <div className={`${styles.skeleton} ${styles.skeletonInfoValue}`} />
+              <div
+                className={`${styles.skeleton} ${styles.skeletonInfoLabel}`}
+              />
+              <div
+                className={`${styles.skeleton} ${styles.skeletonInfoValue}`}
+              />
             </div>
           </div>
 
           {/* Skeleton Courses Card */}
           <div className={styles.skeletonSectionCard}>
-            <div className={`${styles.skeleton} ${styles.skeletonSectionTitle}`} />
+            <div
+              className={`${styles.skeleton} ${styles.skeletonSectionTitle}`}
+            />
             <div className={styles.skeletonCoursesList}>
               {[1, 2, 3].map((i) => (
-                <div key={i} className={`${styles.skeleton} ${styles.skeletonCourseTag}`} />
+                <div
+                  key={i}
+                  className={`${styles.skeleton} ${styles.skeletonCourseTag}`}
+                />
               ))}
             </div>
           </div>
 
           {/* Skeleton Stats Card */}
           <div className={styles.skeletonSectionCard}>
-            <div className={`${styles.skeleton} ${styles.skeletonSectionTitle}`} />
+            <div
+              className={`${styles.skeleton} ${styles.skeletonSectionTitle}`}
+            />
             <div className={styles.skeletonStatsGrid}>
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className={styles.skeletonStatItem}>
-                  <div className={`${styles.skeleton} ${styles.skeletonStatValue}`} />
-                  <div className={`${styles.skeleton} ${styles.skeletonStatLabel}`} />
+                  <div
+                    className={`${styles.skeleton} ${styles.skeletonStatValue}`}
+                  />
+                  <div
+                    className={`${styles.skeleton} ${styles.skeletonStatLabel}`}
+                  />
                 </div>
               ))}
             </div>
           </div>
 
           {/* Skeleton Logout Button */}
-          <div className={`${styles.skeleton} ${styles.skeletonLogoutButton}`} />
+          <div
+            className={`${styles.skeleton} ${styles.skeletonLogoutButton}`}
+          />
         </div>
       </main>
     );

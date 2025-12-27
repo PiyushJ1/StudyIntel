@@ -131,9 +131,7 @@ export default function DashboardPage() {
           <div className={styles.statsGrid}>
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className={styles.statCard}>
-                <div
-                  className={`${styles.skeleton} ${styles.skeletonIcon}`}
-                />
+                <div className={`${styles.skeleton} ${styles.skeletonIcon}`} />
                 <div
                   className={`${styles.skeleton} ${styles.skeletonStatValue}`}
                 />
@@ -147,21 +145,30 @@ export default function DashboardPage() {
           {/* Charts Skeleton */}
           <div className={styles.chartsGrid}>
             <div className={styles.chartCard}>
-              <div className={`${styles.skeleton} ${styles.skeletonChartTitle}`} />
+              <div
+                className={`${styles.skeleton} ${styles.skeletonChartTitle}`}
+              />
               <div className={`${styles.skeleton} ${styles.skeletonChart}`} />
             </div>
             <div className={styles.chartCard}>
-              <div className={`${styles.skeleton} ${styles.skeletonChartTitle}`} />
+              <div
+                className={`${styles.skeleton} ${styles.skeletonChartTitle}`}
+              />
               <div className={`${styles.skeleton} ${styles.skeletonChart}`} />
             </div>
           </div>
 
           {/* Highlight Skeleton */}
           <div className={styles.highlightCard}>
-            <div className={`${styles.skeleton} ${styles.skeletonHighlightIcon}`} />
+            <div
+              className={`${styles.skeleton} ${styles.skeletonHighlightIcon}`}
+            />
             <div className={styles.highlightContent}>
               <div className={`${styles.skeleton} ${styles.skeletonTextSm}`} />
-              <div className={`${styles.skeleton} ${styles.skeletonTextMd}`} style={{ marginTop: '0.5rem' }} />
+              <div
+                className={`${styles.skeleton} ${styles.skeletonTextMd}`}
+                style={{ marginTop: "0.5rem" }}
+              />
             </div>
           </div>
         </div>
@@ -228,7 +235,9 @@ export default function DashboardPage() {
 
           <div className={styles.statCard}>
             <div className={styles.statIcon}>🔥</div>
-            <div className={styles.statValue}>{`${stats?.streak || 0} days`}</div>
+            <div
+              className={styles.statValue}
+            >{`${stats?.streak || 0} days`}</div>
             <div className={styles.statLabel}>Current Streak</div>
           </div>
         </div>
