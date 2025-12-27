@@ -112,7 +112,7 @@ export default function ProfilePage() {
 
           <div className={styles.infoGrid}>
             <div className={styles.infoItem}>
-              <span className={styles.infoLabel}>Member since</span>
+              <span className={styles.infoLabel}>Joined on</span>
               <span className={styles.infoValue}>
                 {userData?.createdAt ? formatDate(userData.createdAt) : "—"}
               </span>
@@ -138,7 +138,7 @@ export default function ProfilePage() {
 
         {/* Stats Summary Card */}
         <div className={styles.sectionCard}>
-          <h3 className={styles.sectionTitle}>📊 Study Summary</h3>
+          <h3 className={styles.sectionTitle}>📊 Lifetime Study Summary</h3>
           <div className={styles.statsGrid}>
             <div className={styles.statItem}>
               <span className={styles.statValue}>
