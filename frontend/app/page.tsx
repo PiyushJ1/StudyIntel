@@ -137,7 +137,6 @@ export default function HomePage() {
           </div>
         </main>
 
-
         {/* Footer */}
         <footer className={styles.footerMinimal}>
           <div className={styles.footerIcons}>
@@ -179,129 +178,6 @@ export default function HomePage() {
             </a>
           </div>
         </footer>
-
-                {/* <footer id="contact" className={styles.footer}>
-        <div className={styles.footerContainer}>
-          <div className={styles.footerContent}>
-            <div className={styles.footerSection}>
-              <div className={styles.footerLogo}>StudyIntel</div>
-              <p className={styles.footerDescription}>
-                Built with ❤️ by a student, for students. AI-powered study
-                intelligence to help you reach your academic potential through
-                beautiful data visualisation and personalised insights. Always
-                free.
-              </p>
-              <div className={styles.socialLinks}>
-                <a href="#" className={styles.socialLink}>
-                  Twitter
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/piyush-jha1/"
-                  target="_blank"
-                  className={styles.socialLink}
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/PiyushJ1/StudyIntel"
-                  target="_blank"
-                  className={styles.socialLink}
-                >
-                  GitHub
-                </a>
-              </div>
-            </div>
-
-            <div className={styles.footerSection}>
-              <h4 className={styles.footerSectionTitle}>Product</h4>
-              <ul className={styles.footerLinks}>
-                <li>
-                  <a href="#features" className={styles.footerLink}>
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#about" className={styles.footerLink}>
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="/dashboard" className={styles.footerLink}>
-                    Dashboard
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={styles.footerLink}>
-                    Roadmap
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div className={styles.footerSection}>
-              <h4 className={styles.footerSectionTitle}>Support</h4>
-              <ul className={styles.footerLinks}>
-                <li>
-                  <a href="#" className={styles.footerLink}>
-                    Help Center
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={styles.footerLink}>
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={styles.footerLink}>
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={styles.footerLink}>
-                    Status
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div className={styles.footerSection}>
-              <h4 className={styles.footerSectionTitle}>Legal</h4>
-              <ul className={styles.footerLinks}>
-                <li>
-                  <a href="/privacy" className={styles.footerLink}>
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="/terms" className={styles.footerLink}>
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a href="/cookies" className={styles.footerLink}>
-                    Cookie Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className={styles.footerBottom}>
-            <p className={styles.footerCopyright}>
-              © 2025 StudyIntel. A study intelligence platform.
-            </p>
-            <div className={styles.footerBottomLinks}>
-              <a href="#" className={styles.footerBottomLink}>
-                Security
-              </a>
-              <a href="#" className={styles.footerBottomLink}>
-                Changelog
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer> */}
-
 
         <WaitlistPopup
           isOpen={isWaitlistPopupOpen}
