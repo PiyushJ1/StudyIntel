@@ -96,8 +96,17 @@ export default function DashboardPage() {
     ? Object.entries(stats.weeklyActivity).map(([date, seconds]) => ({
         day: new Date(date).toLocaleDateString("en-US", { weekday: "short" }),
         hours: toHours(seconds),
+        minutes: Math.round(seconds / 60),
+        seconds: seconds,
       }))
     : [];
+
+  // Determine if we should show minutes or hours for weekly chart
+  const maxWeeklySeconds = Math.max(
+    ...weeklyChartData.map((d) => d.seconds),
+    0,
+  );
+  const showMinutes = maxWeeklySeconds < 3600; // Less than 1 hour total
 
   // Get total hours
   const totalHours = stats ? toHours(stats.totalSeconds) : 0;
@@ -225,7 +234,7 @@ export default function DashboardPage() {
           {/* This Week Activity */}
           <div className={styles.chartCard}>
             <h3 className={styles.chartTitle}>This Week</h3>
-            {weeklyChartData.some((d) => d.hours > 0) ? (
+            {weeklyChartData.some((d) => d.seconds > 0) ? (
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart
                   data={weeklyChartData}
@@ -233,7 +242,7 @@ export default function DashboardPage() {
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                   <XAxis dataKey="day" stroke="#9ca3af" />
-                  <YAxis stroke="#9ca3af" unit="h" />
+                  <YAxis stroke="#9ca3af" unit={showMinutes ? "m" : "h"} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: "#1f2937",
@@ -241,9 +250,16 @@ export default function DashboardPage() {
                       borderRadius: "8px",
                       color: "#fff",
                     }}
-                    formatter={(value) => [`${value} hours`, "Time"]}
+                    formatter={(value) => [
+                      `${value} ${showMinutes ? "minutes" : "hours"}`,
+                      "Time",
+                    ]}
                   />
-                  <Bar dataKey="hours" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                  <Bar
+                    dataKey={showMinutes ? "minutes" : "hours"}
+                    fill="#8b5cf6"
+                    radius={[4, 4, 0, 0]}
+                  />
                 </BarChart>
               </ResponsiveContainer>
             ) : (
