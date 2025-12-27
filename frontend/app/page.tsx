@@ -44,7 +44,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div style={{ width: "100%", height: "100vh", position: "relative" }}>
+      <div style={{ width: "100%", height: "auto", position: "relative" }}>
         <header className={styles.navbar}>
           <div className={styles.navContainer}>
             <div className={styles.navLeft}>
@@ -110,27 +110,6 @@ export default function HomePage() {
         {/* Hero Section */}
         <main className={styles.heroContainer}>
           <div className={styles.contentContainer}>
-            <div
-              style={{
-                marginBottom: "1rem",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                className="bg-white/10 backdrop-blur-md border border-white/20 
-                rounded-full px-4 py-2 text-white text-sm font-medium shadow-lg 
-                hover:bg-white/20 hover:border-white/30 transition-all 
-                duration-300 hover:shadow-xl active:scale-95 flex items-center gap-2"
-              >
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping [animation-duration:_1.8s] absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
-                </span>
-                MVP Launching Soon!
-              </div>
-            </div>
-
             <div className={styles.mainTitle}>
               Start studying with confidence.
             </div>
@@ -254,67 +233,6 @@ export default function HomePage() {
               </div>
               <p className={styles.videoText}>Coming Soon</p>
               <p className={styles.videoSubtext}>Check back here later.</p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-        {/* Testimonials Section */}
-        {/* <section id="testimonials" className={styles.testimonialsSection}>
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Loved by Students Everywhere</h2>
-          <div className={styles.testimonialsGrid}>
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialStars}>★★★★★</div>
-              <p className={styles.testimonialText}>
-                &quot;The visual analytics are incredible! I can finally see
-                which subjects I need to focus on and track my progress over
-                time. The personalised AI insights showed me exactly when I
-                focus best, and the data visualisations make my progress crystal
-                clear.&quot;
-              </p>
-              <div className={styles.testimonialAuthor}>
-                <div>
-                  <div className={styles.testimonialName}>Sarah Johnson</div>
-                  <div className={styles.testimonialTitle}>
-                    Computer Science/Commerce, UNSW
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialStars}>★★★★★</div>
-              <p className={styles.testimonialText}>
-                &quot;StudyIntel completely transformed how I approach studying.
-                The AI insights helped me identify my peak focus hours and
-                improve my grades by over 30% in one semester!&quot;
-              </p>
-              <div className={styles.testimonialAuthor}>
-                <div>
-                  <div className={styles.testimonialName}>Michael Chen</div>
-                  <div className={styles.testimonialTitle}>
-                    Medical Science, USYD
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialStars}>★★★★★</div>
-              <p className={styles.testimonialText}>
-                &quot;I was struggling with time management until I found
-                StudyIntel. The smart recommendations and progress tracking
-                helped me develop better study habits and reduce stress.&quot;
-              </p>
-              <div className={styles.testimonialAuthor}>
-                <div>
-                  <div className={styles.testimonialName}>Emily Rodriguez</div>
-                  <div className={styles.testimonialTitle}>
-                    Media/Communications, UTS
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
