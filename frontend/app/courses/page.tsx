@@ -16,6 +16,7 @@ export default function CoursesPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userId, setUserId] = useState<string>("");
   const [courseStats, setCourseStats] = useState<CourseStats | null>(null);
+  const [loading, setLoading] = useState(true);
 
   // Topics state
   const [savedTopics, setSavedTopics] = useState<TopicsMap>({});
@@ -47,7 +48,7 @@ export default function CoursesPage() {
     }
   }, []);
 
-  const fetchUserData = useCallback(() => {
+  const fetchUserData = useCallback((isInitial = false) => {
     fetch("/api/me", {
       credentials: "include",
     })
@@ -65,14 +66,20 @@ export default function CoursesPage() {
             sessionCount: data.stats.sessionCount || 0,
           });
         }
+        if (isInitial) {
+          setLoading(false);
+        }
       })
       .catch((err) => {
         console.error("Failed to fetch user data:", err);
+        if (isInitial) {
+          setLoading(false);
+        }
       });
   }, []);
 
   useEffect(() => {
-    fetchUserData();
+    fetchUserData(true);
     fetchSavedTopics();
   }, [fetchUserData, fetchSavedTopics]);
 
@@ -248,6 +255,66 @@ export default function CoursesPage() {
   };
 
   const courseColors = ["#3b82f6", "#8b5cf6", "#10b981", "#f59e0b"];
+
+  // Loading skeleton
+  if (loading) {
+    return (
+      <main className={styles.coursesContainer}>
+        <div className={styles.coursesContent}>
+          {/* Skeleton Header */}
+          <div className={styles.pageHeader}>
+            <div className={`${styles.skeleton} ${styles.skeletonTitle}`} />
+            <div className={`${styles.skeleton} ${styles.skeletonSubtitle}`} />
+          </div>
+
+          {/* Skeleton Course Cards */}
+          <div className={styles.courseCardsSection}>
+            <div className={styles.courseCardsGrid}>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className={styles.skeletonCourseCard}>
+                  <div className={styles.skeletonCourseHeader}>
+                    <div className={`${styles.skeleton} ${styles.skeletonCourseCode}`} />
+                    <div className={`${styles.skeleton} ${styles.skeletonCourseBadge}`} />
+                  </div>
+                  <div className={styles.skeletonStatsRow}>
+                    {[1, 2, 3].map((j) => (
+                      <div key={j} className={styles.skeletonStatItem}>
+                        <div className={`${styles.skeleton} ${styles.skeletonStatValue}`} />
+                        <div className={`${styles.skeleton} ${styles.skeletonStatLabel}`} />
+                      </div>
+                    ))}
+                  </div>
+                  <div className={`${styles.skeleton} ${styles.skeletonProgressBar}`} />
+                </div>
+              ))}
+            </div>
+
+            {/* Skeleton Balance Card */}
+            <div className={styles.skeletonBalanceCard}>
+              <div className={`${styles.skeleton} ${styles.skeletonBalanceTitle}`} />
+              <div className={`${styles.skeleton} ${styles.skeletonBalanceBar}`} />
+              <div className={styles.skeletonLegend}>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className={`${styles.skeleton} ${styles.skeletonLegendItem}`} />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Skeleton Form Card */}
+          <div className={styles.skeletonFormCard}>
+            <div className={`${styles.skeleton} ${styles.skeletonFormTitle}`} />
+            <div className={styles.skeletonInputsRow}>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className={`${styles.skeleton} ${styles.skeletonInput}`} />
+              ))}
+            </div>
+            <div className={`${styles.skeleton} ${styles.skeletonButton}`} />
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className={styles.coursesContainer}>

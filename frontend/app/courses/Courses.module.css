@@ -18,6 +18,171 @@
   }
 }
 
+/* Skeleton Loading Styles */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(55, 65, 81, 0.3) 25%,
+    rgba(75, 85, 99, 0.5) 50%,
+    rgba(55, 65, 81, 0.3) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+
+.skeletonTitle {
+  height: 2rem;
+  width: 200px;
+  margin-bottom: 0.5rem;
+}
+
+.skeletonSubtitle {
+  height: 1rem;
+  width: 340px;
+  margin-bottom: 2rem;
+}
+
+.skeletonCourseCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-top: 3px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.skeletonCourseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.skeletonCourseCode {
+  height: 1.5rem;
+  width: 100px;
+}
+
+.skeletonCourseBadge {
+  height: 1.5rem;
+  width: 50px;
+  border-radius: 1rem;
+}
+
+.skeletonStatsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.skeletonStatItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skeletonStatValue {
+  height: 1.5rem;
+  width: 50px;
+}
+
+.skeletonStatLabel {
+  height: 0.75rem;
+  width: 70px;
+}
+
+.skeletonProgressBar {
+  height: 6px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.skeletonBalanceCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.skeletonBalanceTitle {
+  height: 1.25rem;
+  width: 140px;
+  margin-bottom: 1rem;
+}
+
+.skeletonBalanceBar {
+  height: 24px;
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.skeletonLegend {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.skeletonLegendItem {
+  height: 1rem;
+  width: 80px;
+}
+
+.skeletonFormCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.skeletonFormTitle {
+  height: 1.25rem;
+  width: 160px;
+  margin-bottom: 1rem;
+}
+
+.skeletonInputsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.skeletonInput {
+  height: 48px;
+  width: 100%;
+  border-radius: 0.75rem;
+}
+
+.skeletonButton {
+  height: 48px;
+  width: 130px;
+  border-radius: 0.75rem;
+}
+
 .coursesContent {
   max-width: 1100px;
   margin: 0 auto;

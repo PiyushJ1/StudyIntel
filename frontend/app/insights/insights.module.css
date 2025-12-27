@@ -32,6 +32,77 @@
   font-style: italic;
 }
 
+/* Skeleton Loading Styles */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(55, 65, 81, 0.3) 25%,
+    rgba(75, 85, 99, 0.5) 50%,
+    rgba(55, 65, 81, 0.3) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+
+.skeletonTitle {
+  height: 2rem;
+  width: 180px;
+  margin-bottom: 0.5rem;
+}
+
+.skeletonSubtitle {
+  height: 1rem;
+  width: 320px;
+  margin-bottom: 2rem;
+}
+
+.skeletonCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.skeletonIcon {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skeletonContent {
+  flex: 1;
+}
+
+.skeletonCardTitle {
+  height: 1.25rem;
+  width: 60%;
+  margin-bottom: 0.75rem;
+}
+
+.skeletonCardText {
+  height: 1rem;
+  width: 90%;
+}
+
 /* Insights Grid */
 .insightsGrid {
   display: flex;

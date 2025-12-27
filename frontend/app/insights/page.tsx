@@ -216,7 +216,20 @@ export default function InsightsPage() {
     return (
       <main className={styles.insightsContainer}>
         <div className={styles.insightsContent}>
-          <div className={styles.loading}>Analysing your study patterns...</div>
+          {/* Skeleton Header */}
+          <div className={`${styles.skeleton} ${styles.skeletonTitle}`} />
+          <div className={`${styles.skeleton} ${styles.skeletonSubtitle}`} />
+
+          {/* Skeleton Cards */}
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className={styles.skeletonCard}>
+              <div className={`${styles.skeleton} ${styles.skeletonIcon}`} />
+              <div className={styles.skeletonContent}>
+                <div className={`${styles.skeleton} ${styles.skeletonCardTitle}`} />
+                <div className={`${styles.skeleton} ${styles.skeletonCardText}`} />
+              </div>
+            </div>
+          ))}
         </div>
       </main>
     );

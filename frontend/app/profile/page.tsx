@@ -85,7 +85,49 @@ export default function ProfilePage() {
     return (
       <main className={styles.profileContainer}>
         <div className={styles.profileContent}>
-          <div className={styles.loading}>Loading profile...</div>
+          {/* Skeleton Title */}
+          <div className={`${styles.skeleton} ${styles.skeletonTitle}`} />
+
+          {/* Skeleton Profile Card */}
+          <div className={styles.skeletonProfileCard}>
+            <div className={styles.skeletonAvatarSection}>
+              <div className={`${styles.skeleton} ${styles.skeletonAvatar}`} />
+              <div className={styles.skeletonUserInfo}>
+                <div className={`${styles.skeleton} ${styles.skeletonName}`} />
+                <div className={`${styles.skeleton} ${styles.skeletonEmail}`} />
+              </div>
+            </div>
+            <div className={styles.skeletonInfoRow}>
+              <div className={`${styles.skeleton} ${styles.skeletonInfoLabel}`} />
+              <div className={`${styles.skeleton} ${styles.skeletonInfoValue}`} />
+            </div>
+          </div>
+
+          {/* Skeleton Courses Card */}
+          <div className={styles.skeletonSectionCard}>
+            <div className={`${styles.skeleton} ${styles.skeletonSectionTitle}`} />
+            <div className={styles.skeletonCoursesList}>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className={`${styles.skeleton} ${styles.skeletonCourseTag}`} />
+              ))}
+            </div>
+          </div>
+
+          {/* Skeleton Stats Card */}
+          <div className={styles.skeletonSectionCard}>
+            <div className={`${styles.skeleton} ${styles.skeletonSectionTitle}`} />
+            <div className={styles.skeletonStatsGrid}>
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className={styles.skeletonStatItem}>
+                  <div className={`${styles.skeleton} ${styles.skeletonStatValue}`} />
+                  <div className={`${styles.skeleton} ${styles.skeletonStatLabel}`} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Skeleton Logout Button */}
+          <div className={`${styles.skeleton} ${styles.skeletonLogoutButton}`} />
         </div>
       </main>
     );
