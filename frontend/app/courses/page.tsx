@@ -11,10 +11,7 @@ interface CourseStats {
 type TopicsMap = Record<string, Record<string, string>>;
 
 export default function CoursesPage() {
-  const [courses, setCourses] = useState<string[]>(["", "", ""]);
   const [displayCourses, setDisplayCourses] = useState<string[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [userId, setUserId] = useState<string>("");
   const [courseStats, setCourseStats] = useState<CourseStats | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -54,9 +51,6 @@ export default function CoursesPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.userId) {
-          setUserId(data.userId);
-        }
         if (data.courses) {
           setDisplayCourses(data.courses);
         }
@@ -82,54 +76,6 @@ export default function CoursesPage() {
     fetchUserData(true);
     fetchSavedTopics();
   }, [fetchUserData, fetchSavedTopics]);
-
-  const handleCourseChange = (index: number, value: string) => {
-    const newCourses = [...courses];
-    newCourses[index] = value.toUpperCase();
-    setCourses(newCourses);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const validCourses = courses.filter((course) => course.trim() !== "");
-
-    if (validCourses.length < 2) {
-      alert("Please enter at least 2 courses");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/new-courses`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            courses: validCourses,
-            userId: userId,
-          }),
-        },
-      );
-
-      if (!response.ok) {
-        alert("Submission failed");
-        return;
-      }
-
-      setCourses(["", "", ""]);
-      setDisplayCourses(validCourses);
-      fetchUserData();
-    } catch (err) {
-      console.log("Error: ", err);
-      alert("Error adding courses");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   // Fetch topics from AI for a specific course
   const handleFetchTopicsForCourse = async (courseCode: string) => {
@@ -317,20 +263,6 @@ export default function CoursesPage() {
               </div>
             </div>
           </div>
-
-          {/* Skeleton Form Card */}
-          <div className={styles.skeletonFormCard}>
-            <div className={`${styles.skeleton} ${styles.skeletonFormTitle}`} />
-            <div className={styles.skeletonInputsRow}>
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className={`${styles.skeleton} ${styles.skeletonInput}`}
-                />
-              ))}
-            </div>
-            <div className={`${styles.skeleton} ${styles.skeletonButton}`} />
-          </div>
         </div>
       </main>
     );
@@ -455,45 +387,6 @@ export default function CoursesPage() {
             </div>
           </div>
         )}
-
-        {/* Add Courses Form */}
-        <div className={styles.addCoursesCard}>
-          <h2 className={styles.addCoursesTitle}>
-            {displayCourses.length > 0 ? "Update Courses" : "Add Your Courses"}
-          </h2>
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.inputsRow}>
-              <input
-                type="text"
-                value={courses[0]}
-                onChange={(e) => handleCourseChange(0, e.target.value)}
-                placeholder="e.g. COMP2521"
-                className={styles.input}
-              />
-              <input
-                type="text"
-                value={courses[1]}
-                onChange={(e) => handleCourseChange(1, e.target.value)}
-                placeholder="e.g. MATH1131"
-                className={styles.input}
-              />
-              <input
-                type="text"
-                value={courses[2]}
-                onChange={(e) => handleCourseChange(2, e.target.value)}
-                placeholder="e.g. COMP1531 (Optional)"
-                className={styles.input}
-              />
-            </div>
-            <button
-              type="submit"
-              className={styles.submitButton}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Saving..." : "Save Courses"}
-            </button>
-          </form>
-        </div>
 
         {/* Course Topics Section */}
         {displayCourses.length > 0 && (
