@@ -85,7 +85,6 @@ export default function NewSessionPopup({
       return;
     }
 
-    // save study session info to db
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/finish-session`,
@@ -104,6 +103,7 @@ export default function NewSessionPopup({
       setSeconds(0);
       setRunning(false);
       setSessionId(null);
+      setTrackedCourse(null);
     } catch (err) {
       alert("Could not save session end info");
       console.log("Error:", err);
@@ -119,62 +119,99 @@ export default function NewSessionPopup({
 
   if (!isOpen) return null;
 
+  const isActive = sessionId !== null;
+
   return (
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.popup}>
-        <>
-          <button className={styles.closeButton} onClick={onClose}>
-            ×
-          </button>
+        <button className={styles.closeButton} onClick={onClose}>
+          ×
+        </button>
 
-          <div className={styles.header}>
-            <h2 className={styles.title}>Start New Study Session</h2>
-            <p className={styles.subtitle}>
-              Let&apos;s get started. What course would you like to study for?
-            </p>
+        <div className={styles.header}>
+          <h2 className={styles.title}>
+            {isActive ? `Studying ${trackedCourse}` : "New Study Session"}
+          </h2>
+          <p className={styles.subtitle}>
+            {isActive ? "Stay focused!" : "Select a course to begin"}
+          </p>
+        </div>
+
+        {isActive && (
+          <div className={styles.activeInfo}>
+            <span className={styles.activeBadge}>
+              <span className={styles.activeDot} />
+              Recording
+            </span>
           </div>
+        )}
 
-          <div className={styles.userCourses}>
-            {displayCourses.map((course) => (
-              <label key={course} className={styles.courseOption}>
-                <input
-                  type="radio"
-                  name="course"
-                  value={course}
-                  checked={trackedCourse === course}
-                  onChange={() => setTrackedCourse(course)}
-                />
-                {course}
-              </label>
-            ))}
+        <div className={styles.stopwatch}>{formatTime(seconds)}</div>
+
+        {!isActive && (
+          <div className={styles.courseSection}>
+            <div className={styles.sectionLabel}>Course</div>
+            <div className={styles.userCourses}>
+              {displayCourses.map((course) => (
+                <label key={course} className={styles.courseOption}>
+                  <input
+                    type="radio"
+                    name="course"
+                    value={course}
+                    checked={trackedCourse === course}
+                    onChange={() => setTrackedCourse(course)}
+                  />
+                  <span className={styles.courseLabel}>{course}</span>
+                </label>
+              ))}
+            </div>
           </div>
+        )}
 
-          <div className={styles.stopwatch}>{formatTime(seconds)}</div>
-
-          <div className={styles.buttonContainer}>
-            <button className={styles.startButton} onClick={handleStartSession}>
-              Start
-            </button>
+        <div className={styles.buttonContainer}>
+          {!isActive ? (
             <button
-              className={styles.pauseButton}
-              onClick={() => setRunning(false)}
+              className={styles.startButton}
+              onClick={handleStartSession}
+              disabled={!trackedCourse}
             >
-              Pause
+              Start Session
             </button>
-            <button
-              className={styles.finishButton}
-              onClick={handleFinishSession}
-            >
-              Finish
-            </button>
-            <button
-              className={styles.resetButton}
-              onClick={() => (setSeconds(0), setRunning(false))}
-            >
-              Reset
-            </button>
-          </div>
-        </>
+          ) : (
+            <>
+              {_running ? (
+                <button
+                  className={styles.pauseButton}
+                  onClick={() => setRunning(false)}
+                >
+                  Pause
+                </button>
+              ) : (
+                <button
+                  className={styles.resumeButton}
+                  onClick={() => setRunning(true)}
+                >
+                  Resume
+                </button>
+              )}
+              <button
+                className={styles.resetButton}
+                onClick={() => {
+                  setSeconds(0);
+                  setRunning(false);
+                }}
+              >
+                Reset
+              </button>
+              <button
+                className={styles.finishButton}
+                onClick={handleFinishSession}
+              >
+                Finish Session
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
