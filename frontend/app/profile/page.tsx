@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import styles from "./profile.module.css";
 
 interface UserData {
+  userId: string;
   firstname: string;
   lastname: string;
   email: string;
@@ -22,15 +23,19 @@ export default function ProfilePage() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [loggingOut, setLoggingOut] = useState(false);
+  const [courses, setCourses] = useState<string[]>(["", "", ""]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
+  const fetchUserData = () => {
     fetch("/api/me", {
       credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
         setUserData({
+          userId: data.userId,
           firstname: data.firstname,
           lastname: data.lastname,
           email: data.email,
@@ -44,6 +49,10 @@ export default function ProfilePage() {
         console.error("Failed to fetch user data:", err);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchUserData();
   }, []);
 
   const handleLogout = async () => {
@@ -79,6 +88,70 @@ export default function ProfilePage() {
       return `${hours}h ${mins}m`;
     }
     return `${mins}m`;
+  };
+
+  const handleCourseChange = (index: number, value: string) => {
+    const newCourses = [...courses];
+    newCourses[index] = value.toUpperCase();
+    setCourses(newCourses);
+  };
+
+  const handleStartEditing = () => {
+    // Pre-fill with existing courses
+    const existingCourses = userData?.courses || [];
+    setCourses([
+      existingCourses[0] || "",
+      existingCourses[1] || "",
+      existingCourses[2] || "",
+    ]);
+    setIsEditing(true);
+  };
+
+  const handleCancelEditing = () => {
+    setIsEditing(false);
+    setCourses(["", "", ""]);
+  };
+
+  const handleSubmitCourses = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const validCourses = courses.filter((course) => course.trim() !== "");
+
+    if (validCourses.length < 2) {
+      alert("Please enter at least 2 courses");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/new-courses`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            courses: validCourses,
+            userId: userData?.userId,
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        alert("Failed to update courses");
+        return;
+      }
+
+      setCourses(["", "", ""]);
+      setIsEditing(false);
+      fetchUserData();
+    } catch (err) {
+      console.log("Error: ", err);
+      alert("Error updating courses");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (loading) {
@@ -181,18 +254,75 @@ export default function ProfilePage() {
 
         {/* Courses Card */}
         <div className={styles.sectionCard}>
-          <h3 className={styles.sectionTitle}>📚 Your Courses</h3>
-          <div className={styles.coursesList}>
-            {userData?.courses && userData.courses.length > 0 ? (
-              userData.courses.map((course) => (
-                <span key={course} className={styles.courseTag}>
-                  {course}
-                </span>
-              ))
-            ) : (
-              <p className={styles.emptyText}>No courses added yet</p>
+          <div className={styles.sectionHeader}>
+            <h3 className={styles.sectionTitle}>📚 Your Courses</h3>
+            {!isEditing && (
+              <button
+                onClick={handleStartEditing}
+                className={styles.editButton}
+              >
+                {userData?.courses && userData.courses.length > 0
+                  ? "Edit"
+                  : "Add"}
+              </button>
             )}
           </div>
+
+          {isEditing ? (
+            <form onSubmit={handleSubmitCourses} className={styles.coursesForm}>
+              <div className={styles.inputsColumn}>
+                <input
+                  type="text"
+                  value={courses[0]}
+                  onChange={(e) => handleCourseChange(0, e.target.value)}
+                  placeholder="e.g. COMP2521"
+                  className={styles.input}
+                />
+                <input
+                  type="text"
+                  value={courses[1]}
+                  onChange={(e) => handleCourseChange(1, e.target.value)}
+                  placeholder="e.g. MATH1131"
+                  className={styles.input}
+                />
+                <input
+                  type="text"
+                  value={courses[2]}
+                  onChange={(e) => handleCourseChange(2, e.target.value)}
+                  placeholder="e.g. COMP1531 (Optional)"
+                  className={styles.input}
+                />
+              </div>
+              <div className={styles.formActions}>
+                <button
+                  type="button"
+                  onClick={handleCancelEditing}
+                  className={styles.cancelButton}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className={styles.saveCoursesButton}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Saving..." : "Save Courses"}
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className={styles.coursesList}>
+              {userData?.courses && userData.courses.length > 0 ? (
+                userData.courses.map((course) => (
+                  <span key={course} className={styles.courseTag}>
+                    {course}
+                  </span>
+                ))
+              ) : (
+                <p className={styles.emptyText}>No courses added yet</p>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Stats Summary Card */}
