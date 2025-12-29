@@ -1,14 +1,14 @@
 // src/routes/index.ts
 import { Router } from "express";
-import waitlistRoutes from "./waitlistRoutes";
-import signupUserRoute from "./signupUserRoute";
-import signinRoute from "./signinRoute";
-import startSession from "./startSessionRoute";
-import finishSession from "./finishSessionRoute";
-import newCourses from "./newCourses";
-import userInfo from "./userInfo";
-import courseTopics from "./courseTopics";
-import courseTopicsStorage from "./courseTopicsStorage";
+import waitlistRoutes from "./waitlistRoutes.js";
+import signupUserRoute from "./signupUserRoute.js";
+import signinRoute from "./signinRoute.js";
+import startSession from "./startSessionRoute.js";
+import finishSession from "./finishSessionRoute.js";
+import newCourses from "./newCourses.js";
+import userInfo from "./userInfo.js";
+import courseTopics from "./courseTopics.js";
+import courseTopicsStorage from "./courseTopicsStorage.js";
 
 const router = Router();
 

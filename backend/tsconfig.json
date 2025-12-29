@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
+    "target": "es2023",
+    "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -9,9 +9,12 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "rootDir": "./src",
-    "types": ["node"]
+    "rootDir": ".",
+    "types": ["node"],
+    "paths": {
+      "@prisma/*": ["./prisma/*"]
+    }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "prisma/generated/**/*", "prisma.config.ts"],
   "exclude": ["node_modules", "dist"]
 }

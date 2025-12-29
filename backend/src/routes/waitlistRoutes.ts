@@ -1,7 +1,7 @@
 import validator from "validator";
 import { Router, Request, Response } from "express";
-import { saveEmailToWaitlist } from "../utils/waitlistStorage";
-import { EmailAlreadyInWaitlistError } from "../errors/auth";
+import { saveEmailToWaitlist } from "../utils/waitlistStorage.js";
+import { EmailAlreadyInWaitlistError } from "../errors/auth.js";
 
 const router = Router();
 

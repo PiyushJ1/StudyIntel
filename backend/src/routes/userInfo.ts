@@ -1,10 +1,8 @@
 import { Router, Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
-// import redis from "../lib/redis";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Helper function to calculate study streak
 function calculateStreak(sessionDates: Date[]): number {
@@ -154,7 +152,10 @@ router.get("/:userId", async (req: Request, res: Response) => {
 
     // Find longest session
     const longestSession = sessions.reduce(
-      (max, session) => {
+      (
+        max: { duration: number; date: Date | null; course: string },
+        session,
+      ) => {
         if (session.duration && session.duration > (max.duration || 0)) {
           return {
             duration: session.duration,

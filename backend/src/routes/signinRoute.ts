@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 import { Router, Request, Response } from "express";
-import { authenticateUser } from "../utils/validation";
-import { InvalidPasswordError, UserNotFoundError } from "../errors/auth";
-import redis from "../lib/redis";
+import { authenticateUser } from "../utils/validation.js";
+import { InvalidPasswordError, UserNotFoundError } from "../errors/auth.js";
+import redis from "../lib/redis.js";
 
 const router = Router();
 

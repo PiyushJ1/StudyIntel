@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma.js";
 import bcrypt from "bcrypt";
 import { InvalidPasswordError, UserNotFoundError } from "../errors/auth";
-
-const prisma = new PrismaClient();
 
 export function validatePassword(password: string): boolean {
   // password length is less than 9 characters

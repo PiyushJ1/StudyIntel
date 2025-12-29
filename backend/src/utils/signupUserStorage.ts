@@ -1,10 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma.js";
 import bcrypt from "bcrypt";
-import { User } from "../models/interfaces";
+import { User } from "../models/interfaces.js";
 import { v4 as uuidv4 } from "uuid";
 import { AccountAlreadyExistsError } from "../errors/auth";
-
-const prisma = new PrismaClient();
 
 export async function saveNewUserAccount(
   newUser: Omit<User, "id">,

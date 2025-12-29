@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { getCourseTopics } from "../utils/pplxApiCalls";
+import { getCourseTopics } from "../utils/pplxApiCalls.js";
 
 const router = Router();
 
