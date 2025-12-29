@@ -82,3 +82,8 @@ jobs:
         run: |
           cd backend
           npm audit --audit-level=high
+
+      - name: Run test suite
+        run: |
+          cd backend
+          npm run test
