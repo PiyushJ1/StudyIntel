@@ -1,10 +1,8 @@
 import { Router, Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
-// import redis from "../lib/redis";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Helper function to calculate study streak
 function calculateStreak(sessionDates: Date[]): number {
