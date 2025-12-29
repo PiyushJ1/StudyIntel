@@ -1,15 +1,21 @@
 /* Navbar Styles */
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 1.5rem;
+  left: 4rem;
+  right: 4rem;
   z-index: 50;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--card-border);
-  padding: 1rem 0;
+
+  background:
+    radial-gradient(circle at 0% 0%, rgba(120, 120, 255, 0.2), transparent 70%),
+    rgba(7, 0, 20, 0.8);
+  backdrop-filter: blur(26px) saturate(140%);
+  -webkit-backdrop-filter: blur(26px) saturate(140%);
+
+  border-radius: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  padding: 0.9rem 0;
+  overflow: hidden;
 }
 
 .navContainer {
@@ -110,21 +116,22 @@
 }
 
 .profileButton {
-  background: var(--dark-bg);
-  border-color: white;
+  background: rgba(255, 255, 255, 0.05);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.3s ease;
   font-family: "Inter", sans-serif;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--card-border);
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
+  color: var(--text-primary);
 }
 
 .profileButton:hover {
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.793);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .newSessionButton {
@@ -132,12 +139,11 @@
   color: white;
   text-decoration: none;
   font-size: 0.875rem;
-  font-family: monospace;
   min-width: 135px;
   white-space: nowrap;
   font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
   transition: all 0.3s ease;
   font-family: "Inter", sans-serif;
   letter-spacing: -0.01em;
@@ -148,12 +154,70 @@
 .newSessionButton:hover {
   transform: translateY(-1px);
   box-shadow:
-    0 12px 26px -1px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(59, 130, 246, 0.3);
+    0 8px 20px -4px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(59, 130, 246, 0.25);
 }
 
 .sessionActive {
   font-size: 0.9rem;
   margin-left: 0.02rem;
   margin-right: 0.02rem;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .navbar {
+    left: 2rem;
+    right: 2rem;
+  }
+
+  .logo {
+    margin-right: 2rem;
+  }
+
+  .navCenter {
+    gap: 0.5rem;
+  }
+
+  .navLink {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    border-radius: 1.5rem;
+    padding: 0.75rem 0;
+  }
+
+  .navContainer {
+    padding: 0 1rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    margin-right: 0;
+  }
+
+  .navCenter {
+    display: none;
+  }
+
+  .navRight {
+    gap: 0.5rem;
+  }
+
+  .profileButton {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .newSessionButton {
+    min-width: auto;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
 }
