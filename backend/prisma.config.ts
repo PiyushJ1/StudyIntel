@@ -1,19 +1,14 @@
-import 'dotenv/config'
-import { defineConfig, env } from 'prisma/config'
+import "dotenv/config";
+import { defineConfig } from "prisma/config";
 
 export default defineConfig({
-  // the main entry for your schema
-  schema: 'prisma/schema.prisma',
-  // where migrations should be generated
-  // what script to run for "prisma db seed"
+  schema: "prisma/schema.prisma",
   migrations: {
-    path: 'prisma/migrations',
-    seed: 'tsx prisma/seed.ts',
+    path: "prisma/migrations",
+    seed: "tsx prisma/seed.ts",
   },
-  // The database URL 
   datasource: {
-    // Type Safe env() helper 
-    // Does not replace the need for dotenv
-    url: env('DATABASE_URL'),
+    // Use process.env with fallback for CI (prisma generate doesn't need real DB)
+    url: process.env.DATABASE_URL ?? "postgresql://placeholder:5432/db",
   },
-})
+});
