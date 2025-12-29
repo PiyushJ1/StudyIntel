@@ -1,6 +1,6 @@
 .dashboardContainer {
-  min-height: calc(100vh - 80px);
-  padding-top: 80px;
+  min-height: calc(100vh - 100px);
+  padding-top: 110px;
   background: var(--dark-bg);
   color: var(--text-primary);
   font-family: "Inter", sans-serif;
@@ -23,7 +23,7 @@
 }
 
 .dashboardContent {
-  max-width: 1400px; /* Match navbar max-width */
+  max-width: 1300px; /* Match navbar max-width */
   margin: 0 auto;
   padding: 2rem; /* Match navbar padding */
 }
@@ -458,6 +458,10 @@
 }
 
 @media (max-width: 768px) {
+  .dashboardContainer {
+    padding-top: 90px;
+  }
+
   .dashboardContent {
     padding: 1rem;
   }
