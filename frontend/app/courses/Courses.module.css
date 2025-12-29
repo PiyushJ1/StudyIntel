@@ -1,6 +1,6 @@
 .coursesContainer {
-  min-height: calc(100vh - 80px);
-  padding-top: 80px;
+  min-height: calc(100vh - 100px);
+  padding-top: 100px;
   background: var(--dark-bg);
   color: var(--text-primary);
   font-family: "Inter", sans-serif;
@@ -184,7 +184,7 @@
 }
 
 .coursesContent {
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -621,9 +621,20 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .coursesContent {
-    padding: 1rem;
+    margin: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .coursesContainer {
+    padding-top: 90px;
+  }
+
+  .coursesContent {
+    margin: 0 1rem;
+    padding: 1rem 0;
   }
 
   .pageTitle {
