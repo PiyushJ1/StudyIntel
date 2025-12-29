@@ -1,6 +1,6 @@
 .profileContainer {
-  min-height: calc(100vh - 80px);
-  padding-top: 80px;
+  min-height: calc(100vh - 100px);
+  padding-top: 100px;
   background: var(--dark-bg);
   color: var(--text-primary);
   font-family: "Inter", sans-serif;
@@ -471,6 +471,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .profileContainer {
+    padding-top: 90px;
+  }
+
   .profileContent {
     padding: 1rem;
   }
