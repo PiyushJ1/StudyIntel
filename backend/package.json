@@ -8,7 +8,9 @@
     "dev": "tsx src/index.ts",
     "build": "tsc && npx prisma generate",
     "build:watch": "tsc --watch",
-    "postinstall": "npm run build",
+    "postinstall": "prisma generate && tsc",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev",
     "lint": "eslint . --ext .ts --ignore-pattern dist/",
     "lint:fix": "eslint . --ext .ts --ignore-pattern dist/ --fix",
     "prettier": "prettier . --write"
@@ -54,6 +56,6 @@
     "tsx": "^4.21.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.19.0"
   }
 }

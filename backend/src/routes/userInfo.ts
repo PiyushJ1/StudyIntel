@@ -152,7 +152,10 @@ router.get("/:userId", async (req: Request, res: Response) => {
 
     // Find longest session
     const longestSession = sessions.reduce(
-      (max, session) => {
+      (
+        max: { duration: number; date: Date | null; course: string },
+        session,
+      ) => {
         if (session.duration && session.duration > (max.duration || 0)) {
           return {
             duration: session.duration,

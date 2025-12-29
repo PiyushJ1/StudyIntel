@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
-import { saveNewUserAccount } from "../utils/signupUserStorage";
-import { User } from "../models/interfaces";
-import { validatePassword } from "../utils/validation";
+import { saveNewUserAccount } from "../utils/signupUserStorage.js";
+import { User } from "../models/interfaces.js";
+import { validatePassword } from "../utils/validation.js";
 import validator from "validator";
 import jwt from "jsonwebtoken";
 
