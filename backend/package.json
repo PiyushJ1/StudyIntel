@@ -1,12 +1,12 @@
 {
   "name": "studyintel-backend",
   "version": "1.0.0",
+  "main": "dist/index.js",
   "type": "module",
-  "main": "dist/src/index.js",
   "scripts": {
-    "start": "node dist/src/index.js",
+    "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
-    "build": "prisma generate && tsc",
+    "build": "tsc && npx prisma generate",
     "build:watch": "tsc --watch",
     "postinstall": "prisma generate && tsc",
     "generate": "prisma generate",
@@ -16,8 +16,8 @@
     "prettier": "prettier . --write"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.0.0",
-    "@prisma/client": "^7.0.0",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
     "@upstash/redis": "^1.35.6",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
@@ -50,9 +50,10 @@
     "eslint": "^9.29.0",
     "globals": "^16.2.0",
     "prettier": "^3.6.2",
-    "prisma": "^7.0.0",
+    "prisma": "^7.2.0",
     "prisma-lint": "^0.10.2",
-    "tsx": "^4.19.0"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0"
   },
   "engines": {
     "node": ">=20.19.0"

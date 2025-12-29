@@ -1,6 +1,6 @@
-import bcrypt from "bcrypt";
-import { InvalidPasswordError, UserNotFoundError } from "../errors/auth.js";
 import prisma from "../lib/prisma.js";
+import bcrypt from "bcrypt";
+import { InvalidPasswordError, UserNotFoundError } from "../errors/auth";
 
 export function validatePassword(password: string): boolean {
   // password length is less than 9 characters
