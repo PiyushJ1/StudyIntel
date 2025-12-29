@@ -1,8 +1,7 @@
 import { Router, Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma.js";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 router.post("/", async (req: Request, res: Response) => {
   const { courses, userId } = req.body;

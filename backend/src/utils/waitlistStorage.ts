@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { Resend } from "resend";
-import { EmailAlreadyInWaitlistError } from "../errors/auth";
-
-const prisma = new PrismaClient();
+import { EmailAlreadyInWaitlistError } from "../errors/auth.js";
+import prisma from "../lib/prisma.js";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function saveEmailToWaitlist(email: string): Promise<void> {
