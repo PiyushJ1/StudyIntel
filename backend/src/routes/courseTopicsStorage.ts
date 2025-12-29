@@ -1,5 +1,4 @@
 import { Router, Request, Response } from "express";
-import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 import prisma from "../lib/prisma.js";
 

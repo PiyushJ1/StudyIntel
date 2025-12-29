@@ -1,12 +1,17 @@
-import { PrismaClient } from "@prisma/generated/client";
-import { PrismaPg } from "@prisma/adapter-pg";
 import "dotenv/config";
+import { PrismaClient } from "../../prisma/generated/client.js";
+import { PrismaPg } from "@prisma/adapter-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
-  max: 10, // max concurrent pools allowed
+  max: 20,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 5000,
+  connectionTimeoutMillis: 10000, // increased timeout for cloud DBs
+  ssl: {
+    rejectUnauthorized: false, // required for Railway and similar cloud providers
+  },
 });
 
-export default new PrismaClient({ adapter });
+const prisma = new PrismaClient({ adapter });
+
+export default prisma;
