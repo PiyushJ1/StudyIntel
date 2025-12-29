@@ -1,6 +1,6 @@
 .insightsContainer {
-  min-height: calc(100vh - 80px);
-  padding-top: 80px;
+  min-height: calc(100vh - 100px);
+  padding-top: 100px;
   background: var(--dark-bg);
   color: var(--text-primary);
   font-family: "Inter", sans-serif;
@@ -252,6 +252,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .insightsContainer {
+    padding-top: 90px;
+  }
+
   .insightsContent {
     padding: 1rem;
   }
