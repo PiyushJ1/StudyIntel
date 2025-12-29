@@ -28,4 +28,4 @@ data/
 /src/generated/prisma
 
 # Prisma generated files
-/prisma/generated
+prisma/generated
