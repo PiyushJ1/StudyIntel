@@ -29,3 +29,6 @@ data/
 
 # Prisma generated files
 prisma/generated
+
+# Test coverage
+coverage/
