@@ -21,6 +21,10 @@ app.get("/", (req, res) => {
   res.send("Backend running successfully.");
 });
 
+app.get("/health", (req, res) => {
+  res.send({ health: "Backend healthy", Time: Date.now() });
+});
+
 // mount all API routes under "/api"
 app.use("/api", routes);
 
