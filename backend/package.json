@@ -11,7 +11,7 @@
     "build:watch": "tsc --watch",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
-    "postbuild": "cp -r prisma/generated dist/prisma/generated",
+
     "lint": "eslint . --ext .ts --ignore-pattern dist/",
     "lint:fix": "eslint . --ext .ts --ignore-pattern dist/ --fix",
     "prettier": "prettier . --write",
