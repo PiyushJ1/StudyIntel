@@ -28,7 +28,7 @@ data/
 /src/generated/prisma
 
 # Prisma generated files
-prisma/generated
+# prisma/generated
 
 # Test coverage
 coverage/
