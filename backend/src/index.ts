@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/health", (req, res) => {
-  res.send({ status: "Running", Time: Date.now() });
+  res.send({ status: "Running", Time: Date().toLocaleString() });
 });
 
 // mount all API routes under "/api"
