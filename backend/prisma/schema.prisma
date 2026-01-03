@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client"
+  output = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String         @id @db.Uuid
+  firstname     String
+  lastname      String
+  email         String         @unique
+  password      String
+  courses       String[] // will migrate later
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  studySessions StudySession[]
+  userCourses   UserCourse[]
+
+  @@map("users")
+}
+
+model UserCourse {
+  id         String @id @default(uuid())
+  user       User   @relation(fields: [userId], references: [id])
+  userId     String @db.Uuid
+  course     Course @relation(fields: [courseCode], references: [code])
+  courseCode String
+
+  // add other fields here later
+
+  @@unique([userId, courseCode])
+}
+
+model Course {
+  code          String         @id
+  name          String
+  studySessions StudySession[]
+  userCourses   UserCourse[]
+}
+
+model StudySession {
+  id         String    @id @default(uuid())
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String    @db.Uuid
+  course     Course    @relation(fields: [courseCode], references: [code])
+  courseCode String
+  startTime  DateTime
+  endTime    DateTime?
+  duration   Int?
+
+  @@index([userId, courseCode])
+}
+
+model WaitlistEmail {
+  email String @id @map("emails")
+
+  @@map("waitlistemails")
+}
+
+model CourseTopic {
+  id         String @id @default(uuid())
+  userId     String @db.Uuid
+  courseCode String
+  weekNumber Int
+  topic      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, courseCode, weekNumber])
+  @@index([userId, courseCode])
+  @@map("course_topics")
+}
