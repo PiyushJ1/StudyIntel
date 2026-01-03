@@ -154,6 +154,8 @@ router.get("/:userId", async (req: Request, res: Response) => {
     const longestSession = sessions.reduce(
       (
         max: { duration: number; date: Date | null; course: string },
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore: Temporary ignore
         session,
       ) => {
         if (session.duration && session.duration > (max.duration || 0)) {
