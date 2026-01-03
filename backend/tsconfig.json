@@ -1,24 +1,18 @@
 {
   "compilerOptions": {
     "target": "es2023",
-
-    "module": "node16",
-    "moduleResolution": "node16",
-
+    "module": "ESNext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-
     "outDir": "./dist",
     "rootDir": ".",
-
     "types": ["node", "jest"],
-
     "paths": {
-      "@prisma/*": ["./prisma/*"]
+      "@prisma/client": ["./prisma/generated/client"]
     }
   },
   "include": ["src/**/*", "prisma/generated/**/*", "prisma.config.ts"],
