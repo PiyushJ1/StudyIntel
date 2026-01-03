@@ -12,7 +12,7 @@
     "rootDir": ".",
     "types": ["node", "jest"],
     "paths": {
-      "@prisma/client": ["./prisma/generated/client"]
+      "@prisma/generated/client": ["./prisma/generated/client"]
     }
   },
   "include": ["src/**/*", "prisma/generated/**/*", "prisma.config.ts"],
