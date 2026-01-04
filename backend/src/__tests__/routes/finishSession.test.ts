@@ -138,4 +138,3 @@ describe("PATCH /api/finish-session", () => {
     });
   });
 });
-
