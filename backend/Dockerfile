@@ -16,7 +16,7 @@ COPY . .
 # Build TypeScript
 RUN npm run build
 
-# Expose the port your backend uses
+# Expose backend port
 EXPOSE 4000
 
 # Command to start backend
