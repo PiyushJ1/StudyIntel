@@ -11,13 +11,13 @@ Students often lack visibility into their study habits. They may feel busy but n
 
 ## Screenshots
 
-> *Screenshots showcasing the dashboard, session tracking, and insights coming soon.*
+### Dashboard
+![Dashboard](./frontend/public/assets/dashboard.png)
 
-<!--
-![Dashboard](./docs/screenshots/dashboard.png)
-![Session Tracking](./docs/screenshots/session.png)
-![Insights](./docs/screenshots/insights.png)
--->
+### Courses Page
+![Course](./frontend/public/assets/courses1.png)
+![Course](./frontend/public/assets/courses2.png)
+![Insights](./frontend/public/assets/insights.png)
 
 
 ## Features
