@@ -183,11 +183,7 @@ export default function SignupPage() {
               <input type="checkbox" className={styles.checkbox} required />
               <span className={styles.checkboxLabel}>
                 I agree to the{" "}
-                <Link
-                  href="/terms"
-                  target="_blank"
-                  className={styles.termsLink}
-                >
+                <Link href="/tos" target="_blank" className={styles.termsLink}>
                   Terms of Service
                 </Link>{" "}
                 and{" "}
