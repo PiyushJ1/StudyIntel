@@ -20,7 +20,7 @@ export default function PrivacyPage() {
             StudyIntel
           </Link>
           <Link
-            href="/"
+            href="/signup"
             className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-2"
           >
             <svg
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
               <path d="m12 19-7-7 7-7" />
               <path d="M19 12H5" />
             </svg>
-            Back to Home
+            Back to Sign Up
           </Link>
         </div>
       </header>
