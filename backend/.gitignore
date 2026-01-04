@@ -27,8 +27,5 @@ npm-debug.log*
 data/
 /src/generated/prisma
 
-# Prisma generated files
-prisma/generated
-
 # Test coverage
 coverage/
