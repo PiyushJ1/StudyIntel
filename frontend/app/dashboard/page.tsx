@@ -269,6 +269,9 @@ export default function DashboardPage() {
                       borderRadius: "8px",
                       color: "#fff",
                     }}
+                    itemStyle={{
+                      color: "#fff",
+                    }}
                     formatter={(value) => [`${value} hours`, "Time"]}
                   />
                   <Bar dataKey="hours" radius={[0, 4, 4, 0]}>
