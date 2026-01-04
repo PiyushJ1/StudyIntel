@@ -17,6 +17,8 @@ Students often lack visibility into their study habits. They may feel busy but n
 ### Courses Page
 ![Course](./frontend/public/assets/courses1.png)
 ![Course](./frontend/public/assets/courses2.png)
+
+# Insights Page
 ![Insights](./frontend/public/assets/insights.png)
 
 
