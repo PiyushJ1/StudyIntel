@@ -23,6 +23,8 @@ export default function NewSessionPopup({
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [displayCourses, setDisplayCourses] = useState<string[]>([]);
   const [trackedCourse, setTrackedCourse] = useState<string | null>(null);
+  const [isStarting, setIsStarting] = useState(false);
+  const [isFinishing, setIsFinishing] = useState(false);
 
   useEffect(() => {
     fetch("/api/me", {
@@ -52,6 +54,7 @@ export default function NewSessionPopup({
       return;
     }
 
+    setIsStarting(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/start-session`,
@@ -74,6 +77,8 @@ export default function NewSessionPopup({
     } catch (err) {
       alert("Could not save session start info");
       console.log("Error:", err);
+    } finally {
+      setIsStarting(false);
     }
   };
 
@@ -85,6 +90,7 @@ export default function NewSessionPopup({
       return;
     }
 
+    setIsFinishing(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/finish-session`,
@@ -107,6 +113,8 @@ export default function NewSessionPopup({
     } catch (err) {
       alert("Could not save session end info");
       console.log("Error:", err);
+    } finally {
+      setIsFinishing(false);
     }
   };
 
@@ -173,9 +181,16 @@ export default function NewSessionPopup({
             <button
               className={styles.startButton}
               onClick={handleStartSession}
-              disabled={!trackedCourse}
+              disabled={!trackedCourse || isStarting}
             >
-              Start Session
+              {isStarting ? (
+                <>
+                  <span className="inline-block w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                  Starting...
+                </>
+              ) : (
+                "Start Session"
+              )}
             </button>
           ) : (
             <>
@@ -183,6 +198,7 @@ export default function NewSessionPopup({
                 <button
                   className={styles.pauseButton}
                   onClick={() => setRunning(false)}
+                  disabled={isFinishing}
                 >
                   Pause
                 </button>
@@ -190,6 +206,7 @@ export default function NewSessionPopup({
                 <button
                   className={styles.resumeButton}
                   onClick={() => setRunning(true)}
+                  disabled={isFinishing}
                 >
                   Resume
                 </button>
@@ -200,14 +217,23 @@ export default function NewSessionPopup({
                   setSeconds(0);
                   setRunning(false);
                 }}
+                disabled={isFinishing}
               >
                 Reset
               </button>
               <button
                 className={styles.finishButton}
                 onClick={handleFinishSession}
+                disabled={isFinishing}
               >
-                Finish Session
+                {isFinishing ? (
+                  <>
+                    <span className="inline-block w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                    Finishing...
+                  </>
+                ) : (
+                  "Finish Session"
+                )}
               </button>
             </>
           )}
