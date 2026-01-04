@@ -1,18 +1,22 @@
-# StudyIntel &mdash; study analytics for UNSW students
+# StudyIntel &mdash; a study analytics platform 
+
+### https://studyintel.app
 
 StudyIntel helps students track study sessions, visualise habits, and receive personalised insights powered by their own data. Designed for UNSW students, the platform combines real-time session tracking with intelligent analytics to help users make the most of their study time.
 
-
 ## The Problem
 
-Students often lack visibility into their study habits. They may feel busy but not productive, struggle to balance multiple courses, or fail to build consistent routines. Traditional time-tracking tools provide raw data but no actionable insights.
+Students often lack visibility into their study habits. They may feel busy but not productive, struggle to balance multiple courses, or fail to contextualise their efforts. Traditional time-tracking tools provide raw data but no actionable insights.
 
-**StudyIntel solves this** by turning study session data into meaningful analytics: streak tracking, course balance analysis, session recommendations, and AI-powered topic retrieval; all in a clean and intuitive dashboard.
+StudyIntel solves this by turning study session data into meaningful analytics: streak tracking, course balance analysis, session recommendations, and AI-powered topic retrieval; all in a clean and intuitive dashboard.
 
 ## Screenshots
 
 ### Dashboard
 ![Dashboard](./frontend/public/assets/dashboard.png)
+
+### Stopwatch
+![Stopwatch](./frontend/public/assets/stopwatch.png)
 
 ### Courses Page
 ![Course](./frontend/public/assets/courses1.png)
@@ -21,6 +25,8 @@ Students often lack visibility into their study habits. They may feel busy but n
 ### Insights Page
 ![Insights](./frontend/public/assets/insights.png)
 
+### Profile Page
+![Profile](./frontend/public/assets/profile.png)
 
 ## Features
 
@@ -35,10 +41,10 @@ Interactive visualisations built with Recharts:
 - Longest session highlight with date and course
 
 ### Insights Engine
-Personalized recommendations generated from user data:
+Personalised recommendations generated from user data:
 - Streak celebrations (3+ and 7+ day milestones)
 - Course balance warnings (flags under-studied subjects)
-- Session length optimization tips
+- Session length optimisation tips
 - Weekly consistency analysis
 
 ### Course Management
@@ -47,7 +53,7 @@ Personalized recommendations generated from user data:
 - Color-coded progress indicators
 
 ### AI-Powered Topic Retrieval
-Integration with Perplexity AI (Sonar Pro model) to fetch week-by-week lecture topics for UNSW courses. Users can:
+Integration with Perplexity AI to fetch week-by-week lecture topics for UNSW courses. Users can:
 - Fetch weekly outlines
 - Edit topics inline
 - Save personalised versions to their profile
@@ -68,7 +74,7 @@ Integration with Perplexity AI (Sonar Pro model) to fetch week-by-week lecture t
 | **Backend** | Node.js, Express, TypeScript |
 | **Database** | PostgreSQL (managed), Prisma ORM |
 | **Caching** | Upstash Redis (rate limiting) |
-| **AI** | Perplexity AI API (Sonar Pro model) |
+| **AI** | Perplexity AI API |
 | **Auth** | JWT, bcrypt, secure cookies |
 | **Testing** | Jest, Supertest, jest-mock-extended |
 | **DevOps** | Docker, Docker Compose, Railway |
@@ -124,7 +130,7 @@ JWT_SECRET=your-secret-key
 
 ## Docker & Containerisation
 
-The backend is fully containerised for reproducible builds across development and production environments.
+The backend is containerised for reproducible builds across different environments.
 
 ### Dockerfile (Backend)
 
@@ -140,35 +146,6 @@ EXPOSE 4000
 CMD ["node", "dist/src/index.js"]
 ```
 
-### Docker Compose (Local Development)
-
-```yaml
-version: '3.8'
-services:
-  backend:
-    build: ./backend
-    ports:
-      - "4000:4000"
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - JWT_SECRET=${JWT_SECRET}
-    depends_on:
-      - db
-
-  db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_USER: studyintel
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: studyintel
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
-volumes:
-  postgres_data:
-```
 
 ## Deployment
 
@@ -177,42 +154,40 @@ volumes:
 1. **Clone the repository**
    ```bash
    git clone https://github.com/PiyushJ1/StudyIntel.git
-   cd StudyIntel
    ```
 
-2. **Start with Docker Compose**
-   ```bash
-   docker-compose up --build
-   ```
-
-3. **Run database migrations**
+2. **Start the backend**
    ```bash
    cd backend
-   npx prisma migrate dev
+   npm install
+   npx prisma migrate dev # run db migration
+   npx prisma generate # generate prisma client
+
+   npm run dev
    ```
 
-4. **Start the frontend**
+3. **Start the frontend**
    ```bash
    cd frontend
    npm install
    npm run dev
    ```
 
-5. **Access the app**
+4. **Access the app**
    - Frontend: `http://localhost:3000`
    - Backend API: `http://localhost:4000`
 
-### Production (Railway)
+### Production
 
-1. **Backend**
+1. **Backend (deployed on Railway)**
    - Create a new Railway project
    - Connect your GitHub repository (backend directory)
    - Add a PostgreSQL plugin (managed database)
    - Set environment variables in Railway dashboard
    - Railway auto-deploys on push to `main`
 
-2. **Frontend**
-   - Deploy to Vercel (recommended) or Railway
+2. **Frontend (Deployed on Vercel)**
+   - Deploy to Vercel
    - Set `NEXT_PUBLIC_API_URL` to your Railway backend URL
    - Configure custom domain if needed
 
@@ -250,11 +225,6 @@ src/__tests__/
 │   └── prisma.mock.ts
 └── setup.ts          # Global test configuration
 ```
-
-### Mocking Strategy
-- Prisma client mocked at module level
-- Redis operations mocked for rate limiting tests
-- External APIs (Perplexity, Resend) mocked with `global.fetch`
 
 ## License
 
