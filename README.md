@@ -12,6 +12,9 @@ StudyIntel solves this by turning study session data into meaningful analytics: 
 
 ## Screenshots
 
+### Landing Page
+![Dashboard](./frontend/public/assets/landing.png)
+
 ### Dashboard
 ![Dashboard](./frontend/public/assets/dashboard.png)
 
