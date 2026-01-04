@@ -13,7 +13,7 @@ StudyIntel solves this by turning study session data into meaningful analytics: 
 ## Screenshots
 
 ### Landing Page
-![Dashboard](./frontend/public/assets/landing.png)
+![Landing](./frontend/public/assets/landing.png)
 
 ### Dashboard
 ![Dashboard](./frontend/public/assets/dashboard.png)
@@ -228,6 +228,14 @@ src/__tests__/
 │   └── prisma.mock.ts
 └── setup.ts          # Global test configuration
 ```
+
+## Known Bugs
+
+- Stopwatch timer does not display accurate time if user navigates off the tab
+- Fetching topics using AI sometimes returns an empty or incorrectly formatted object
+- Database pooling occasionally times out
+- Railway deployment needs to be redeployed in instances where docker image does not fully upload
+- Only half of the course topics are fetched for subjects if the other courses' topic fields are empty
 
 ## License
 
