@@ -137,3 +137,4 @@ describe("POST /api/new-courses", () => {
     });
   });
 });
+

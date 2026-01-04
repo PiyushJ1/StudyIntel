@@ -31,3 +31,4 @@ export function setupLoginAttemptMocks(options?: {
   (redisMock.expire as jest.Mock).mockResolvedValue(true);
   (redisMock.del as jest.Mock).mockResolvedValue(1);
 }
+
