@@ -289,7 +289,7 @@ export default function ProfilePage() {
                   type="text"
                   value={courses[2]}
                   onChange={(e) => handleCourseChange(2, e.target.value)}
-                  placeholder="e.g. COMP1531 (Optional)"
+                  placeholder="e.g. COMP1531 (Optional &mdash; if doing 3 courses)"
                   className={styles.input}
                 />
               </div>
