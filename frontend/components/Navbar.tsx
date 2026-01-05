@@ -5,23 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "../styles/Navbar.module.css";
 import NewSessionPopup from "./NewSessionPopup";
+import { useSession } from "@/lib/SessionContext";
 
-interface NavbarProps {
-  seconds: number;
-  running: boolean;
-  setSeconds: React.Dispatch<React.SetStateAction<number>>;
-  setRunning: React.Dispatch<React.SetStateAction<boolean>>;
-  formatTime: (s: number) => string;
-}
-
-export default function Navbar({
-  seconds,
-  running,
-  setSeconds,
-  setRunning,
-  formatTime,
-}: NavbarProps) {
+export default function Navbar() {
   const [isNewSessionPopupOpen, setIsNewSessionPopupOpen] = useState(false);
+  const { seconds, running, formatTime } = useSession();
 
   const pathName = usePathname();
 
@@ -93,10 +81,6 @@ export default function Navbar({
       <NewSessionPopup
         isOpen={isNewSessionPopupOpen}
         onClose={handleCloseNewSessionPopup}
-        seconds={seconds}
-        _running={running}
-        setSeconds={setSeconds}
-        setRunning={setRunning}
       />
     </>
   );

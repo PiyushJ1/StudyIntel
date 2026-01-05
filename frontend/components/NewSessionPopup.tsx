@@ -2,27 +2,31 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "../styles/NewSessionPopup.module.css";
+import { useSession } from "@/lib/SessionContext";
 
 interface NewSessionPopupProps {
   isOpen: boolean;
   onClose: () => void;
-  seconds: number;
-  _running: boolean;
-  setSeconds: React.Dispatch<React.SetStateAction<number>>;
-  setRunning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function NewSessionPopup({
   isOpen,
   onClose,
-  seconds,
-  _running,
-  setSeconds,
-  setRunning,
 }: NewSessionPopupProps) {
-  const [sessionId, setSessionId] = useState<string | null>(null);
+  const {
+    seconds,
+    running,
+    sessionId,
+    trackedCourse,
+    setSeconds,
+    setRunning,
+    setSessionId,
+    setTrackedCourse,
+    formatTime,
+    resetSession,
+  } = useSession();
+
   const [displayCourses, setDisplayCourses] = useState<string[]>([]);
-  const [trackedCourse, setTrackedCourse] = useState<string | null>(null);
   const [isStarting, setIsStarting] = useState(false);
   const [isFinishing, setIsFinishing] = useState(false);
 
@@ -106,23 +110,13 @@ export default function NewSessionPopup({
         console.log("Could not finish session");
       }
 
-      setSeconds(0);
-      setRunning(false);
-      setSessionId(null);
-      setTrackedCourse(null);
+      resetSession();
     } catch (err) {
       alert("Could not save session end info");
       console.log("Error:", err);
     } finally {
       setIsFinishing(false);
     }
-  };
-
-  const formatTime = (s: number) => {
-    const hours = String(Math.floor(s / 3600)).padStart(2, "0");
-    const mins = String(Math.floor((s % 3600) / 60)).padStart(2, "0");
-    const secs = String(s % 60).padStart(2, "0");
-    return `${hours}:${mins}:${secs}`;
   };
 
   if (!isOpen) return null;
@@ -194,7 +188,7 @@ export default function NewSessionPopup({
             </button>
           ) : (
             <>
-              {_running ? (
+              {running ? (
                 <button
                   className={styles.pauseButton}
                   onClick={() => setRunning(false)}
