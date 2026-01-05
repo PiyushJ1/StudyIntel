@@ -22,7 +22,6 @@ export default function NotFound() {
           href="/"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 text-white font-medium hover:from-blue-500 hover:to-violet-500 transition-all duration-200 shadow-lg shadow-violet-500/20"
         >
-          
           Back to Home
         </Link>
       </div>
