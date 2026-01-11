@@ -2,7 +2,7 @@
 
 <!-- <img src="./frontend/public/assets/StudyIntel.png" alt="StudyIntel Logo" width="150" /> -->
 
-<img width="394" height="87" alt="image" src="https://github.com/user-attachments/assets/16401f93-a563-458d-99e5-059ce651639f" />
+<img width="250" height="55" alt="image" src="https://github.com/user-attachments/assets/16401f93-a563-458d-99e5-059ce651639f" />
 <br/><br/>
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white) 
