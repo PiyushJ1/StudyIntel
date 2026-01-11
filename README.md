@@ -1,14 +1,17 @@
-# StudyIntel &mdash; a study analytics platform 
 
-<img src="./frontend/public/assets/StudyIntel.png" alt="StudyIntel Logo" width="150" />
+
+<!-- <img src="./frontend/public/assets/StudyIntel.png" alt="StudyIntel Logo" width="150" /> -->
+
+<img width="394" height="87" alt="image" src="https://github.com/user-attachments/assets/16401f93-a563-458d-99e5-059ce651639f" />
+<br/><br/>
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white) 
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white) 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) 
 ![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white) 
-![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white) 
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white) 
-![Prisma](https://img.shields.io/badge/Prisma-0C344B?logo=prisma&logoColor=white)  
+![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-0C344B?logo=prisma&logoColor=white)
 ![Jest](https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white) 
 
 
