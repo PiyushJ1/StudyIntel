@@ -1,6 +1,6 @@
 # StudyIntel &mdash; a study analytics platform 
 
-<img src="./frontend/public/assets/StudyIntel.png" alt="StudyIntel Logo" width="250" />
+<img src="./frontend/public/assets/StudyIntel.png" alt="StudyIntel Logo" width="150" />
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white) 
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white) 
