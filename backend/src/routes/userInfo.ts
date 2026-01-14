@@ -126,10 +126,13 @@ router.get("/:userId", async (req: Request, res: Response) => {
     // Calculate stats
     const totalStudyTimes: Record<string, number> = {};
     let totalSeconds = 0;
-    let sessionCount = 0;
+    const sessionCount = sessions.length; // count all sessions to match sessions page
     const sessionDates: Date[] = [];
 
     for (const session of sessions) {
+      // track all session dates for streak calculation
+      sessionDates.push(session.startTime);
+
       if (session.duration) {
         // Total per course
         if (!totalStudyTimes[session.courseCode]) {
@@ -139,12 +142,10 @@ router.get("/:userId", async (req: Request, res: Response) => {
 
         // Overall totals
         totalSeconds += session.duration;
-        sessionCount++;
-        sessionDates.push(session.startTime);
       }
     }
 
-    // Calculate derived stats
+    // Calculate derived stats (average across all sessions)
     const averageSessionSeconds =
       sessionCount > 0 ? Math.round(totalSeconds / sessionCount) : 0;
     const streak = calculateStreak(sessionDates);
