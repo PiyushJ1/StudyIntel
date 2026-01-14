@@ -44,19 +44,19 @@ export default function Navbar() {
               href="/dashboard"
               className={`${styles.navLink} ${pathName === "/dashboard" ? styles.active : ""}`}
             >
-              📊 Dashboard
+              Dashboard
             </Link>
             <Link
               href="/courses"
               className={`${styles.navLink} ${pathName === "/courses" ? styles.active : ""}`}
             >
-              📚 Courses
+              Courses
             </Link>
             <Link
               href="/insights"
               className={`${styles.navLink} ${pathName === "/insights" ? styles.active : ""}`}
             >
-              💡 Insights
+              Insights
             </Link>
           </nav>
 
@@ -72,7 +72,7 @@ export default function Navbar() {
               {sessionButtonLabel}
             </button>
             <Link href="/profile" className={styles.profileButton}>
-              👤 Profile
+              Profile
             </Link>
           </div>
         </div>
