@@ -21,10 +21,13 @@ router.get("/", async (req: Request, res: Response) => {
       where: { userId: payload.userId },
     });
 
-    console.log(sessions);
+    return res.status(200).json(sessions);
   } catch (err) {
     console.log("error: ", err);
+    return res
+      .status(500)
+      .json({ error: "Failed to fetch past study sessions" });
   }
 });
 
-export default router
+export default router;
