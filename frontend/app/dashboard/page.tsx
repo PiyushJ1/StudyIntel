@@ -361,7 +361,7 @@ export default function DashboardPage() {
           <div className={styles.recentSessionsCard}>
             <div className={styles.recentSessionsHeader}>
               <h3 className={styles.chartTitle}>Recent Sessions</h3>
-              <Link href="/dashboard/sessions" className={styles.viewAllLink}>
+              <Link href="/sessions" className={styles.viewAllLink}>
                 View All →
               </Link>
             </div>
