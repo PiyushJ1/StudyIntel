@@ -24,7 +24,7 @@ const routes = {
   "/new-courses": newCourses, // add the user's courses
   "/scrape-course": courseTopics, // scrape course topics (AI)
   "/course-topics": courseTopicsStorage, // save/fetch user's course topics
-  "/past-sessions": pastSessions // get all past study sessions
+  "/past-sessions": pastSessions, // get all past study sessions
 };
 
 // create object to array of [key, value] pairs
