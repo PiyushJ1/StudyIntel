@@ -307,10 +307,7 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  animation: delayFadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-  animation-delay: 0.7s;
-  animation-fill-mode: both;
-  opacity: 0;
+  height: fit-content;
 }
 
 .highlightIcon {
@@ -340,6 +337,121 @@
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-top: 0.25rem;
+}
+
+/* Stat Card Link */
+.statCardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.statCardLink .statCard {
+  transition: all 0.3s ease;
+}
+
+.statCardLink:hover .statCard {
+  border-color: var(--primary-purple);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.2);
+}
+
+.statCardLink:hover .statLabel {
+  color: var(--primary-purple);
+}
+
+/* Bottom Grid */
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  animation: delayFadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation-delay: 0.7s;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+/* Recent Sessions Card */
+.recentSessionsCard {
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.6),
+    rgba(17, 24, 39, 0.8)
+  );
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.recentSessionsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.viewAllLink {
+  font-size: 0.875rem;
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.viewAllLink:hover {
+  color: var(--primary-purple);
+}
+
+.recentSessionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recentSessionItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.recentSessionItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.recentSessionColor {
+  width: 4px;
+  height: 32px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.recentSessionInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.recentSessionCourse {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.recentSessionDate {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.recentSessionDuration {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-family: "Poppins", sans-serif;
 }
 
 @keyframes delayFadeIn {
@@ -445,6 +557,10 @@
   }
 
   .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bottomGrid {
     grid-template-columns: 1fr;
   }
 

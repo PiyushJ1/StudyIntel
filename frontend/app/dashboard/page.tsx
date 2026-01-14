@@ -3,6 +3,7 @@
 import styles from "./dashboard.module.css";
 import DecryptedText from "../../components/DecryptedText";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   BarChart,
   Bar,
@@ -13,6 +14,14 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
+
+interface StudySession {
+  id: string;
+  courseCode: string;
+  startTime: string;
+  endTime: string | null;
+  duration: number | null;
+}
 
 interface Stats {
   totalSeconds: number;
@@ -45,6 +54,7 @@ export default function DashboardPage() {
   );
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<Stats | null>(null);
+  const [recentSessions, setRecentSessions] = useState<StudySession[]>([]);
 
   useEffect(() => {
     fetch("/api/me", {
@@ -64,6 +74,20 @@ export default function DashboardPage() {
       .catch((err) => {
         console.error("Failed to fetch user data:", err);
         setLoading(false);
+      });
+
+    // Fetch recent sessions
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/past-sessions`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setRecentSessions(data.slice(0, 3)); // Get latest 3 sessions
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch recent sessions:", err);
       });
   }, []);
 
@@ -211,18 +235,12 @@ export default function DashboardPage() {
           </h2>
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats Cards - Top Row */}
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
             <div className={styles.statIcon}>⏱️</div>
             <div className={styles.statValue}>{`${totalHours}h`}</div>
             <div className={styles.statLabel}>Total Study Time</div>
-          </div>
-
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>📚</div>
-            <div className={styles.statValue}>{stats?.sessionCount || 0}</div>
-            <div className={styles.statLabel}>Sessions Completed</div>
           </div>
 
           <div className={styles.statCard}>
@@ -240,6 +258,14 @@ export default function DashboardPage() {
             >{`${stats?.streak || 0} days`}</div>
             <div className={styles.statLabel}>Current Streak</div>
           </div>
+
+          <Link href="/sessions" className={styles.statCardLink}>
+            <div className={styles.statCard} style={{ cursor: "pointer" }}>
+              <div className={styles.statIcon}>📚</div>
+              <div className={styles.statValue}>{stats?.sessionCount || 0}</div>
+              <div className={styles.statLabel}>View All Sessions →</div>
+            </div>
+          </Link>
         </div>
 
         {/* Charts Section */}
@@ -333,32 +359,99 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Longest Session Card */}
-        {stats?.longestSession?.duration ? (
-          <div className={styles.highlightCard}>
-            <div className={styles.highlightIcon}>🏆</div>
-            <div className={styles.highlightContent}>
-              <div className={styles.highlightTitle}>Longest Session</div>
-              <div className={styles.highlightValue}>
-                {formatTime(stats.longestSession.duration)} studying{" "}
-                {stats.longestSession.course}
-              </div>
-              {stats.longestSession.date && (
-                <div className={styles.highlightDate}>
-                  on{" "}
-                  {new Date(stats.longestSession.date).toLocaleDateString(
-                    "en-AU",
-                    {
-                      weekday: "long",
-                      month: "short",
-                      day: "numeric",
-                    },
-                  )}
-                </div>
-              )}
+        {/* Bottom Row: Recent Sessions & Longest Session */}
+        <div className={styles.bottomGrid}>
+          {/* Recent Sessions */}
+          <div className={styles.recentSessionsCard}>
+            <div className={styles.recentSessionsHeader}>
+              <h3 className={styles.chartTitle}>Recent Sessions</h3>
+              <Link href="/dashboard/sessions" className={styles.viewAllLink}>
+                View All →
+              </Link>
             </div>
+            {recentSessions.length > 0 ? (
+              <div className={styles.recentSessionsList}>
+                {recentSessions.map((session, index) => (
+                  <div key={session.id} className={styles.recentSessionItem}>
+                    <div
+                      className={styles.recentSessionColor}
+                      style={{
+                        backgroundColor:
+                          CHART_COLORS[index % CHART_COLORS.length],
+                      }}
+                    />
+                    <div className={styles.recentSessionInfo}>
+                      <span className={styles.recentSessionCourse}>
+                        {session.courseCode}
+                      </span>
+                      <span className={styles.recentSessionDate}>
+                        {new Date(session.startTime).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "short",
+                            day: "numeric",
+                          },
+                        )}
+                      </span>
+                    </div>
+                    <span className={styles.recentSessionDuration}>
+                      {session.duration
+                        ? formatTime(session.duration)
+                        : "In progress"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className={styles.emptyChart}>
+                <p>No sessions yet</p>
+                <p className={styles.emptyChartSub}>
+                  Start studying to track your progress!
+                </p>
+              </div>
+            )}
           </div>
-        ) : null}
+
+          {/* Longest Session Card */}
+          {stats?.longestSession?.duration ? (
+            <div className={styles.highlightCard}>
+              <div className={styles.highlightIcon}>🏆</div>
+              <div className={styles.highlightContent}>
+                <div className={styles.highlightTitle}>Longest Session</div>
+                <div className={styles.highlightValue}>
+                  {formatTime(stats.longestSession.duration)} studying{" "}
+                  {stats.longestSession.course}
+                </div>
+                {stats.longestSession.date && (
+                  <div className={styles.highlightDate}>
+                    on{" "}
+                    {new Date(stats.longestSession.date).toLocaleDateString(
+                      "en-AU",
+                      {
+                        weekday: "long",
+                        month: "short",
+                        day: "numeric",
+                      },
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className={styles.highlightCard}>
+              <div className={styles.highlightIcon}>🎯</div>
+              <div className={styles.highlightContent}>
+                <div className={styles.highlightTitle}>Get Started</div>
+                <div className={styles.highlightValue}>
+                  Complete your first study session!
+                </div>
+                <div className={styles.highlightDate}>
+                  Track your progress and build a streak
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );
