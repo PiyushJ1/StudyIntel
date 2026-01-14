@@ -226,11 +226,6 @@
   opacity: 1;
 }
 
-.statIcon {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
-}
-
 .statValue {
   font-size: 2rem;
   font-weight: 700;
