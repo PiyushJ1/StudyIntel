@@ -17,8 +17,12 @@ router.get("/", async (req: Request, res: Response) => {
       userId: string;
     };
 
+		// find all study sessions from most to least recent
     let sessions = await prisma.studySession.findMany({
       where: { userId: payload.userId },
+      orderBy: {
+        startTime: 'desc'
+      },
     });
 
     return res.status(200).json(sessions);
