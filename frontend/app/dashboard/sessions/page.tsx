@@ -19,7 +19,7 @@ export default function SessionsPage() {
     const controller = new AbortController();
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/past-sessions`, {
-        credentials: "include",
+      credentials: "include",
       signal: controller.signal,
     })
       .then((res) => {
@@ -39,7 +39,7 @@ export default function SessionsPage() {
       })
       .catch((err) => {
         if (err.name === "AbortError") return;
-    console.error("Failed to get past study sessions", err);
+        console.error("Failed to get past study sessions", err);
         setError("Unable to load study sessions. Please try again.");
       })
       .finally(() => setLoading(false));
@@ -161,7 +161,9 @@ export default function SessionsPage() {
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl font-semibold text-white">
                     {totalSessions > 0
-                      ? formatDuration(Math.round((totalMinutes * 60) / totalSessions))
+                      ? formatDuration(
+                          Math.round((totalMinutes * 60) / totalSessions),
+                        )
                       : "—"}
                   </span>
                   <span className="text-sm text-gray-500">per session</span>
@@ -221,7 +223,8 @@ export default function SessionsPage() {
                             </p>
                             <p className="text-white font-medium text-sm">
                               {formatTime(session.startTime)}
-                              {session.endTime && ` - ${formatTime(session.endTime)}`}
+                              {session.endTime &&
+                                ` - ${formatTime(session.endTime)}`}
                             </p>
                           </div>
                         </div>
