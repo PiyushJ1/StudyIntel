@@ -255,7 +255,7 @@ export default function ProfilePage() {
         {/* Courses Card */}
         <div className={styles.sectionCard}>
           <div className={styles.sectionHeader}>
-            <h3 className={styles.sectionTitle}>📚 Your Courses</h3>
+            <h3 className={styles.sectionTitle}>Your Courses</h3>
             {!isEditing && (
               <button
                 onClick={handleStartEditing}
@@ -323,42 +323,6 @@ export default function ProfilePage() {
               )}
             </div>
           )}
-        </div>
-
-        {/* Stats Summary Card */}
-        <div className={styles.sectionCard}>
-          <h3 className={styles.sectionTitle}>📊 Lifetime Study Summary</h3>
-          <div className={styles.statsGrid}>
-            <div className={styles.statItem}>
-              <span className={styles.statValue}>
-                {userData?.stats
-                  ? Math.round((userData.stats.totalSeconds / 3600) * 10) / 10
-                  : 0}
-                h
-              </span>
-              <span className={styles.statLabel}>Total Hours</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statValue}>
-                {userData?.stats?.sessionCount || 0}
-              </span>
-              <span className={styles.statLabel}>Sessions</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statValue}>
-                {userData?.stats
-                  ? formatTime(userData.stats.averageSessionSeconds)
-                  : "—"}
-              </span>
-              <span className={styles.statLabel}>Avg Session</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statValue}>
-                {userData?.stats?.streak || 0}
-              </span>
-              <span className={styles.statLabel}>Day Streak</span>
-            </div>
-          </div>
         </div>
 
         {/* Logout Button */}
