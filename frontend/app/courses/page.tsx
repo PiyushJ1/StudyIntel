@@ -273,7 +273,7 @@ export default function CoursesPage() {
       <div className={styles.coursesContent}>
         {/* Header */}
         <div className={styles.pageHeader}>
-          <h1 className={styles.pageTitle}>📚 My Courses</h1>
+          <h1 className={styles.pageTitle}>My Courses</h1>
           <p className={styles.pageSubtitle}>
             Manage your courses and track progress for each subject
           </p>
@@ -346,7 +346,7 @@ export default function CoursesPage() {
 
             {/* Overall Balance Card */}
             <div className={styles.balanceCard}>
-              <h3 className={styles.balanceTitle}>📊 Study Balance</h3>
+              <h3 className={styles.balanceTitle}>Study Balance</h3>
               <div className={styles.balanceBarContainer}>
                 {displayCourses.map((course, index) => {
                   const percentage = getCoursePercentage(course);
@@ -393,7 +393,7 @@ export default function CoursesPage() {
           <div className={styles.topicsSection}>
             <div className={styles.topicsHeader}>
               <div>
-                <h2 className={styles.topicsTitle}>📖 Weekly Topics</h2>
+                <h2 className={styles.topicsTitle}>Weekly Topics</h2>
                 <p className={styles.topicsSubtitle}>
                   Fetch AI-generated outlines, edit as needed, and save to your
                   account

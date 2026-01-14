@@ -238,13 +238,11 @@ export default function DashboardPage() {
         {/* Stats Cards - Top Row */}
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
-
             <div className={styles.statValue}>{`${totalHours}h`}</div>
             <div className={styles.statLabel}>Total Study Time</div>
           </div>
 
           <div className={styles.statCard}>
-
             <div className={styles.statValue}>
               {formatTime(stats?.averageSessionSeconds || 0)}
             </div>
@@ -252,7 +250,6 @@ export default function DashboardPage() {
           </div>
 
           <div className={styles.statCard}>
-
             <div
               className={styles.statValue}
             >{`${stats?.streak || 0} days`}</div>

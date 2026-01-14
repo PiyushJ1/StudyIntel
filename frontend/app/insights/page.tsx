@@ -242,7 +242,7 @@ export default function InsightsPage() {
   return (
     <main className={styles.insightsContainer}>
       <div className={styles.insightsContent}>
-        <h1 className={styles.pageTitle}>💡 Insights</h1>
+        <h1 className={styles.pageTitle}>Insights</h1>
         <p className={styles.pageSubtitle}>
           Personalised observations based on your study patterns
         </p>
