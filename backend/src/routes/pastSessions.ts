@@ -26,3 +26,5 @@ router.get("/", async (req: Request, res: Response) => {
     console.log("error: ", err);
   }
 });
+
+export default router

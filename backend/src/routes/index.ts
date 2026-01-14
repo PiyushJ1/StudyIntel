@@ -9,6 +9,7 @@ import newCourses from "./newCourses.js";
 import userInfo from "./userInfo.js";
 import courseTopics from "./courseTopics.js";
 import courseTopicsStorage from "./courseTopicsStorage.js";
+import pastSessions from "./pastSessions.js";
 
 const router = Router();
 
@@ -23,6 +24,7 @@ const routes = {
   "/new-courses": newCourses, // add the user's courses
   "/scrape-course": courseTopics, // scrape course topics (AI)
   "/course-topics": courseTopicsStorage, // save/fetch user's course topics
+  "/past-sessions": pastSessions // get all past study sessions
 };
 
 // create object to array of [key, value] pairs
