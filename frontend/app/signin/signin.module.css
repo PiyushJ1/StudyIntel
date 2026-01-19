@@ -233,7 +233,7 @@
 .signinButton {
   width: 100%;
   padding: 0.875rem 1rem;
-  background: linear-gradient(to right, #3b82f6, #9333ea);
+  background: #6d2efe;
   color: white;
   border: none;
   border-radius: 0.75rem;
