@@ -30,7 +30,7 @@
   left: 0;
   right: 0;
   height: 1.5rem;
-  background: #000;
+  background: var(--background);
   z-index: -1;
 }
 
