@@ -28,6 +28,7 @@ StudyIntel solves this by turning study session data into meaningful analytics: 
 
 ## Features
 - Study Session Tracking
+- View Past Sessions
 - Analytics Dashboard and Insights
 - Course Management
 - AI-led weekly topic fetching
@@ -37,23 +38,26 @@ StudyIntel solves this by turning study session data into meaningful analytics: 
 ## Screenshots
 
 ### Landing Page
-![Landing](./frontend/public/assets/landing.png)
+![Landing](./frontend/public/screenshots/landing.png)
 
 ### Dashboard
-![Dashboard](./frontend/public/assets/dashboard.png)
+![Dashboard](./frontend/public/screenshots/dashboard1.png)
+
+### Sessions
+![Sessions](./frontend/public/screenshots/sessions.png)
 
 ### Stopwatch
-![Stopwatch](./frontend/public/assets/stopwatch.png)
+![Stopwatch](./frontend/public/screenshots/stopwatch.png)
 
 ### Courses Page
-![Course](./frontend/public/assets/courses1.png)
-![Course](./frontend/public/assets/courses2.png)
+![Course](./frontend/public/screenshots/courses1.png)
+![Course](./frontend/public/screenshots/courses2.png)
 
 ### Insights Page
-![Insights](./frontend/public/assets/insights.png)
+![Insights](./frontend/public/screenshots/insights.png)
 
 ### Profile Page
-![Profile](./frontend/public/assets/profile.png)
+![Profile](./frontend/public/screenshots/profile.png)
 
 ## Tech Stack
 
