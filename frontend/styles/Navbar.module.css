@@ -22,6 +22,18 @@
   overflow: hidden;
 }
 
+/* Black overlay to clip content above navbar */
+.navbar::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5rem;
+  background: #000;
+  z-index: -1;
+}
+
 .navContainer {
   max-width: 1400px;
   margin: 0 auto;
