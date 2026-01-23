@@ -53,7 +53,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <nav className={styles.navCenter}>
+            {/* <nav className={styles.navCenter}>
               <a
                 href="#features"
                 onClick={(e) => handleSmoothScroll(e, "features")}
@@ -82,7 +82,7 @@ export default function HomePage() {
               >
                 Contact
               </a>
-            </nav>
+            </nav> */}
 
             <div className={styles.navRight}>
               <Link

@@ -235,7 +235,8 @@
 .mainTitle {
   font-size: clamp(2.5rem, 5vw, 3.75rem);
   font-weight: 700;
-  background: var(--gradient-primary);
+  padding: 2;
+  background: #cdcccd;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
